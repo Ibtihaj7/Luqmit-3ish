@@ -33,4 +33,5 @@ databaseConnection.connect((err)=>{
 if (myenv.error) {
     throw myenv.error
   }
+  module.exports=databaseConnection;
   
