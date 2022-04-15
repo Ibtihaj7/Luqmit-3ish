@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql');
 const app = express();
+require('dotenv').config();
 
 app.set('view engine','hbs');
 
