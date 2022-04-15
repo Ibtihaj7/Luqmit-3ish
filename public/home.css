@@ -1,0 +1,258 @@
+:root{
+    --orange:#ffa500;
+  }
+  
+  *{
+    font-family: 'Nunito', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    outline: none; border:none;
+    text-decoration: none;
+    transition: all .2s linear;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btnn{
+    margin-left: 20vw;
+    width: 22vw;
+    height: 8vh;
+    font-size:30px !important;
+  }
+  .btnnn{
+    position: absolute;
+    bottom: 0;
+  }
+  .carousel ,.carousel-item{ 
+   width: 60vw !important;
+   border-radius: 10% !important;
+  }
+  .carousel-item{
+    overflow: hidden;
+    height: 70vh;
+    position: relative;
+  }
+  
+  *::selection{
+    background:var(--orange);
+    color:#fff;
+  }
+  .carousel{
+    width:100%;
+    height: 100%;
+  }
+  html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+  }
+  
+  section{
+    padding:2rem 9%;
+  }
+  header{
+    position: fixed;
+    top:0; left: 0; right:0;
+    background:#333;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2rem 9%;
+  }
+  
+  header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color:#fff;
+    text-transform: uppercase;
+  }
+  
+  header .logo span{
+    color:var(--orange);
+  }
+  
+  header .navbar a{
+    color:#fff;
+    font-size: 2rem;
+    margin:0 .8rem;
+  }
+  
+  header .navbar a:hover{
+    color:var(--orange);
+  }
+  
+  header .icons i{
+    font-size: 2.5rem;
+    color:#fff;
+    cursor: pointer;
+    margin-right: 2rem;
+    padding: 8px;
+  }
+  
+  header .icons i:hover{
+    color:var(--orange);
+  }
+  
+  header .search-bar-container,header .changePassword{
+    position: absolute;
+    top:100%; left: 0; right:0;
+    padding:1.5rem 2rem;
+    background:#333;
+    border-top: .1rem solid rgba(255,255,255,.2);
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  
+  header .search-bar-container.active,header .changePassword.active{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  header .search-bar-container #search-bar,header .changePassword .box{
+    width:100%;
+    padding:1rem;
+    text-transform: none;
+    color:#333;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+  }
+  header .search-bar-container label,header #aa label{
+    color:#fff;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+  }
+  
+  header .search-bar-container label:hover,header #aa label:hover{
+    color:var(--orange);
+  }
+  
+  
+  .icons #aa:hover{
+    background-color: #ffc153;
+    color: white;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    margin-left: -13rem;
+    
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px ;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ffc153;}
+  .dropdown:hover .dropdown-content {display: block;}
+  .icons:hover #aa {background-color: #ffc153;}
+  .login-form-container{
+    position: fixed;
+    top:-120%; left: 0;
+    z-index: 10000;
+    min-height: 100vh;
+    width:100%;
+    background:rgba(0,0,0,.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .login-form-container.active{
+    top:0;
+  }
+  
+  .login-form-container form{
+    margin:2rem;
+    padding:1.5rem 2rem;
+    border-radius: .5rem;
+    background:#fff;
+    width:50rem;
+  }
+  
+  .login-form-container form h3{
+    font-size: 3rem;
+    color:#444;
+    text-transform: uppercase;
+    text-align: center;
+    padding:1rem 0;
+  }
+  
+  .login-form-container form .box{
+    width:100%;
+    padding:1rem;
+    font-size: 1.7rem;
+    color:#333;
+    margin:.6rem 0;
+    border:.1rem solid rgba(0,0,0,.3);
+    text-transform: none;
+  }
+  
+  .login-form-container form .box:focus{
+    border-color: var(--orange);;
+  }
+  
+  .login-form-container form #remember{
+    margin:2rem 0;
+  }
+  
+  .login-form-container form label{
+    font-size: 1.5rem;
+  }
+  
+  .login-form-container form .btn{
+    display: block;
+    width:100%;
+  }
+  
+  .login-form-container form p{
+    padding:.5rem 0;
+    font-size: 1.5rem;
+    color:#666;
+  }
+  
+  .login-form-container form p a{
+    color:var(--orange);
+  }
+  
+  .login-form-container form p a:hover{
+    color:#333;
+    text-decoration: underline;
+  }
+  
+  .login-form-container #form-close{
+    position: absolute;
+    top:2rem; right:3rem;
+    font-size: 5rem;
+    color:#fff;
+    cursor: pointer;
+  }
+  #menu-bar{
+    color:#fff;
+    border:.1rem solid #fff;
+    border-radius: .5rem;
+    font-size: 3rem;
+    padding:.5rem 1.2rem;
+    cursor: pointer;
+    display: none;
+  }
+  .navbar a {
+    color: #f2f2f2;
+    text-decoration: none;
+  }
+  
+  .navbar a:hover {
+    background: #ddd;
+    color: black;
+  }
