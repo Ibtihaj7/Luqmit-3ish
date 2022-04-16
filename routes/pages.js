@@ -5,7 +5,7 @@ const app = express();
 app.set('view engine','hbs')
 
 router.get('/',(req,res) => {
-    res.render('signUp'); 
+    res.render('logIn'); 
 });
 router.get('/register',(req,res) => {
     res.render('signUp'); 
