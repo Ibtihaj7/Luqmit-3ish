@@ -12,12 +12,11 @@ const publicDirectory = path.join(__dirname,'./public');
 app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
 
-app.listen(3001, ()=>{
-    console.log("Connected in 3001 port");
-})
+app.use('/',require('./routes/pages'));
+app.use('/auth',require('./routes/auth1'));
 
- let databaseConnection = mysql.createConnection({
-   host: process.env.host,
+let databaseConnection = mysql.createConnection({
+    host: process.env.host,
     user:process.env.user,
     password:process.env.password,
     database:process.env.database
@@ -32,6 +31,11 @@ databaseConnection.connect((err)=>{
 })
 if (myenv.error) {
     throw myenv.error
-  }
-  module.exports=databaseConnection;
+}
+
+  
+app.listen(PORT, ()=>{
+    console.log(`Connected in ${PORT} port`);
+})
+module.exports=databaseConnection;
   
