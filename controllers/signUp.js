@@ -21,7 +21,6 @@ app.set('view engine','hbs');
 app.use(express.static('public'));
 
 exports.register = (req,res) => {
-console.log('nooooo');
     const name=req.body.name;
     const email=req.body.email;
     const phone=req.body.phone;
@@ -62,7 +61,7 @@ console.log('nooooo');
                 throw err;
             }
         });
-        res.render('signUp')
+        res.render('logIn')
     }
     });
    
