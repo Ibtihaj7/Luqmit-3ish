@@ -14,7 +14,6 @@
 
     <!-- custom css file link  -->
 <link rel="stylesheet" href="style.css">
-<script defer src="loqma.js"></script>
 </head>
 
 <body>
@@ -44,28 +43,31 @@
     
     </div>
     </header>
+    {{#if message}}
+      <h4 class="alert alert-danger mt-4 fixed">{{message}}</h4>
+    {{/if}}
     <div class="login-form-container">
 
         <!-- <i class="fas fa-times" id="form-close"></i> -->
     
-        <form action="">
-            <h3>مستخدم جديد</h3>
-            <input name="name" type="text" class="box" placeholder="ادخل اسمك">
-            <input name="email" type="email" class="box" placeholder="ادخل الايميل">
-            <input name="phone" type="text" class="box" placeholder="ادخل رقم هاتفك">
-            <input name="password" type="password" class="box" placeholder="ادخل كلمة السر">
-            <input name="Confirm" type="password" class="box" placeholder="ادخل كلمة السر مجددا">
+        <form action="/auth/register" method="POST">
+            <h3>SIGN UP</h3>
+            <input name="name" type="text" class="box" placeholder="enter your name">
+            <input name="email" type="email" class="box" placeholder="enter your email">
+            <input name="phone" type="text" class="box" placeholder="enter your phone">
+            <input name="password" type="password" class="box" placeholder="enter your password">
+            <input name="confirm" type="password" class="box" placeholder="enter your password again">
             <div class="input-group mb-3">
-                <select class="form-select" id="inputGroupSelect02">
-                  <option value="1">مطعم</option>
-                  <option value="2">جمعية خيرية</option>
-                  <option value="3">مستخدم</option>
+                <select name="type" class="form-select" id="inputGroupSelect02">
+                  <option value="1">Resturant</option>
+                  <option value="2">Charity</option>
+                  <option value="3">Customer</option>
                 </select>
               </div>
-            <input type="submit" value="انشاء حساب" class="btn">
+            <input type="submit" value="sign up" class="btn">
         
-            <p>نسيت كلمة السر؟ <a href="#">اضغط هنا</a></p>
-            <p>لديك حساب مسبقا؟ <a href="#">قم بتسجيل الدخول</a></p>
+            <p>forget password? <a href="#">click here</a></p>
+            <p>don't have and account? <a href="#">register now</a></p>
         </form>
     
     </div>
