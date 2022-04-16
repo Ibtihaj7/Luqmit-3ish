@@ -212,7 +212,7 @@ header .search-bar-container label:hover{
   /* position: fixed; */
   top:-120%; left: 0;
   z-index: 10000;
-  min-height: 100vh;
+  min-height: 90vh;
   width:100%;
   background:rgba(0,0,0,.7);
   display: flex;
