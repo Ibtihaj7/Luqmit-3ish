@@ -47,4 +47,4 @@ app.listen(PORT, ()=>{
     console.log(`Connected in ${PORT} port`);
 })
 
-  
+exports.db = databaseConnection;

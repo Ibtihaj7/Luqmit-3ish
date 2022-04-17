@@ -2,17 +2,10 @@ const mysql = require("mysql");
 const express = require("express");
 const bcrypt = require('bcryptjs');
 const app = express();
-
+const db = require('../app').db;
 app.set("view engine", "hbs");
 app.use(express.static("public"));
 
-const db = mysql.createConnection({
-    host: process.env.host,
-    user:process.env.user,
-    password:process.env.password,
-    database:process.env.database
-   
-}) 
 exports.Login = (req, res) => {
 
   const email = req.body.email;
