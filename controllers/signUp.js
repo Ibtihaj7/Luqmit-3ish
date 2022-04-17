@@ -1,7 +1,6 @@
 const mysql=require('mysql');
 const bcrypt = require('bcryptjs');
 const express=require('express');
-const db = require("../app");
 
 let databaseConnection = mysql.createConnection({
     host: process.env.host,
