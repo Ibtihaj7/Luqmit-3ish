@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const app = express();
 const dotenv=require('dotenv');
 const myenv=dotenv.config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const session = require('express-session');
 
 let databaseConnection = mysql.createConnection({
