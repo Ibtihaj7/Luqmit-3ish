@@ -14,6 +14,7 @@ app.use(express.urlencoded({extended:false }));
 
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth1'));
+app.use('/auth2',require('./routes/auth2'));
 
 let databaseConnection = mysql.createConnection({
     host: process.env.host,
