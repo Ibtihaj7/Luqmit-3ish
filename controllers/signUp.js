@@ -29,7 +29,7 @@ exports.register = (req,res) => {
     // const type = req.bode.type;
 
     res.render('signUp');
-    databaseConnection.query('SELECT email FROM account WHERE email = ?',[email],async(error,results) => {
+    databaseConnection.query('SELECT email FROM account1 WHERE email = ?',[email],async(error,results) => {
         if(error){
             throw error;
         }
@@ -56,7 +56,7 @@ exports.register = (req,res) => {
         }else{
         let hashedPassword = await bcrypt.hash(password , 8);
         db.query('')
-        databaseConnection.query('INSERT INTO account SET ?',{name:name,email:email,phone:phone,password:hashedPassword},(err,results) => {
+        databaseConnection.query('INSERT INTO account1 SET ?',{name:name,email:email,phone:phone,password:hashedPassword},(err,results) => {
             if(err){
                 throw err;
             }

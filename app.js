@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const app = express();
 const dotenv=require('dotenv');
 const myenv=dotenv.config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const session = require('express-session');
 
 app.set('view engine','hbs');
@@ -17,6 +17,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))   
+
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth1'));
 app.use('/auth2',require('./routes/auth2'));
