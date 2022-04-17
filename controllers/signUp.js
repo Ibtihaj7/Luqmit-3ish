@@ -60,7 +60,7 @@ exports.register = (req,res) => {
                 throw err;
             }
         });
-        res.render('logIn')
+        res.render('mainPage')
     }
     });
    

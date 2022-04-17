@@ -209,10 +209,9 @@ header .search-bar-container label:hover{
 }
 
 .login-form-container{
-  /* position: fixed; */
   top:-120%; left: 0;
   z-index: 10000;
-  min-height: 90vh;
+  min-height: 100vh;
   width:100%;
   background:rgba(0,0,0,.7);
   display: flex;
@@ -288,40 +287,6 @@ header .search-bar-container label:hover{
   font-size: 5rem;
   color:#fff;
   cursor: pointer;
-}
-.container1{
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column;
-  position: relative;
-  z-index: 0;
-  background-color: #ffffff;
-}
-.container1 #a{
-margin-top: 20px;
-text-align: center;
-width: 100%;
-height: 300px;
-padding: 50px;
-}
-.container1 #b{
-margin-top: 20px;
-width: 70%;
-height: 300px;
-padding: 50px;
-}
-.col{
-  border: 1px solid black;
-  background-color: #ffc153;
-  height: 200px;
-  border-radius: 10%;
-  box-shadow: 1px 1px 10px 13px #e59c1d;
-  text-align: justify;
-  float: left;
-  width: 150px;
-  margin-left: 50px;
 }
 
 #menu-bar{
@@ -742,4 +707,6 @@ align-items: center;
   }
 
 }
+
+
 
