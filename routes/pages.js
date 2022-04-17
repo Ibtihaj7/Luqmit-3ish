@@ -14,7 +14,9 @@ router.get('/register',(req,res) => {
 router.get("/newPassword", (req, res)=>{
     res.render("newPassword");
 })
-
+router.get("/Login",(req,res)=>{
+    res.render("logIn");
+})
 router.get("/setNewPass/:email", (req, res)=>{
     if(req.session.autherized){
         res.render("setNewPass");
