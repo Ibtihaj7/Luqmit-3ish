@@ -6,7 +6,7 @@ require("dotenv").config()
 
 function sendVerEmail(email){
     //url to be used in the email 
-    currentURL = "http://localhost:5000/"
+    currentURL = "http://localhost:3000/"
     const uniqueString = uuidv4() + email;
 
     //nodemailer staff 

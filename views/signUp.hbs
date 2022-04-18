@@ -18,31 +18,18 @@
     <div id="menu-bar" class="fas fa-bars"></div>
 
     <a href="#" class="logo"><span>لـ</span>قمة عيش</a>
-
-    <nav class="navbar">
-        <a href="#home">الرئيسية</a>
-        <a href="#packages">المطاعم</a>
-        <a href="#services">العروضات</a>
-        <a href="#book">حجز</a>
-        <a href="#contact">التواصل معنا</a>
-    </nav>
-     <div class="dropdown">
-     <div class="icons">
-        <i class="fa fa-gear" style="font-size:24px"id="aa"></i>
+    <div class="dropdown">
+    <div class="icons">
         <i class="fas fa-search" id="search-btn"></i>
         <i class="fas fa-user" id="login-btn"></i>
-
-     </div> 
+    </div> 
     </div>
-    <form action="" class="search-bar-container">
-        <input type="search" id="search-bar" placeholder="search here...">
-        <label for="search-bar" class="fas fa-search"></label>
-    </form>
 
 <div class='div1'>
 
 </div>
-</header>   {{#if message}}
+</header> 
+    {{#if message}}
       <h4 class="alert alert-danger mt-4 fixed">{{message}}</h4>
     {{/if}}
     <div class="login-form-container">
@@ -65,7 +52,7 @@
             <input type="submit" value="انشاء حساب" class="btn">
         
           
-            <p>هل لديك حساب مسبقا؟ <a href="#">قم بتسحيل الدخول</a></p>
+            <p>هل لديك حساب مسبقا؟ <a href="/Login">قم بتسحيل الدخول</a></p>
         </form>
     
     </div>
