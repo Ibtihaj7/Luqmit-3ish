@@ -12,7 +12,6 @@ let databaseConnection = mysql.createConnection({
     user:process.env.user,
     password:process.env.password,
     database:process.env.database
-   
 })
 
 databaseConnection.connect((err)=>{
