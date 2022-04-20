@@ -51,7 +51,7 @@ exports.register = (req,res) => {
             });
         }else{
         let hashedPassword = await bcrypt.hash(password , 8);
-        db.query('INSERT INTO account1 SET ?',{name:name,email:email,phone:phone,password:hashedPassword},(err,results) => {
+        db.query('INSERT INTO account SET ?',{name:name,email:email,phone:phone,password:hashedPassword},(err,results) => {
             if(err){
                 throw err;
             }
