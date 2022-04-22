@@ -1,8 +1,45 @@
 const express = require("express")
 const router = express.Router()
 const bcrypt = require("bcrypt")  
+const db = require("../config/db") 
 
-    
+//node accountefication
+router.get("/user/verify/:email/:emailUUID", (req ,res)=>{
+    let {email, emailUUID} = req.params;
+    db.query("SELECT emailUUID FROM account WHERE email= ?", [email], async (err, result)=>{
+        if(err){
+            console.log(err +"error while verefication")
+        }else{    
+            if(result.length > 0){
+                let compResult   
+                compResult = await bcrypt.compare(emailUUID, result[0].emailUUID)
+                .then((compResult)=>{
+                    if(compResult){    
+                        db.query("UPDATE account SET verified = 1, emailUUID = NULL WHERE email = ?", [email], (error)=>{
+                            if(error){
+                                console.log(error + "Error while verifying the user")
+                            }else{  
+                         
+                                res.render('logIn',{
+                                    message:'Email veriefied Succesfully'
+                                })   
+                            }
+                        })  
+                    }else{    
+                        res.render("signUp", {message: "Please request another verification link by contacting us"})  
+                    }
+                })
+                .catch((e)=>{
+                    console.log("Error while comparing the unique string with the hashed one") 
+                    res.render("signUp", {message: "Please try to verify your account later"})  
+                })
+            }else{ 
+                res.send("This link is not valid anymore!")
+            }
+        }
+    })
+})
+
 //Reset Password 
 passEmail = require('../config/passwordRequest')  
     
@@ -96,6 +133,7 @@ router.post("/newPassword", (req, res)=>{
         }  
         */   
     }
-})
+})          
 
-module.exports = router    
+
+module.exports = router

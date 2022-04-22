@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const app = express();
 const dotenv=require('dotenv');
 const myenv=dotenv.config();
-const PORT =  30001;
+const PORT =  3000;  
 const session = require('express-session');
 
 let databaseConnection = mysql.createConnection({
@@ -32,7 +32,7 @@ const publicDirectory = path.join(__dirname,'./public');
 app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'keyboard cat', 
     resave: false,
     saveUninitialized: true
 }))   
@@ -40,6 +40,7 @@ app.use(session({
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth1'));
 app.use('/auth2',require('./routes/auth2'));
+app.use('/',require('./routes/verifications'));
 
   
 app.listen(PORT, ()=>{

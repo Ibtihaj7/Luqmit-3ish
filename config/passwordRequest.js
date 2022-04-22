@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer')
 const {v4: uuidv4} = require("uuid")
 const bcrypt = require("bcrypt")
-const db = require('../db')
-require("dotenv").config()
+const db = require('./db')
+require("dotenv").config()       
 
 function sendVerEmail(email){
     //url to be used in the email 
