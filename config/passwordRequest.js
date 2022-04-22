@@ -2,20 +2,20 @@ const nodemailer = require('nodemailer')
 const {v4: uuidv4} = require("uuid")
 const bcrypt = require("bcrypt")
 const db = require('./db')
-require("dotenv").config()       
+const dotenv = require('dotenv').config()          
 
 function sendVerEmail(email){
     //url to be used in the email 
     currentURL = "http://localhost:3000/"
-    const uniqueString = uuidv4() + email;
+    const uniqueString = uuidv4();
 
     //nodemailer staff 
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         secure: true,
         auth:{
-            user: 'unstoppableteam826@gmail.com', 
-            pass: '123123unstoppableteam826', 
+            user: process.env.email,     
+            pass: process.env.emailPassword, 
         }
     })  
     transporter.verify((error, success) =>{
@@ -28,17 +28,18 @@ function sendVerEmail(email){
 
 //Step 2
     let mailOption = {
-        from: 'Admin',   
+        from: 'Admin',       
         to: email, 
         subject: 'Reset Password Request', 
-        html: `<p>Please click below to be able to reset your password. </p>
+        html: `<p>Please click below to be able to reset your password, once you open this link it wont be valid anymore. </p>
          <a href = ${currentURL + "resetRequest/"+ email + "/" + uniqueString}> Click here </a>`
     };
     //hash the unique string
     hasheduniqueString = bcrypt.hash(uniqueString, 10)
-    .then((hasheduniqueString) => {
-        // seet values in
-        db.query("INSERT INTO `users_db`.`emailver` (`email`, `uniqueString`) VALUES (?, ?)", [email, hasheduniqueString], (err)=>{
+    .then((hasheduniqueString) => {                 
+        // seet values in     
+        //INSERT INTO `users_db`.`emailver` (`email`, `uniqueString`) VALUES (?, ?)", [email, hasheduniqueString], (err)=>{
+        db.query("UPDATE account SET passwordUUID = ? WHERE email = ?", [hasheduniqueString, email], (err)=>{
             if(err){
                 console.log("Error while inserting the uniqueString for password to the DB");
                 res.render("newPassword", {message: "Please request another verification email"})
@@ -47,7 +48,7 @@ function sendVerEmail(email){
                     if(err){
                         console.log("Error While sending the verefication email! " + err)
                     }else{
-                        console.log("Done !!!!!")
+                        console.log("Done !!")
                     }
                 })//senMail
             }//else 

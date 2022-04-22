@@ -32,10 +32,10 @@ const publicDirectory = path.join(__dirname,'./public');
 app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
 app.use(session({
-    secret: 'keyboard cat', 
+    secret: 'keyboard cat',    
     resave: false,
     saveUninitialized: true
-}))   
+}))               
 
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth1'));
