@@ -10,11 +10,11 @@
   text-transform: capitalize;
   outline: none; border:none;
   text-decoration: none;
-  transition: all .2s linear;
+  transition: all .5s linear;
   align-items: center;
-  text-align: center;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
 }
 .btnn{
   margin-left: 20vw;
@@ -45,10 +45,11 @@
   height: 100%;
 }
 html{
-  font-size: 62.5%;
+  font-size: 70%;
   overflow-x: hidden;
   scroll-padding-top: 6rem;
   scroll-behavior: smooth;
+  height: 100vh;
 }
 
 section{
@@ -75,7 +76,7 @@ section{
   margin-left: auto;
   
 }
-.bookSec input[type='text'],.bookSec input[type='number'],.form-select{
+.bookSec input[type='text'],.bookSec input[type='number']{
   width:35vw;
   padding: 10px;
   border:1px solid black;
@@ -151,16 +152,6 @@ header .logo span{
   color:var(--orange);
 }
 
-header .navbar a{
-  color:#fff;
-  font-size: 2rem;
-  margin:0 .8rem;
-}
-
-header .navbar a:hover{
-  color:var(--orange);
-}
-
 header .icons i{
   font-size: 2.5rem;
   color:#fff;
@@ -170,6 +161,63 @@ header .icons i{
 
 header .icons i:hover{
   color:var(--orange);
+}
+.row{
+  margin-top: 160px;
+}
+body {
+  background: linear-gradient( #fff 10%, #ffa500 , #ffa500 ,#fff 100%)
+}
+.profile-img{
+  text-align: center;
+}
+.profile-img img{
+  width: 70%;
+  height: 100%;
+}
+.profile-img .file {
+  position: relative;
+  overflow: hidden;
+  margin-top: -20%;
+  width: 70%;
+  border: none;
+  border-radius: 0;
+  font-size: 15px;
+  background: #212529b8;
+}
+.profile-img .file input {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.profile-button {
+  background: #ffa500;
+  box-shadow: none;
+  border: none
+}
+
+.profile-button:hover {
+  background: #eccc90;
+  
+}
+
+.profile-button:active {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.labels {
+  font-size: 18px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.text-center{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size:xx-large;
 }
 
 header .search-bar-container{
@@ -209,6 +257,7 @@ header .search-bar-container label:hover{
 }
 
 .login-form-container{
+  position: fixed;
   top:-120%; left: 0;
   z-index: 10000;
   min-height: 100vh;
@@ -707,6 +756,4 @@ align-items: center;
   }
 
 }
-
-
 
