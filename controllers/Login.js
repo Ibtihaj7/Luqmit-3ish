@@ -15,6 +15,7 @@ exports.Login = (req, res) => {
         throw error;
       }
       if (results.length  && bcrypt.compareSync(password,results[0].password)) {
+        req.session.id = result[0].id;
         return res.render("home",{
             message:`welcome ${results[0].name}`
         });
