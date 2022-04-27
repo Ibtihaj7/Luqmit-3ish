@@ -2,7 +2,8 @@ const express = require("express")
 const router = express.Router()
 const bcrypt = require("bcrypt")  
 const db = require("../config/db") 
-
+const methodOverride = require("method-override")  
+router.use(methodOverride("_method"))    
 router.get("/user/verify/:email/:emailUUID", (req ,res)=>{
     let {email, emailUUID} = req.params;
     db.query("SELECT emailUUID FROM account WHERE email= ?", [email], async (err, result)=>{
@@ -104,7 +105,7 @@ router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
 }) 
 //const regePassword = /^(?=(.*[a-zA-Z]){1,})(?=(.*[0-9]){2,}).{8,}$/;
 
-router.post("/newPassword", (req, res)=>{
+router.put("/newPassword", (req, res)=>{
     let email = req.session.email
     let {password, conPassword} = req.body  
     console.log(req.body)
