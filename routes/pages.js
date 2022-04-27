@@ -24,6 +24,9 @@ router.get("/setNewPass/:email", (req, res)=>{
         res.render("newPassword", {failMessage: "You must recieve an email to be able to reset your password "})
     }
 })
+router.get("/changePassword",(req,res) => {
+    res.render("changePassword")
+})
 
 
 module.exports = router;
