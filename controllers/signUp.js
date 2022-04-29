@@ -1,19 +1,14 @@
 const mysql=require('mysql');
 const bcrypt = require('bcryptjs');
 const express=require('express');
-
-const app=express();
-const nodemailer=require('nodemailer');
+const db = require("../config/db") 
+const app = express();
+const nodemailer = require('nodemailer');
+const verificationEmail = require("../config/emailVerification")
 
 const regeEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 const regePassword = /^(?=(.*[a-zA-Z]){1,})(?=(.*[0-9]){2,}).{8,}$/;
-let db = mysql.createConnection({
-    host: process.env.host,
-    user:process.env.user,
-    password:process.env.password,
-    database:process.env.database
-   
-})
+ 
 app.set('view engine','hbs');
 app.use(express.static('public'));
 
@@ -25,7 +20,7 @@ exports.register = (req,res) => {
     const confirm=req.body.confirm;
     // const type = req.bode.type;
 
-    db.query('SELECT email FROM account1 WHERE email = ?',[email],async(error,results) => {
+    db.query('SELECT email FROM account WHERE email = ?',[email],async(error,results) => {
         if(error){
             throw error;
         }
@@ -51,9 +46,11 @@ exports.register = (req,res) => {
             });
         }else{
         let hashedPassword = await bcrypt.hash(password , 8);
-        db.query('INSERT INTO account1 SET ?',{name:name,email:email,phone:phone,password:hashedPassword},(err,results) => {
+        db.query('INSERT INTO account SET ?',{name:name,email:email,phone:phone,password:hashedPassword},(err,results) => {
             if(err){
                 throw err;
+            }else{
+                verificationEmail.sendVerEmail(email);
             }
         });
         res.render('mainPage')

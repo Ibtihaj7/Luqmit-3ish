@@ -5,7 +5,7 @@ const app = express();
 app.set('view engine','hbs')
 
 router.get('/',(req,res) => {
-    res.render('logIn'); 
+    res.render('home'); 
 });
 router.get('/register',(req,res) => {
     res.render('signUp'); 
@@ -23,6 +23,9 @@ router.get("/setNewPass/:email", (req, res)=>{
     }else{
         res.render("newPassword", {failMessage: "You must recieve an email to be able to reset your password "})
     }
+})
+router.get("/changePassword",(req,res) => {
+    res.render("changePassword")
 })
 
 

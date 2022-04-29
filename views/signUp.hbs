@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لقمة خير</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,31 +12,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
-    <header>
+<header>
     <div id="menu-bar" class="fas fa-bars"></div>
 
-    <a href="#" class="logo"><span>لـ</span>قمة عيش</a>
-    <div class="dropdown">
-    <div class="icons">
-        <i class="fas fa-search" id="search-btn"></i>
-        <i class="fas fa-user" id="login-btn"></i>
-    </div> 
+    <a href="/" class="logo"><span>لـ</span>قمة عيش</a>
+     <div class="dropdown">
+     <div class="icons">
+    <i class="fas fa-search" id="search-btn"></i>
+    <i class="fas fa-user" id="login-btn"></i>
+     </div> 
     </div>
 
-<div class='div1'>
-
-</div>
-</header> 
+</header>
     {{#if message}}
       <h4 class="alert alert-danger mt-4 fixed">{{message}}</h4>
     {{/if}}
     <div class="login-form-container">
 
-        <!-- <i class="fas fa-times" id="form-close"></i> -->
-    
-        <form action="/auth/register" method="POST">
+        <form action="/auth/register" method="POST" id="form">
             <h3>مستخدم جديد</h3>
             <input name="name" type="text" class="box" placeholder="ادخل اسمك">
             <input name="email" type="email" class="box" placeholder="ادخل ايميلك">
@@ -48,13 +42,10 @@
                   <option value="1">مستخدم</option>
                   <option value="2">مطعم</option>
                 </select>
-              </div>
+            </div>
             <input type="submit" value="انشاء حساب" class="btn">
-        
-          
             <p>هل لديك حساب مسبقا؟ <a href="/Login">قم بتسحيل الدخول</a></p>
         </form>
     
     </div>
-
 </body>
