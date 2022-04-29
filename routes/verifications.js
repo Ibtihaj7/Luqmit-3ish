@@ -1,15 +1,52 @@
 const express = require("express")
 const router = express.Router()
 const bcrypt = require("bcrypt")  
+const db = require("../config/db") 
+const methodOverride = require("method-override")  
+router.use(methodOverride("_method"))    
+router.get("/user/verify/:email/:emailUUID", (req ,res)=>{
+    let {email, emailUUID} = req.params;
+    db.query("SELECT emailUUID FROM account WHERE email= ?", [email], async (err, result)=>{
+        if(err){
+            console.log(err +"error while verefication")
+        }else{    
+            if(result.length > 0){
+                let compResult   
+                compResult = await bcrypt.compare(emailUUID, result[0].emailUUID)
+                .then((compResult)=>{
+                    if(compResult){    
+                        db.query("UPDATE account SET verified = 1, emailUUID = NULL WHERE email = ?", [email], (error)=>{
+                            if(error){
+                                console.log(error + "Error while verifying the user")
+                            }else{  
 
-    
+                                res.render('logIn',{
+                                    message:'Email veriefied Succesfully'
+                                })   
+                            }
+                        })  
+                    }else{    
+                        res.render("signUp", {message: "Please request another verification link by contacting us"})  
+                    }
+                })
+                .catch((e)=>{
+                    console.log("Error while comparing the unique string with the hashed one") 
+                    res.render("signUp", {message: "Please try to verify your account later"})  
+                })
+            }else{ 
+                res.send("This link is not valid anymore!")
+            }
+        }
+    })
+})
+
 //Reset Password 
 passEmail = require('../config/passwordRequest')  
-    
+
 router.post("/newPasswordReq", (req, res)=>{
     let {email} = req.body  
-    console.log(req.body)
-    db.query("SELECT EMAIL FROM USERS_DB.USER_INFO WHERE EMAIL = ?", [email], async(error, result)=>{
+    //UPDATE account SET passwordUUID = NULL WHERE email = ?
+    db.query("SELECT EMAIL FROM account WHERE EMAIL = ?", [email], async(error, result)=>{
         if(error){
             console.log("Error while chicking if the user exists in the DB")  
             res.render("newPassword", {message: "Something went wrong please try again"})
@@ -26,25 +63,25 @@ router.post("/newPasswordReq", (req, res)=>{
 })
 
 
-router.get("/resetRequest/:email/:uniqueString", (req, res)=>{
-    let {email, uniqueString} = req.params 
-    db.query("SELECT uniqueString FROM emailver WHERE email= ?", [email], async (error, result)=>{
+router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
+    let {email, passwordUUID} = req.params 
+    db.query("SELECT passwordUUID FROM account WHERE email= ?", [email], async (error, result)=>{
         if(result.length > 0){
-            let compResult  
-            console.log(uniqueString)
-            console.log(result[0].uniqueString)
-            compResult = await bcrypt.compare(uniqueString, result[0].uniqueString)
+            let compResult   
+            console.log(passwordUUID)
+            console.log(result[0].passwordUUID)
+            compResult = await bcrypt.compare(passwordUUID, result[0].passwordUUID)
             .then((compResult)=>{
                 if(compResult){  
                     console.log(compResult)
                     req.session.autherized = true        
                     req.session.email = email           
                     res.redirect(`/setNewPass/${email}`)       
-                    db.query("DELETE FROM emailver WHERE email = ?",[email], (error)=>{
+                    db.query("UPDATE account SET passwordUUID = NULL WHERE email = ?",[email], (error)=>{      
                         if(error){       
                             console.log("Error occured while deleting the reset password string ", error);    
                         }else{
-                            console.log("UniqueString Deleted successfully!")
+                            console.log("passwordUUID Deleted successfully!")
                         }  
                     }) 
                 }else{ 
@@ -64,11 +101,10 @@ router.get("/resetRequest/:email/:uniqueString", (req, res)=>{
             res.render("newPassword", {message: "This link is invalid, please request another link"})
         }
     })
-
 }) 
 //const regePassword = /^(?=(.*[a-zA-Z]){1,})(?=(.*[0-9]){2,}).{8,}$/;
 
-router.post("/newPassword", (req, res)=>{
+router.put("/newPassword", (req, res)=>{
     let email = req.session.email
     let {password, conPassword} = req.body  
     console.log(req.body)
@@ -80,7 +116,8 @@ router.post("/newPassword", (req, res)=>{
             console.log("aces")
             let hashedPass = bcrypt.hash(password, 8)
             .then((hashedPass)=>{
-                db.query("UPDATE USERS_DB.USER_INFO SET password = ? WHERE email = ?", [password,email],(error)=>{
+                //UPDATE account SET passwordUUID = NULL WHERE email = ?          
+                db.query("UPDATE account SET password = ? WHERE email = ?", [hashedPass,email],(error)=>{
                     if(error){     
                         console.log("Error while setting the new password ", e)     
                     }else{
@@ -96,6 +133,7 @@ router.post("/newPassword", (req, res)=>{
         }  
         */   
     }
-})
+})          
 
-module.exports = router    
+
+module.exports = router
