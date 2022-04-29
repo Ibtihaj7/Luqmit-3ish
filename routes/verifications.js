@@ -11,7 +11,7 @@ router.get("/user/verify/:email/:emailUUID", (req ,res)=>{
             console.log(err +"error while verefication")
         }else{    
             if(result.length > 0){
-                let compResult   
+                let compResult    
                 compResult = await bcrypt.compare(emailUUID, result[0].emailUUID)
                 .then((compResult)=>{
                     if(compResult){    
@@ -30,7 +30,7 @@ router.get("/user/verify/:email/:emailUUID", (req ,res)=>{
                     }
                 })
                 .catch((e)=>{
-                    console.log("Error while comparing the unique string with the hashed one") 
+                    console.log("Error while comparing the unique string with the hashed one" + e) 
                     res.render("signUp", {message: "Please try to verify your account later"})  
                 })
             }else{ 
