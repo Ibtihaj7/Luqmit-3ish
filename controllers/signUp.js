@@ -53,7 +53,6 @@ exports.register = (req,res) => {
                 verificationEmail.sendVerEmail(email);
             }
         });
-        res.render('mainPage')
     }
     });
    
