@@ -2,7 +2,7 @@ const mysql = require("mysql");
 const express = require("express");
 const bcrypt = require('bcryptjs');
 const app = express();
-const db = require('../app').db;
+const db = require("../config/db") 
 app.set("view engine", "hbs");
 app.use(express.static("public"));
 

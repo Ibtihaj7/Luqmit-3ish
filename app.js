@@ -42,7 +42,6 @@ app.use(session({
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth1'));
 app.use('/auth2',require('./routes/auth2'));
-app.use('/',require('./routes/verifications'));
 app.set("view engine", "hbs")
 app.use(express.static(publicDirectory));
  
