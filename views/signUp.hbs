@@ -12,40 +12,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-<header>
-    <div id="menu-bar" class="fas fa-bars"></div>
 
-    <a href="/" class="logo"><span>لـ</span>قمة عيش</a>
-     <div class="dropdown">
-     <div class="icons">
-    <i class="fas fa-search" id="search-btn"></i>
-    <i class="fas fa-user" id="login-btn"></i>
-     </div> 
-    </div>
-
-</header>
-    {{#if message}}
-      <h4 class="alert alert-danger mt-4 fixed">{{message}}</h4>
-    {{/if}}
     <div class="login-form-container">
-
-        <form action="/auth/register" method="POST" id="form">
+        <a href="/" style="text-decoration: none;" class="fas fa-times" id="form-close"></a>
+        <form action="/auth/register" method="POST" id="form" class="needs-validation" novalidate>
             <h3>مستخدم جديد</h3>
-            <input name="name" type="text" class="box" placeholder="ادخل اسمك">
-            <input name="email" type="email" class="box" placeholder="ادخل ايميلك">
-            <input name="phone" type="text" class="box" placeholder="ادخل رقم هاتفك">
-            <input name="password" type="password" class="box" placeholder="ادخل كلمة السر">
-            <input name="confirm" type="password" class="box" placeholder="ادخل كلمة السر مجددا">
+
+            <div class="form-group p-1 form-group">
+            <input id="name" name="name" type="text" class="box form-control" placeholder="ادخل اسمك" required>
+            <small class="invalid-feedback">اسم المستخدم لا يجب ان بكون فارغ او يحتوي على مسافات</small>
+            <div class="valid-feedback">اسم صالح</div>
+            </div>
+
+            <div class="form-group p-1 form-group">
+            <input id="email" name="email" type="email" class="box form-control" placeholder="ادخل ايميلك" required>
+            <div id="email-validation" class="invalid-feedback">الرجاء التاكد من الايميل</div>
+            </div>
+
+            <!-- <div class="form-group p-1 form-group">
+            <input name="phone" type="text" class="box " placeholder="ادخل رقم هاتفك" >
+            </div> -->
+            <div class="form-group p-1 form-group">
+                <input id="phone" name="phone" type="text" class="box form-control" placeholder="ادخل رقم هاتفك" >
+                <div class="invalid-feedback"> رقم الهاتف غير صالح</div>
+
+            </div>
+
+            <div class="form-group p-1 form-group">
+            <input id="password" name="password" type="password" class="box form-control" placeholder="ادخل كلمة السر" required>
+            <div class="invalid-feedback">الرجاء التاكد من كلمة السر(يجب ان تحتوي على احرف كبيرة واحرف صغيرةوارقام، ورمز على الاقل، وطولها لا يقل عن ٨ خانات)</div>
+            </div>
+
+            <div class="form-group p-1 form-group">
+            <input id="confirm" name="confirm" type="password" class="box form-control" placeholder="ادخل كلمة السر مجددا">
+            <div class="invalid-feedback">كلمات السر غير متطابقات</div>
+            </div>
+
             <div class="input-group mb-3">
                 <select name="type" class="form-select" id="inputGroupSelect02">
                   <option value="1">مستخدم</option>
                   <option value="2">مطعم</option>
                 </select>
             </div>
-            <input type="submit" value="انشاء حساب" class="btn">
+
+            <input type="submit" value="انشاء حساب" class="btn" id="btn">
             <p>هل لديك حساب مسبقا؟ <a href="/Login">قم بتسحيل الدخول</a></p>
         </form>
     
     </div>
+    <script src="/script.js"></script>
 </body>

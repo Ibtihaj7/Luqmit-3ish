@@ -18,7 +18,7 @@ exports.register = (req,res) => {
     const phone=req.body.phone;
     const password=req.body.password;
     const confirm=req.body.confirm;
-    // const type = req.bode.type;
+    const type = req.body.type;
 
     db.query('SELECT email FROM account WHERE email = ?',[email],async(error,results) => {
         if(error){
@@ -46,11 +46,12 @@ exports.register = (req,res) => {
             });
         }else{
         let hashedPassword = await bcrypt.hash(password , 8);
-        db.query('INSERT INTO account SET ?',{name:name,email:email,phone:phone,password:hashedPassword},(err,results) => {
+        db.query('INSERT INTO account SET ?',{name:name,email:email,phone:phone,password:hashedPassword,type:type},(err,results) => {
             if(err){
                 throw err;
             }else{
-                verificationEmail.sendVerEmail(email);
+                // verificationEmail.sendVerEmail(email);
+                res.render('mainPage')
             }
         });
     }
