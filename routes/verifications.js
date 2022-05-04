@@ -128,9 +128,9 @@ router.put("/newPassword", (req, res)=>{
             .catch((e)=>{console.log("Error while hashing the password")})
        /*}else{
             res.render('setNewPass',{
-                failMessage:"Your password must include both lower and upper case charachter, at least one number or symbol,and at least 8 characters"
+                failMessage:"Your password must include both lower and upper case charachter, at least one number or symbol and at least 8 characters"
             });
-        }  
+        }                                
         */   
     }
 })          
