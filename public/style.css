@@ -3,11 +3,12 @@
   --orange:#ffa500;
 }
 .form-control{
-  margin-left: 10vw !important;
-  }
-  .form-control.is-invalid, .was-validated .form-control:invalid {
-    background-position: left calc(0.375em + 0.1875rem) center !important;
-  }
+margin-left: 10vw !important;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  background-position: left calc(0.375em + 0.1875rem) center !important;
+}
 
 *{
   font-family: 'Nunito', sans-serif;
@@ -547,7 +548,7 @@ header .navbar a:hover{
   color:#333;
 }
 
-.services .box-container .box p{
+.services .box-container .box p, .box label{
   font-size: 1.5rem;
   color:#666;
   padding:1rem 0;
