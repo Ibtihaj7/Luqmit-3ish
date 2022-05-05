@@ -15,13 +15,12 @@
 
     <div class="login-form-container">
         <a href="/" style="text-decoration: none;" class="fas fa-times" id="form-close"></a>
-        <form action="/auth/register" method="POST" id="form" class="needs-validation" novalidate>
+        <form action="/auth/register" method="POST" id="form" class="needs-validation-signup" novalidate>
             <h3>مستخدم جديد</h3>
 
             <div class="form-group p-1 form-group">
             <input id="name" name="name" type="text" class="box form-control" placeholder="ادخل اسمك" required>
-            <small class="invalid-feedback">اسم المستخدم لا يجب ان بكون فارغ او يحتوي على مسافات</small>
-            <div class="valid-feedback">اسم صالح</div>
+            <small class="invalid-feedback">اسم المستخدم لا يجب ان بكون فارغ</small>
             </div>
 
             <div class="form-group p-1 form-group">
