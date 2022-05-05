@@ -3,23 +3,23 @@ const router = express.Router()
 const bcrypt = require("bcrypt")  
 const db = require("../config/db") 
 const methodOverride = require("method-override")  
-router.use(methodOverride("_method"))    
-router.get("/user/verify/:email/:emailUUID", (req ,res)=>{
-    let {email, emailUUID} = req.params;
-    db.query("SELECT emailUUID FROM account WHERE email= ?", [email], async (err, result)=>{
+router.use(methodOverride("_method"))   
+
+router.get("/user/verify/:email/:emailUUID", async(req ,res)=>{
+    let {email, emailUUID} = req.params; 
+    await db.query("SELECT emailUUID FROM account WHERE email= ?", [email], async (err, result)=>{
         if(err){
             console.log(err +"error while verefication")
         }else{    
-            if(result.length > 0){
-                let compResult    
+            if(result[0].emailUUID){
+                let compResult   
                 compResult = await bcrypt.compare(emailUUID, result[0].emailUUID)
                 .then((compResult)=>{
                     if(compResult){    
                         db.query("UPDATE account SET verified = 1, emailUUID = NULL WHERE email = ?", [email], (error)=>{
                             if(error){
                                 console.log(error + "Error while verifying the user")
-                            }else{  
-
+                            }else{   
                                 res.render('logIn',{
                                     message:'Email veriefied Succesfully'
                                 })   
@@ -30,7 +30,7 @@ router.get("/user/verify/:email/:emailUUID", (req ,res)=>{
                     }
                 })
                 .catch((e)=>{
-                    console.log("Error while comparing the unique string with the hashed one" + e) 
+                    console.log("Error while comparing the unique string with the hashed one") 
                     res.render("signUp", {message: "Please try to verify your account later"})  
                 })
             }else{ 
@@ -44,8 +44,7 @@ router.get("/user/verify/:email/:emailUUID", (req ,res)=>{
 passEmail = require('../config/passwordRequest')  
 
 router.post("/newPasswordReq", (req, res)=>{
-    let {email} = req.body  
-    //UPDATE account SET passwordUUID = NULL WHERE email = ?
+    let {email} = req.body   
     db.query("SELECT EMAIL FROM account WHERE EMAIL = ?", [email], async(error, result)=>{
         if(error){
             console.log("Error while chicking if the user exists in the DB")  
@@ -66,10 +65,8 @@ router.post("/newPasswordReq", (req, res)=>{
 router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
     let {email, passwordUUID} = req.params 
     db.query("SELECT passwordUUID FROM account WHERE email= ?", [email], async (error, result)=>{
-        if(result.length > 0){
-            let compResult   
-            console.log(passwordUUID)
-            console.log(result[0].passwordUUID)
+        if(result[0].passwordUUID){
+            let compResult    
             compResult = await bcrypt.compare(passwordUUID, result[0].passwordUUID)
             .then((compResult)=>{
                 if(compResult){  
@@ -102,18 +99,21 @@ router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
         }
     })
 }) 
-//const regePassword = /^(?=(.*[a-zA-Z]){1,})(?=(.*[0-9]){2,}).{8,}$/;
-
+const regePassword = /^(?=(.*[a-zA-Z]){1,})(?=(.*[0-9]){2,}).{8,}$/;
+  
 router.put("/newPassword", (req, res)=>{
     let email = req.session.email
-    let {password, conPassword} = req.body  
-    console.log(req.body)
-    if(password !== conPassword){
+    let {password, conPassword} = req.body   
+    if(password !== conPassword){ 
         res.render('setNewPass',{         
         failMessage:"Password and confirm password must be the same, please try again"
         });   
     }else{
-            console.log("aces")
+        if(!(regePassword.test(password))){  
+            res.render('setNewPass',{
+                failMessage:"Your password must include both lower and upper case charachter, at least one number or symbol and at least 8 characters"
+            });                              
+        }else{
             let hashedPass = bcrypt.hash(password, 8)
             .then((hashedPass)=>{
                 //UPDATE account SET passwordUUID = NULL WHERE email = ?          
@@ -121,17 +121,12 @@ router.put("/newPassword", (req, res)=>{
                     if(error){     
                         console.log("Error while setting the new password ", e)     
                     }else{
-                        res.render("login", {message: "Password changed successfully"})
+                        res.render("logIn", {message: "Password changed successfully"})
                     }
                 })
             })
             .catch((e)=>{console.log("Error while hashing the password")})
-       /*}else{
-            res.render('setNewPass',{
-                failMessage:"Your password must include both lower and upper case charachter, at least one number or symbol,and at least 8 characters"
-            });
-        }  
-        */   
+        }
     }
 })          
 
