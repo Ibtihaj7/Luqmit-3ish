@@ -14,16 +14,18 @@
 
 </head>
 <body>
-
 <div class="login-form-container">
 
    <a href="/" style="text-decoration: none;" class="fas fa-times" id="form-close"></a>
 
-    <form action="/auth2/signin" method = "POST">
+    <form action="/auth2/signin" method = "POST" class="needs-validation-login" novalidate>
         <h3>تسجيل الدخول</h3>
-        <input name="email" type="email" class="box" placeholder="ادخل الايميل">
-        <input name="password" type="password" class="box" placeholder="ادخل كلمة المرور">
+          <div class="form-group p-1 form-group">
+        <input name="email" type="email" class="box" placeholder="ادخل الايميل" id = "email" required>
+        <input name="password" type="password" class="box" placeholder="ادخل كلمة المرور" id = "password" required>
+         <small style = "font-size: medium;" class="invalid-feedback">الايميل او كلمة المرور غير صالحة  </small>
         <input type="submit" value="تسجيل الدخول الآن" class="btn">
+        </div>
         <br>
 
         <p style="text-align:center">نسيت كلمة المرور؟ <a href="/newPassword">أضغط هنا</a></p>
@@ -33,4 +35,5 @@
 
 </div>
 </body>
+<script src = "/scriptforLogin.js"></script>
 </html>
