@@ -15,11 +15,13 @@
   "bugs": {
     "url": "https://github.com/Ibtihaj7/Luqmit-3ish/issues"
   },
+  "type": "commonjs",
   "homepage": "https://github.com/Ibtihaj7/Luqmit-3ish#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.7",
     "express": "^4.17.3",

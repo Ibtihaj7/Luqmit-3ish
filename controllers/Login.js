@@ -15,7 +15,6 @@ exports.Login = (req, res) => {
       }
       if (results.length  && bcrypt.compareSync(password,results[0].password)) {
         if (results[0].website === null)console.log('web nullll');
-        console.log(results[0].name);
         req.session.id = results[0].id;
         if(results[0].type ==='resturant'){
           return res.render('resHomePage',{

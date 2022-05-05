@@ -47,54 +47,65 @@
     <div class="box-container">
 
         <div class="box x 1">
+            <form action="/meal/m1" method="POST">
             <i class="fas fa-utensils"></i>
             <h3>وجبات رئيسية</h3>
-           <input type='text' placeholder="بيتزا,جاج,....الخ"><br><br>
+           <input name="discription1" type='text' placeholder="بيتزا,جاج,....الخ"><br><br>
           <label> الكمية: </label>
-            <input type="number" placeholder="0"><br>
-            <a href="#services" class="btn"> حفظ التعديلات </a>
-
+            <input name="quantity1" type="number" placeholder="0"><br>
+            <button href="#services" class="btn"> حفظ التعديلات </button>
+            </form>
         </div>
         <div class="box x 2">
             <i class="fas fa-utensils"></i>
             <h3>ساندويشات</h3>
-            <input type='text' placeholder='شاورما,كباب,بطاطا ,.....الخ'>
-            <p>الكمية:</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حفظ التعديلات </a>
-        </div>
+            <input name="discription2" type='text' placeholder='شاورما,كباب,بطاطا ,.....الخ'><br><br>
+          <label> الكمية: </label>
+            <input name="quantity2" type="number" placeholder="0"><br>
+            <form action="/meal2" method="POST">
+            <button href="#services" class="btn"> حفظ التعديلات </button>
+            </form>
+            </div>
         <div class="box x 3">
             <i class="fas fa-utensils"></i>
             <h3>عصائر</h3>
-             <input type='text' placeholder="عصير برتقال, عصير مانجا,... الخ">
-            <p>الكمية:</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حفظ التعديلات </a>
-        </div>
+             <input name="discription3" type='text' placeholder="عصير برتقال, عصير مانجا,... الخ"><br><br>
+          <label> الكمية: </label>
+            <input name="quantity3" type="number" placeholder="0"><br>
+            <form action="/meal3" method="POST">
+            <button href="#services" class="btn"> حفظ التعديلات </button>
+            </form>
+             </div>
         <div class="box x 4">
             <i class="fas fa-utensils"></i>
             <h3>حلويات</h3>
-             <input type='text' placeholder='كيك, دونات,...الخ'>
-            <p>الكمية:</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حفظ التعديلات </a>
-        </div>
+             <input name="discription4" type='text' placeholder='كيك, دونات,...الخ'><br><br>
+          <label> الكمية: </label>
+            <input name="quantity4" type="number" placeholder="0"><br>
+            <form action="/meal4" method="POST">
+            <button href="#services" class="btn"> حفظ التعديلات </button>
+            </form>
+            </div>
         <div class="box x 5">
             <i class="fas fa-utensils"></i>
             <h3>شوربات</h3>
-             <input type='text' placeholder='شوربة عدس, شوربة فريكية,...الخ'>
-            <p>الكمية:</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حفظ التعديلات </a>
-        </div>
+             <input name="discription5" type='text' placeholder='شوربة عدس, شوربة فريكية,...الخ'><br><br>
+          <label> الكمية: </label>
+            <input name="quantity5" type="number" placeholder="0"><br>
+            <form action="/meal5" method="POST">
+            <button href="#services" class="btn"> حفظ التعديلات </button>
+            </form>
+            </div>
         <div class="box x 6">
             <i class="fas fa-utensils"></i>
             <h3>وجبات سريعة</h3>
-             <input type='text' placeholder='بطاطا, برجر,....الخ'>
-            <p>الكمية:</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حفظ التعديلات </a>
-        </div>
+             <input name="discription6" type='text' placeholder='بطاطا, برجر,....الخ'><br><br>
+          <label> الكمية: </label>
+            <input name="quantity6" type="number" placeholder="0"><br>
+            <form action="/meal6" method="POST">
+            <button href="#services" class="btn"> حفظ التعديلات </button>
+            </form>
+            </div>
         
 
     </div>
@@ -202,6 +213,6 @@
 </section>
 
 <!-- contact section ends -->
-
+<script type="module" src="/res.js"></script>
 </body>
 </html>
