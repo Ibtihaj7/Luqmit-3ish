@@ -7,7 +7,6 @@ app.set("view engine", "hbs");
 app.use(express.static("public"));
 
 exports.Login = (req, res) => {
-
   const email = req.body.email;
   const password = req.body.password;
   db.query("SELECT * FROM account WHERE email = ? ", [email], (error, results) => {
@@ -16,11 +15,17 @@ exports.Login = (req, res) => {
       }
       if (results.length  && bcrypt.compareSync(password,results[0].password)) {
         if (results[0].website === null)console.log('web nullll');
-
+        console.log(results[0].name);
         req.session.id = results[0].id;
-        return res.render("home",{
-            message:`welcome ${results[0].name}`
-        });
+        if(results[0].type ==='resturant'){
+          return res.render('resHomePage',{
+            resturantname:`${results[0].name}`
+          })
+        }else{
+          return res.render('charHomePage',{
+            resturantname:`${results[0].name}`
+          })
+        }
       } else {
         return res.render("logIn", {
           message: "password or email is incorrect"

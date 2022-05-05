@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لقمة خير</title>
+    <title>لقمة عيش</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="/style.css">
 </head>
-
+    {{#if message}}
+        <p class = "alert alert-danger"> {{ message }}</p>
+    {{/if}}
     <div class="login-form-container">
         <a href="/" style="text-decoration: none;" class="fas fa-times" id="form-close"></a>
         <form action="/auth/register" method="POST" id="form" class="needs-validation" novalidate>
@@ -29,9 +31,6 @@
             <div id="email-validation" class="invalid-feedback">الرجاء التاكد من الايميل</div>
             </div>
 
-            <!-- <div class="form-group p-1 form-group">
-            <input name="phone" type="text" class="box " placeholder="ادخل رقم هاتفك" >
-            </div> -->
             <div class="form-group p-1 form-group">
                 <input id="phone" name="phone" type="text" class="box form-control" placeholder="ادخل رقم هاتفك" >
                 <div class="invalid-feedback"> رقم الهاتف غير صالح</div>
@@ -50,8 +49,8 @@
 
             <div class="input-group mb-3">
                 <select name="type" class="form-select" id="inputGroupSelect02">
-                  <option value="1">مستخدم</option>
-                  <option value="2">مطعم</option>
+                  <option value="charity">جمعية خيرية</option>
+                  <option value="resturant">مطعم</option>
                 </select>
             </div>
 
