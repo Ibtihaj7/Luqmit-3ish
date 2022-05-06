@@ -1,7 +1,5 @@
 document.querySelector('#email').addEventListener('blur', validateEmail);
 document.querySelector('#password').addEventListener('blur', validatePassword);
-document.querySelector('#phone').addEventListener('blur', validatePhone);
-document.querySelector('#confirm').addEventListener('blur', validatecomfirm);
 
 const reSpaces=/^\S*$/;
 
@@ -29,33 +27,8 @@ function validatePassword(){
     }
 }
 
-function validatecomfirm(){
-  const password=document.querySelector('#password');
-  const confirm = document.querySelector('#confirm');
-  if ((password.value === confirm.value) ){
-    confirm.classList.remove('is-invalid');
-    return true;
-  }else{
-    confirm.classList.add('is-invalid');
-    return false;
-  }
-}
-function validatePhone(){
-  const phone=document.querySelector('#phone');
-    const re=/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
-    if (re.test(phone.value) && reSpaces.test(phone.value)){
-    phone.classList.remove('is-invalid');
-              
-    return true;
-    }else{
-    phone.classList.add('is-invalid');
-    return false;
-    }
-
-}
-
 (function (){
-    const forms = document.querySelectorAll('.needs-validation-signup');
+    const forms = document.querySelectorAll('.needs-validation-login');
     for (let form of forms){
       form.addEventListener(
         "submit",

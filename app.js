@@ -28,10 +28,19 @@ if (myenv.error) {
 }
 
 
+app.use(express.json());
+app.use(session({ 
+    secret: '123456catr',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+}))
  
 const publicDirectory = path.join(__dirname,'public');
-
+app.set("view engine", "hbs")
+app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
+
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
@@ -47,8 +56,7 @@ app.use('/auth3',require('./routes/changepassword'));
 
 
 app.use('/',require('./routes/verifications'));
-app.set("view engine", "hbs")
-app.use(express.static(publicDirectory));
+app.use('/meal',require('./routes/meals'))
  
 app.listen(PORT, ()=>{
     console.log(`Connected in ${PORT} port`);
