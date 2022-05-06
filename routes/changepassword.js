@@ -9,16 +9,18 @@ const db = require("../config/db")
 
 router.post('/changePassword',(req,res) => {
 
-id = req.session.id
+id = req.session.userId
 console.log(id)
+
 let {curentPassword,newPassword,confirmPassword}=req.body;
 
-db.query("SELECT* FROM account WHERE id=? AND password=?",[id,curentPassword],async(error,results) => {
+db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
     
+    console.log(results)
     if(error){
         return error
     }
-    if(results[0].password!==curentPassword){
+    if(!(bcrypt.compareSync(curentPassword,results[0].password))){
         return res.render('changePassword',{
            message:"Enter your account password correctly"
         });
