@@ -8,7 +8,6 @@ const db = require("../config/db")
 router.post('/changePassword',(req,res) => {
 
 id = req.session.userId
-console.log(id)
 
 let curentPassword=req.body.curentPassword;
 let newPassword = req.body.newPassword;
