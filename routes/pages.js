@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cookieParser = require('cookie-parser');
 
 const app = express();
 app.set('view engine','hbs')
+app.use(cookieParser());
 
 router.get('/',(req,res) => {
     res.render('home'); 

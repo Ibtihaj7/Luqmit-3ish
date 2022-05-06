@@ -1,61 +1,64 @@
+const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const express = require("express");
 const mysql=require('mysql');
 const regePassword = /^(?=(.*[a-zA-Z]){1,})(?=(.*[0-9]){2,}).{8,}$/;
+const db = require("../config/db") 
 
-let db = mysql.createConnection({
-    host: process.env.host,
-    user:process.env.user,
-    password:process.env.password,
-    database:process.env.database
-   
-})
+router.post('/changePassword',(req,res) => {
 
-databaseConnection.connect((err)=>{
-    if(err){
-        throw err;
-    }else{
-        console.log('connected');
+id = req.session.userId
+console.log(id)
+
+let curentPassword=req.body.curentPassword;
+let newPassword = req.body.newPassword;
+let confirmPassword = req.body.confirmPassword;
+
+db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
+    
+    console.log(results)
+    if(error){
+        console.log('error');
+        return error
     }
-})
-
-router.post('/changePassword/',(req,res) => {
-
-id = req.session.id
-let {curentPassword,newPassword,confirmPassword}=req.body;
-
-db.query("SELECT* FROM USERS WHERE id=? AND password=?",[id,password],async(error,result) => {
-    if(password!==curentPassword){
+    console.log(curentPassword);
+    console.log(results[0].password);
+    
+    if (!(results.length  && bcrypt.compareSync(curentPassword,results[0].password))){
+    
         return res.render('changePassword',{
            message:"Enter your account password correctly"
         });
     }
     else if(newPassword!==confirmPassword){
+        
         return res.render('changePassword',{
             message:"Password does not match with confirm Password"
         })
     }
     else if(!(regePassword.test(newPassword))){
+     
         return res.render('changePassword',{
             message:"Please enter a valid password, must include both lower and upper case charachter, at least one number or symbol,and at least 8 characters long"
         });
     }
     else {
-        let hashedPassword = await bcrypt.hash(password , 8);
-        db.query("UPDATE account SET password = ? WHERE id = ?", [newPassword,id],(error)=>{
+      
+        let hashedPassword = await bcrypt.hash(newPassword , 8);
+        db.query("UPDATE account SET password = ? WHERE id = ?", [hashedPassword,id],(error)=>{
             if(error){     
                 console.log("Error when resetting password")     
             }else{
-                res.render("home",{ message: "Password changed successfully"})
+                if(results[0].type=="resturent")
+                res.render("resHomePage",{ message: "Password changed successfully"})
+                else{
+                    res.render("charHomePage",{ message: "Password changed successfully"})
+                    
+                }
             }
-        })
-       
+        })    
     }
-    
 });
 })
 
 module.exports=router;
-
-
