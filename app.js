@@ -52,12 +52,13 @@ app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth1'));
 app.use('/auth2',require('./routes/auth2'));
 app.use('/auth3',require('./routes/changepassword'));
-
-
-
-app.use('/',require('./routes/verifications'));
 app.use("/",require("./routes/contactUs"))
+app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))
+app.set("view engine", "hbs")
+app.use(express.static(publicDirectory));
+
+
  
 app.listen(PORT, ()=>{
     console.log(`Connected in ${PORT} port`);

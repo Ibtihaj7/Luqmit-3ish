@@ -32,5 +32,8 @@ router.get("/changePassword",(req,res) => {
 router.get("/profile",(req,res)=>{
     res.render("profilePage");
 })
+router.get("/contactUs", (req, res)=>{
+    res.render("contactUs")
+})
 
 module.exports = router;
