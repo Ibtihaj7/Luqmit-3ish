@@ -1,32 +1,24 @@
+const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const express = require("express");
 const mysql=require('mysql');
 const regePassword = /^(?=(.*[a-zA-Z]){1,})(?=(.*[0-9]){2,}).{8,}$/;
+const db = require("../config/db") 
 
-let db = mysql.createConnection({
-    host: process.env.host,
-    user:process.env.user,
-    password:process.env.password,
-    database:process.env.database
-   
-})
 
-databaseConnection.connect((err)=>{
-    if(err){
-        throw err;
-    }else{
-        console.log('connected');
-    }
-})
 
-router.post('/changePassword/',(req,res) => {
+router.post('/changePassword',(req,res) => {
 
 id = req.session.id
+console.log(id)
 let {curentPassword,newPassword,confirmPassword}=req.body;
 
-db.query("SELECT* FROM USERS WHERE id=? AND password=?",[id,password],async(error,result) => {
-    if(password!==curentPassword){
+db.query("SELECT* FROM account WHERE id=? AND password=?",[id,curentPassword],async(error,results) => {
+    
+    if(error){
+        return error
+    }
+    if(results[0].password!==curentPassword){
         return res.render('changePassword',{
            message:"Enter your account password correctly"
         });
@@ -42,7 +34,7 @@ db.query("SELECT* FROM USERS WHERE id=? AND password=?",[id,password],async(erro
         });
     }
     else {
-        let hashedPassword = await bcrypt.hash(password , 8);
+        let hashedPassword = await bcrypt.hash(newPassword,8);
         db.query("UPDATE account SET password = ? WHERE id = ?", [newPassword,id],(error)=>{
             if(error){     
                 console.log("Error when resetting password")     
@@ -57,5 +49,8 @@ db.query("SELECT* FROM USERS WHERE id=? AND password=?",[id,password],async(erro
 })
 
 module.exports=router;
+
+
+
 
 
