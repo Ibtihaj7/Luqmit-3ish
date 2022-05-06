@@ -6,19 +6,7 @@ const app = express();
 app.set('view engine','hbs')
 app.use(cookieParser());
 
-function validateCookie(req, res, next){
-    const{cookies}=req;
-    if ('session_id' in cookies){
-      console.log('Session ID Exists.');
-      if (cookies.session_id === '123456') next();
-      else res.status (403).send ({ msg: 'Not Authenticated' });
-     }else res.status (403).send ({ msg: 'Not Authenticated' });
-  }
-
-router.get('/',validateCookie,(req,res) => {
-    res.cookie('visited',true,{
-        maxAge:50000,
-    })
+router.get('/',(req,res) => {
     res.render('home'); 
 });
 router.get('/register',(req,res) => {
