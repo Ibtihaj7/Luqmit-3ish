@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const app = express();
 const dotenv=require('dotenv');
 const myenv=dotenv.config();
-const PORT = process.env.PORT || 2001; 
+const PORT = process.env.PORT || 3000; 
 const session = require('express-session');
 
 let databaseConnection = mysql.createConnection({
@@ -42,7 +42,8 @@ app.use(session({
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth1'));
 app.use('/auth2',require('./routes/auth2'));
-app.use('/changePassword',require('./routes/changepassword'));
+app.use('/auth3',require('./routes/changepassword'));
+
 
 
 app.use('/',require('./routes/verifications'));
