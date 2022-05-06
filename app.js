@@ -56,6 +56,7 @@ app.use('/auth3',require('./routes/changepassword'));
 
 
 app.use('/',require('./routes/verifications'));
+app.use("/",require("./routes/contactUs"))
 app.use('/meal',require('./routes/meals'))
  
 app.listen(PORT, ()=>{
