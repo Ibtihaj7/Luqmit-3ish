@@ -4,14 +4,18 @@ const bcrypt = require("bcrypt");
 const mysql=require('mysql');
 const db = require("../config/db") 
 
+
 router.get('/delete/:id', function(req, res, next) {
-    var id= req.params.id;
-      var sql = 'DELETE FROM account WHERE id = ?';
-      db.query(sql, [id], function (err, data) {
-      if (err)
-       throw err;
-      console.log(data.affectedRows + " record(s) updated");
-    });
-    res.redirect('/deleteAccount');
-    
-});
+    var id =  req.params.id 
+        db.query('DELETE FROM account WHERE id = ' + req.params.id, user, function(err, result) {
+            if (err) {
+                req.flash('error', err)
+                res.redirect('/')
+            } else {
+                req.flash('success', 'User has been deleted successfully! id = ' + req.params.id)
+                res.redirect('/')
+            }
+        })
+   })
+
+   module.exports = router;
