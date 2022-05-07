@@ -4,8 +4,10 @@ const bcrypt = require("bcrypt");
 const mysql=require('mysql');
 const regePassword = /^(?=(.*[a-zA-Z]){1,})(?=(.*[0-9]){2,}).{8,}$/;
 const db = require("../config/db") 
+const methodOverride = require("method-override")  
+router.use(methodOverride("_method"))  
 
-router.post('/changePassword',(req,res) => {
+router.put('/changePassword',(req,res) => {
 
 id = req.session.userId
 
