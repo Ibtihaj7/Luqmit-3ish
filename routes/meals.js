@@ -5,7 +5,7 @@ const mysql = require("mysql");
 const app = express();
 const db = require("../config/db") 
 
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 router.post('/meals',(req,res) => {
