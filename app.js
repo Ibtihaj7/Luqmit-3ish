@@ -28,6 +28,8 @@ app.use(session({
 }))  
 
 app.use('/',require('./routes/pages'));
+app.use('/profile',require('./routes/profile'));
+app.post('/edit',(req,res)=>{res.render('EditProfilePage');})
 app.use('/auth1',require('./routes/auth1'));
 app.use('/auth2',require('./routes/auth2'));
 app.use('/auth3',require('./routes/changepassword'));
