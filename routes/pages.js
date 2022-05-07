@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cookieParser = require('cookie-parser');
+const db = require("../config/db") ;
 
 const app = express();
 app.set('views', __dirname + '/views');
@@ -32,8 +33,14 @@ router.get("/setNewPass/:email", (req, res)=>{
 router.get("/changePassword",(req,res) => {
     res.render("changePassword");
 })
+
 router.get("/user",(req,res)=>{
-    res.render("profilePage");
+    db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
+        res.render("profilePage",{
+            data:result
+        });
+    })
+    
 })
 router.get("/contactUs", (req, res)=>{
     res.render("contactUs")
