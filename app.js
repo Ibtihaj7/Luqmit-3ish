@@ -35,6 +35,9 @@ app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))
 app.set("view engine", "hbs")
+app.post('deleteAccount',(req,res) => {
+    res.render('deleteAccount')
+})
 app.use(express.static(publicDirectory));
 
 app.listen(PORT, ()=>{
