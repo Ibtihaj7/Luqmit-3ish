@@ -7,7 +7,7 @@ const db = require("../config/db")
 
 router.get('/delete/:id', function(req, res, next) {
     var id =  req.params.id 
-        db.query('DELETE FROM account WHERE id = ' + req.params.id, user, function(err, result) {
+        db.query('DELETE FROM account WHERE id = ' + [id], account, function(err, result) {
             if (err) {
                 req.flash('error', err)
                 res.redirect('/')
