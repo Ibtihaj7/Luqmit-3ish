@@ -17,7 +17,11 @@ router.post('/signIn',(req,res) => {
                 })
 
             }else{ 
-                return res.redirect("/charity");
+                db.query("SELECT * FROM account ", (error, results) => {
+                    return res.render('charHomePage',{
+                        resdata:results
+                    })
+                })
         }
         } else {
             return res.render("logIn", {
