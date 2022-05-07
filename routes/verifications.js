@@ -24,7 +24,7 @@ router.get("/user/verify/:email/:emailUUID", async(req ,res)=>{
                                     message:'Email veriefied Succesfully'
                                 })   
                             }
-                        })  
+                        })   
                     }else{    
                         res.render("signUp", {message: "Please request another verification link by contacting us"})  
                     }
@@ -60,7 +60,6 @@ router.post("/newPasswordReq", (req, res)=>{
         }
     }) 
 })
-
 
 router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
     let {email, passwordUUID} = req.params 
@@ -115,8 +114,7 @@ router.put("/newPassword", (req, res)=>{
             });                              
         }else{
             let hashedPass = bcrypt.hash(password, 8)
-            .then((hashedPass)=>{
-                //UPDATE account SET passwordUUID = NULL WHERE email = ?          
+            .then((hashedPass)=>{        
                 db.query("UPDATE account SET password = ? WHERE email = ?", [hashedPass,email],(error)=>{
                     if(error){     
                         console.log("Error while setting the new password ", e)     

@@ -53,9 +53,6 @@ router.post('/signUp',(req,res) => {
                 })
                 })
             }
-
-                
-        
         });
         } 
         })
