@@ -32,11 +32,14 @@ router.get("/setNewPass/:email", (req, res)=>{
 router.get("/changePassword",(req,res) => {
     res.render("changePassword");
 })
-router.get("/profile",(req,res)=>{
+router.get("/user",(req,res)=>{
     res.render("profilePage");
 })
 router.get("/contactUs", (req, res)=>{
     res.render("contactUs")
+})
+router.get("/edit", (req,res)=>{
+    res.render('EditProfilePage');
 })
 
 module.exports = router;
