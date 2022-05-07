@@ -22,8 +22,6 @@ db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
         console.log('error');
         return error
     }
-    console.log(curentPassword);
-    console.log(results[0].password);
     
     if (!(results.length  && bcrypt.compareSync(curentPassword,results[0].password))){
     
@@ -53,7 +51,15 @@ db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
                 if(results[0].type=="resturent")
                 res.render("resHomePage",{ message: "Password changed successfully"})
                 else{
-                    res.render("charHomePage",{ message: "Password changed successfully"})
+                    db.query("SELECT * FROM account ", (error, results) => {
+                        if(error)throw err;
+                        else{
+                            return res.render('charHomePage',{
+                                resdata:results
+                            })
+                        }
+                    })
+                    
                     
                 }
             }
