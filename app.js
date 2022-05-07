@@ -16,7 +16,8 @@ app.use(session({
 }))
  
 const publicDirectory = path.join(__dirname,'public');
-app.set("view engine", "hbs")
+app.set('views', __dirname + '/views');
+app.set("view engine", "ejs")
 app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
 
@@ -35,7 +36,11 @@ app.use('/auth3',require('./routes/changepassword'));
 app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))
-app.set("view engine", "hbs")
+app.use('/res',require('./routes/meals'))
+app.post('/meues',(req,res) => {
+    res.render('resmenu')
+    
+})
 app.use(express.static(publicDirectory));
 
 app.listen(PORT, ()=>{

@@ -1,11 +1,13 @@
 const express = require('express');
+const path = require('path')
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const db = require("../config/db") ;
 const app = express();
 const verificationEmail = require("../config/emailVerification");
- 
-app.set('view engine','hbs');
+
+app.set('views',path.join(__dirname,'views'));
+app.set('view engine','ejs');
 app.use(express.static('public'));
 
 router.post('/signUp',(req,res) => {

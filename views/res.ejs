@@ -26,7 +26,7 @@
      <div class="dropdown">
      <div class="icons">
     <i class="fas fa-search" id="search-btn"></i>
-    <a href = "/user" class="fas fa-user" id="login-btn"></a>
+    <i class="fas fa-user" id="login-btn"></i>
      </div> 
     </div>
 
@@ -36,14 +36,8 @@
 
 <section class="services" id="services">
 
-    <h1 class="heading">
-        <span id='resturant'>
-    {{#if resturantname}}
- مطعم        {{ resturantname }}   
-    {{/if}}            
-        </span>
-        
-    </h1>
+    
+
 
     <div class="box-container">
 
@@ -107,7 +101,10 @@
             <button href="#services" class="btn"> حفظ التعديلات </button>
             </form>
             </div>
-        
+            <form action="/meues" method="POST" >
+
+                <button href="/" class="btn"> تعديل </button>
+            </form>
 
     </div>
 

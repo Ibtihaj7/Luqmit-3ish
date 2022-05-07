@@ -17,9 +17,16 @@ router.post('/signIn',(req,res) => {
                 resturantname:`${results[0].name}`
             })
             }else{
-                return res.render('charHomePage',{
-                resturantname:`${results[0].name}`
-            })
+                db.query("SELECT * FROM account ", (error, results) => {
+                    if(error)throw err;
+                    else{
+                        return res.render('charHomePage',{
+                            resdata:results
+                        })
+                    }
+
+                })
+                
         }
         } else {
             return res.render("logIn", {
