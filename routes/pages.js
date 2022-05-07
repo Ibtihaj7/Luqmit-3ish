@@ -3,7 +3,8 @@ const router = express.Router();
 const cookieParser = require('cookie-parser');
 
 const app = express();
-app.set('view engine','hbs')
+app.set('views', __dirname + '/views');
+app.set("view engine", "ejs")
 app.use(cookieParser());
 
 router.get('/',(req,res) => {
@@ -12,7 +13,9 @@ router.get('/',(req,res) => {
 router.get('/register',(req,res) => {
     res.render('signUp'); 
 });
-
+router.get('/resmenu',(req,res) => {
+    res.render('resmenu')
+})
 router.get("/newPassword", (req, res)=>{
     res.render("newPassword");
 })
