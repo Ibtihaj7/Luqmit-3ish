@@ -35,5 +35,7 @@ router.get("/profile",(req,res)=>{
 router.get("/contactUs", (req, res)=>{
     res.render("contactUs")
 })
-
+router.get("/deleteAccount",(req,res) => {
+    res.render("deleteAccount");
+})
 module.exports = router;
