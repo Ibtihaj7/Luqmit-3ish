@@ -40,14 +40,14 @@
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
                 <div class="row mt-5">
-                    <div class="col-md-12"><label class="labels">الاسم  :  </label><label id = "name" class = "labels"> </label><br><br></div>
-                    <div class="col-md-12"><label class="labels">الايميل  :  </label><label id = "email" class = "labels"> </label><br><br></div>
-                    <div class="col-md-12"><label class="labels">رقم الهاتف  :  </label><label id = "phone" class = "labels"> </label><br><br></div>
-                    <div class="col-md-12"><label class="labels">الموقع الالكتروني  :  </label><label id = "website" class = "labels"> </label><br><br></div>
-                    <div class="col-md-12"><label class="labels">الموقع  :  </label><label id = "location" class = "labels"> </label><br><br></div>
+                    <form action = "/profile/edit/?_method=PUT" method = "POST">
+                    <div class="col-md-12"><label class="labels">الاسم  :  </label><input name = "name" type="text"placeholder="  أدخل اسمك" value=""><br><br></div>
+                    <div class="col-md-12"><label class="labels">الايميل  :  </label><input name = "email" type="text"  placeholder="  أدخل ايميلك" value=""><br><br></div>
+                    <div class="col-md-12"><label class="labels">رقم الهاتف  :  </label><input name = "phone" type="text"  placeholder="    أدخل رقم هاتفك " value=""><br><br></div>
+                    <div class="col-md-12"><label class="labels">الموقع الالكتروني  :  </label><input name = "website" type="text" placeholder="  أدخل الموقع الالكتروني" value=""><br><br></div>
+                    <div class="col-md-12"><label class="labels">الموقع  :  </label><input name = "location" type="text" placeholder="  أدخل موقعك" value=""><br><br></div>
                 </div>
-                <form action="/edit" method = "POST">
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">تعديل الملف الشخصي</button></div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">حفظ التعديلات</button></div>
                 </form>
             </div>
         </div>
