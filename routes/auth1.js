@@ -26,15 +26,41 @@ router.post('/signUp',(req,res) => {
             });
         }else{
         let hashedPassword = await bcrypt.hash(password , 8);
-        db.query('INSERT INTO account SET ?',{name:name,email:email,phone:phone,password:hashedPassword,type:type},(err,results) => {
+        db.query('INSERT INTO account SET ?',{name:name,email:email,phone:phone,password:hashedPassword,type:type},(err,result) => {
             if(err){
                 throw err;
-            }else{
-                verificationEmail.sendVerEmail(email);
-                res.render('logIn');
             }
+            else{
+                db.query('SELECT * FROM account WHERE email= ?',[email],(err,res) => {
+                    console.log(res);
+                    db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                        if(err)throw err     
+                })
+                db.query('INSERT INTO menu SET ?',{category:'ساندويشات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                    if(err)throw err     
+                })
+                db.query('INSERT INTO menu SET ?',{category:'عصائر',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                    if(err)throw err     
+                })
+                db.query('INSERT INTO menu SET ?',{category:'حلويات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                   if(err)throw err     
+                })
+                db.query('INSERT INTO menu SET ?',{category:'شوربات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                    if(err)throw err     
+                })
+                db.query('INSERT INTO menu SET ?',{category:'وجبات سريعة',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                    if(err)throw err     
+                })
+                })
+            }
+
+                
+        
         });
-    }
-    });
+        } 
+        })
+        verificationEmail.sendVerEmail(email);
+        res.render('logIn');
+
 });
 module.exports = router;

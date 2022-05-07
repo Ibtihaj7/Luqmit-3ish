@@ -12,16 +12,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/style.css">
 </head>
-<body>
+<body><br><br><br><br>
 <header>
     <div id="menu-bar" class="fas fa-bars"></div>
+    
 
     <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
         <nav class="navbar">
         <a style="text-decoration: none;" href="#services">العروضات</a>
         <a style="text-decoration: none;" href="#book">الحجوزات</a>
         <a style="text-decoration: none;" href="#contact">التواصل معنا</a>
-         <a href="/changePassword">تغيير كلمة المرور</a>
+        <a style="text-decoration: none;" href="/changePassword">تغيير كلمة المرور</a>
     </nav>
      <div class="dropdown">
      <div class="icons">
@@ -36,24 +37,15 @@
 
 <section class="services" id="services">
 
-    <h1 class="heading">
-        <span id='resturant'>
-    {{#if resturantname}}
- مطعم        {{ resturantname }}   
-    {{/if}}            
-        </span>
-        
-    </h1>
-
     <div class="box-container">
 
         <div class="box x 1">
             <form action="/meal/m1" method="POST">
             <i class="fas fa-utensils"></i>
             <h3>وجبات رئيسية</h3>
-           <input name="discription1" type='text' placeholder="بيتزا,جاج,....الخ"><br><br>
+           <input name="discription1" type='text' placeholder=<%= resdata[0].discription  %>><br><br>
           <label> الكمية: </label>
-            <input name="quantity1" type="number" placeholder="0"><br>
+            <label name="quantity1" type="number" placeholder="0"><%= resdata[0].quantity  %></label><br>
             <button href="#services" class="btn"> حفظ التعديلات </button>
             </form>
         </div>
@@ -107,10 +99,7 @@
             <button href="#services" class="btn"> حفظ التعديلات </button>
             </form>
             </div>
-            <form action="/meues" method="POST" >
 
-                <button href="/" class="btn"> تعديل </button>
-            </form>
 
     </div>
 

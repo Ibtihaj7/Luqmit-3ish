@@ -37,10 +37,7 @@ app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))
 app.use('/res',require('./routes/meals'))
-app.post('/meues',(req,res) => {
-    res.render('resmenu')
-    
-})
+
 app.use(express.static(publicDirectory));
 
 app.listen(PORT, ()=>{
