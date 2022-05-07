@@ -15,10 +15,9 @@ router.post('/signIn',(req,res) => {
                 db.query('SELECT * FROM account WHERE id=?',[req.session.userId],(err,result) => {
                     return res.render('resHomePage')
                 })
+
             }else{ 
-                return res.render('charHomePage',{
-                    resdata:results
-                })
+                return res.redirect("/charity");
         }
         } else {
             return res.render("logIn", {

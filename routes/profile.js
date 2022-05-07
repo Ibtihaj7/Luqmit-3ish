@@ -42,30 +42,10 @@ router.put('/edit', (req,res)=>{
             });
         }
         }
-        res.render("profilePage",{
-            data:result
-        });
+        res.redirect("/user");
+        
     });
     
 })
 
-router.get('/user',(req,res)=>{
-    const name = req.body.name;
-    const email = req.body.email;
-    const phone = req.body.phone;
-    const website = req.body.website;
-    const location = req.body.location;
-    const id = req.session.userId;
-    db.query("SELECT * from account WHERE id = ?",[id],(err,result)=>{
-        if(err){throw err;}
-        if(result.length > 0){
-            name = result[0].name;
-            email = result[0].email;
-            phone = result[0].phone;
-            website = result[0].website;
-            location = result[0].location;
-        }
-    });
-    res.redirect('/profile');
-})
 module.exports = router;
