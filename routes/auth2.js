@@ -10,23 +10,16 @@ router.post('/signIn',(req,res) => {
             throw error;
         }
         if (results.length  && bcrypt.compareSync(password,results[0].password)) {
-            // if (results[0].website === null)console.log('web nullll');
             req.session.userId = results[0].id;
             if(results[0].type ==='resturant'){
                 return res.render('resHomePage',{
-                resturantname:`${results[0].name}`
-            })
-            }else{
-                db.query("SELECT * FROM account ", (error, results) => {
-                    if(error)throw err;
-                    else{
-                        return res.render('charHomePage',{
-                            resdata:results
-                        })
-                    }
-
+                    resdata:results
                 })
-                
+
+            }else{ 
+                return res.render('charHomePage',{
+                    resdata:results
+                })
         }
         } else {
             return res.render("logIn", {
