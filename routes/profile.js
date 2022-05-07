@@ -42,8 +42,11 @@ router.put('/edit', (req,res)=>{
             });
         }
         }
+        res.render("profilePage",{
+            data:result
+        });
     });
-    res.render("profilePage");
+    
 })
 
 router.get('/user',(req,res)=>{

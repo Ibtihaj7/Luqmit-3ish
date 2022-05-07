@@ -40,11 +40,11 @@
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
                 <div class="row mt-5">
-                    <div class="col-md-12"><label class="labels">الاسم  :  </label><label id = "name" class = "labels"> </label><br><br></div>
-                    <div class="col-md-12"><label class="labels">الايميل  :  </label><label id = "email" class = "labels"> </label><br><br></div>
-                    <div class="col-md-12"><label class="labels">رقم الهاتف  :  </label><label id = "phone" class = "labels"> </label><br><br></div>
-                    <div class="col-md-12"><label class="labels">الموقع الالكتروني  :  </label><label id = "website" class = "labels"> </label><br><br></div>
-                    <div class="col-md-12"><label class="labels">الموقع  :  </label><label id = "location" class = "labels"> </label><br><br></div>
+                    <div class="col-md-12"><label class="labels">الاسم  :  </label><label id = "name" class = "labels"> <%=  data[0].name %>   </label><br><br></div>
+                    <div class="col-md-12"><label class="labels">الايميل  :  </label><label id = "email" class = "labels"> <%=  data[0].email %></label><br><br></div>
+                    <div class="col-md-12"><label class="labels">رقم الهاتف  :  </label><label id = "phone" class = "labels"> <%=  data[0].phone %></label><br><br></div>
+                    <div class="col-md-12"><label class="labels">الموقع الالكتروني  :  </label><label id = "website" class = "labels"> <%=  data[0].website %></label><br><br></div>
+                    <div class="col-md-12"><label class="labels">الموقع  :  </label><label id = "location" class = "labels"><%=  data[0].location %> </label><br><br></div>
                 </div>
                 <form action="/edit" method = "POST">
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">تعديل الملف الشخصي</button></div>
