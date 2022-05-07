@@ -48,5 +48,18 @@ router.get("/contactUs", (req, res)=>{
 router.get("/edit", (req,res)=>{
     res.render('EditProfilePage');
 })
-
+router.get('/restaurant',(req,res)=>{
+    db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
+    res.render("resHomePage",{
+        resdata:result
+    });
+});
+})
+router.get('/charity',(req,res)=>{
+    db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
+    res.render("charHomePage",{
+        resdata:result
+    });
+});
+})
 module.exports = router;
