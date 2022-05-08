@@ -36,11 +36,10 @@ router.get("/changePassword",(req,res) => {
 
 router.get("/user",(req,res)=>{
     db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
-        res.render("profilePage",{
-            data:result
-        });
+            res.render("profilePage",{
+                data:result
+            });
     })
-    
 })
 router.get("/contactUs", (req, res)=>{
     res.render("contactUs")
@@ -56,10 +55,10 @@ router.get('/restaurant',(req,res)=>{
 });
 })
 router.get('/charity',(req,res)=>{
-    db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
-    res.render("charHomePage",{
-        resdata:result
-    });
-});
+        db.query("SELECT * from account ",(err,results)=>{
+            res.render("charHomePage",{
+                resdata:results
+            });
+        })
 })
 module.exports = router;
