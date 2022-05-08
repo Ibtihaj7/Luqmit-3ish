@@ -12,16 +12,11 @@ router.post('/signIn',(req,res) => {
         if (results.length  && bcrypt.compareSync(password,results[0].password)) {
             req.session.userId = results[0].id;
             if(results[0].type ==='resturant'){
-                db.query('SELECT * FROM account WHERE id=?',[req.session.userId],(err,result) => {
-                    return res.render('resHomePage')
-                })
+                    return res.redirect('/restaurant');
 
             }else{ 
-                db.query("SELECT * FROM account ", (error, results) => {
-                    return res.render('charHomePage',{
-                        resdata:results
-                    })
-                })
+                    return res.redirect('/charity');
+
         }
         } else {
             return res.render("logIn", {
