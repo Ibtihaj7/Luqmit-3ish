@@ -130,35 +130,35 @@
 
 
     </h1>
-
-    <div class="row">
-
-        <div class="image">
-            <img src="imags/img1.jpeg" alt="">
+    <div class="box-container">
+        <% 
+            if(resdata.length > 0 ){
+                resdata.forEach((item) => {
+                    if(item.type === 'resturant'){ %>
+                    <div class="box">
+                        <img src="imags/١١.png" alt="">
+                        <div class="content 1">
+                            <h3> <i class="fas fa-map-marker-alt"></i> مطعم <%= item.name %> </h3>
+                            <br><br>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <br><br><br><br>
+                            <a href="#services" class="btn">  تفقد المطعم </a>
+                        </div>
+                    </div>
+                    <% 
+                }
+                })     
+            }
+        %>
+    
         </div>
 
-        <form action="">
-            <div class="inputBox">
-                <h3>اسم الجمعية</h3>
-                <input type="text" placeholder="ادخل هنا">
-            </div>
-            <div class="inputBox">
-                <h3>كم العدد</h3>
-                <input type="number" placeholder="عدد افراد الجمعية">
-            </div>
-            <div class="inputBox">
-                <h3>رقم الهاتف</h3>
-                <input type="number" placeholder="رقم الهاتف او الجوال">
-                <h3>الحجوزات</h3>
-                <textarea id='text' type="text"></textarea>
-            </div>
-            <div class="inputBox">
-               
-            </div>
-            <input type="submit" class="btn" value="حجز الان">
-        </form>
-
-    </div>
 
 </section>
 
