@@ -43,7 +43,7 @@ router.get("/user",(req,res)=>{
     
 })
 router.get("/contactUs", (req, res)=>{
-    res.render("contactUs")
+    res.render("contactUs", {message: false})
 })
 router.get("/edit", (req,res)=>{
     res.render('EditProfilePage');
