@@ -11,7 +11,7 @@ router.post('/m1',(req,res) => {
     const quantity = req.body.quantity1;
     const discription = req.body.discription1;
     if(quantity){
-        console.log(req.session.userId);
+        if(!req.session.userId) return res.redirect('/endSeccion')
     db.query('UPDATE menu SET quantity =?,discription=? WHERE category=?',[quantity,discription,'وجبات رئيسية'],(error,results) => {
         if(error){
             throw error;
@@ -27,7 +27,7 @@ router.post('/m2',(req,res) => {
     const quantity = req.body.quantity2;
     const discription = req.body.discription2;
     if(quantity){
-        console.log(req.session.userId);
+        if(!req.session.userId) return res.redirect('/endSeccion')
     db.query('UPDATE menu SET quantity =?,discription=? WHERE category=?',[quantity,discription,'ساندويشات'],(error,results) => {
         if(error){
             throw error;
@@ -76,7 +76,7 @@ router.post('/m5',(req,res) => {
     const quantity = req.body.quantity5;
     const discription = req.body.discription5;
     if(quantity){
-        console.log(req.session.userId);
+        if(!req.session.userId) return res.redirect('/endSeccion')
     db.query('UPDATE menu SET quantity =?,discription=? WHERE category=?',[quantity,discription,'شوربات'],(error,results) => {
         if(error){
             throw error;
@@ -93,7 +93,7 @@ router.post('/m6',(req,res) => {
     const quantity = req.body.quantity6;
     const discription = req.body.discription6;
     if(quantity){
-        console.log(req.session.userId);
+        if(!req.session.userId) return res.redirect('/endSeccion')
     db.query('UPDATE menu SET quantity =?,discription=? WHERE category=?',[quantity,discription,'وجبات سريعة'],(error,results) => {
         if(error){
             throw error;

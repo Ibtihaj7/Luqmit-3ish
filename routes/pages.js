@@ -11,6 +11,9 @@ app.use(cookieParser());
 router.get('/',(req,res) => {
     res.render('home'); 
 });
+router.get('/endSeccion',(req,res) => {
+    res.render("endSession");
+})
 router.get('/register',(req,res) => {
     res.render('signUp'); 
 });
@@ -35,6 +38,7 @@ router.get("/changePassword",(req,res) => {
 })
 
 router.get("/user",(req,res)=>{
+    if(!req.session.userId) return res.redirect('/endSeccion')
     db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
             res.render("profilePage",{
                 data:result
@@ -48,6 +52,7 @@ router.get("/edit", (req,res)=>{
     res.render('EditProfilePage');
 })
 router.get('/restaurant',(req,res)=>{
+    if(!req.session.userId) return res.redirect('/endSeccion')
     db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
     res.render("resHomePage",{
         resdata:result

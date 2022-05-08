@@ -9,6 +9,7 @@ router.use(methodOverride("_method"))
 
 router.put('/changePassword',(req,res) => {
 id = req.session.userId
+if(!id) return res.redirect('/endSeccion')
 let curentPassword=req.body.curentPassword;
 let newPassword = req.body.newPassword;
 let confirmPassword = req.body.confirmPassword;
