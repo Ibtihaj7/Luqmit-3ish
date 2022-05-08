@@ -38,7 +38,6 @@ function sendVerEmail(email){
     hasheduniqueString = bcrypt.hash(uniqueString, 10)
     .then((hasheduniqueString) => {                 
         // seet values in     
-        //INSERT INTO `users_db`.`emailver` (`email`, `uniqueString`) VALUES (?, ?)", [email, hasheduniqueString], (err)=>{
         db.query("UPDATE account SET passwordUUID = ? WHERE email = ?", [hasheduniqueString, email], (err)=>{
             if(err){
                 console.log("Error while inserting the uniqueString for password to the DB");

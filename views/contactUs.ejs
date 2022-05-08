@@ -31,9 +31,11 @@
         <span>ـنـ</span>
         <span>ا</span>
     </h1>
-    {{#if message}}
-        <h3 class = "alert alert-success" style="margin: 0 10%;  width: 80%; text-align: center; "> {{message}} </h3>
-    {{/if}}  
+    <% if(message){ %>
+        <h3 class = "alert alert-success" style="margin: 0 10%;  width: 80%; text-align: center; "> <%= message %> </h3>
+    <% }else{%>
+        <h4></h4>
+    <% } %>     
     <div class="row" style="margin-top: 50px;">
 
         <div class="image">

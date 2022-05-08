@@ -16,6 +16,7 @@ router.post('/signIn',(req,res) => {
 
             }else{ 
                     return res.redirect('/charity');
+
         }
         } else {
             return res.render("logIn", {
