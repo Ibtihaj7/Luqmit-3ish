@@ -53,10 +53,22 @@ router.get("/edit", (req,res)=>{
 })
 router.get('/restaurant',(req,res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion')
-    db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
+    db.query("SELECT * from menu WHERE account_id = ?",[req.session.userId], (error,result)=>{
+        console.log(result.length);
     res.render("resHomePage",{
-        resdata:result
-    });
+        res1:result[0].discription,
+        res11:result[0].quantity,
+        res2:result[1].discription,
+        res22:result[1].quantity,
+        res3:result[2].discription,
+        res33:result[2].quantity,
+        res4:result[3].discription,
+        res44:result[3].quantity,
+        res5:result[4].discription,
+        res55:result[4].quantity,
+        res6:result[5].discription,
+        res66:result[5].quantity
+    }); 
 });
 })
 router.get('/charity',(req,res)=>{

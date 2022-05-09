@@ -16,9 +16,7 @@ router.post('/m1',(req,res) => {
         if(error){
             throw error;
         }else{
-            db.query("SELECT * FROM menu WHERE account_id = ? ", [req.session.userId], (error, results) => {
-                res.render('resHomePage')
-            })
+            return res.redirect('/restaurant');
         }
     })  
 }
@@ -32,10 +30,7 @@ router.post('/m2',(req,res) => {
         if(error){
             throw error;
         }else{
-            console.log('dd');
-            db.query("SELECT * FROM menu WHERE account_id = ? ", [req.session.userId], (error, results) => {
-                res.render('resHomePage')
-            })
+            return res.redirect('/restaurant');
         }
     })  
 }
@@ -48,10 +43,7 @@ router.post('/m3',(req,res) => {
         if(error){
             throw error;
         }else{
-            console.log('dd');
-            db.query("SELECT * FROM menu WHERE account_id = ? ", [req.session.userId], (error, results) => {
-                res.render('resHomePage')
-            })
+            return res.redirect('/restaurant');
         }
     })  
 }
@@ -64,10 +56,7 @@ router.post('/m4',(req,res) => {
         if(error){
             throw error;
         }else{
-            console.log('dd');
-            db.query("SELECT * FROM menu WHERE account_id = ? ", [req.session.userId], (error, results) => {
-                res.render('resHomePage')
-            })
+            return res.redirect('/restaurant');
         }
     })  
 }
@@ -81,10 +70,7 @@ router.post('/m5',(req,res) => {
         if(error){
             throw error;
         }else{
-            console.log('dd');
-            db.query("SELECT * FROM menu WHERE account_id = ? ", [req.session.userId], (error, results) => {
-                res.render('resHomePage')
-            })
+            return res.redirect('/restaurant');
         }
     })  
 }
@@ -98,10 +84,7 @@ router.post('/m6',(req,res) => {
         if(error){
             throw error;
         }else{
-            console.log('dd');
-            db.query("SELECT * FROM menu WHERE account_id = ? ", [req.session.userId], (error, results) => {
-                res.render('resHomePage')
-            })
+            return res.redirect('/restaurant');
         }
     })  
 }
