@@ -43,64 +43,64 @@
             <form action="/meal/m1" method="POST">
             <i class="fas fa-utensils"></i>
             <h3>وجبات رئيسية</h3>
-           <input name="discription1" type='text' placeholder="مجدرة,اوزي,..."><br><br>
+           <input name="discription1" type='text' placeholder=<%= res1 %>><br><br>
           <label> الكمية: </label>
-            <label name="quantity1" type="number" placeholder="0"></label><br>
+            <input name="quantity1" type="number" placeholder=<%= res11 %>><br>
             <button href="#services" class="btn"> حفظ التعديلات </button>
             </form>
         </div>
         <div class="box x 2">
-            <i class="fas fa-utensils"></i>
-            <h3>ساندويشات</h3>
-            <input name="discription2" type='text' placeholder='شاورما,كباب,بطاطا ,.....الخ'><br><br>
-          <label> الكمية: </label>
-            <input name="quantity2" type="number" placeholder="0"><br>
-            <form action="/meal2" method="POST">
-            <button href="#services" class="btn"> حفظ التعديلات </button>
+            <form action="/meal/m2" method="POST">
+                <i class="fas fa-utensils"></i>
+                <h3>ساندويشات</h3>
+                <input name="discription2" type='text' placeholder=<%= res2 %>><br><br>
+                <label> الكمية: </label>
+                <input name="quantity2" type="number" placeholder=<%= res22 %>><br>
+                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
             </form>
-            </div>
+        </div>
+
         <div class="box x 3">
-            <i class="fas fa-utensils"></i>
-            <h3>عصائر</h3>
-             <input name="discription3" type='text' placeholder="عصير برتقال, عصير مانجا,... الخ"><br><br>
-          <label> الكمية: </label>
-            <input name="quantity3" type="number" placeholder="0"><br>
-            <form action="/meal3" method="POST">
-            <button href="#services" class="btn"> حفظ التعديلات </button>
+            <form action="/meal/m3" method="POST"></form>
+                <i class="fas fa-utensils"></i>
+                <h3>عصائر</h3>
+                <input name="discription3" type='text' placeholder=<%= res3 %>  >  <br><br>
+                <label> الكمية: </label>
+                <input name="quantity3" type="number" placeholder=<%= res33 %>><br>
+                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
             </form>
-             </div>
+        </div>
+
         <div class="box x 4">
-            <i class="fas fa-utensils"></i>
-            <h3>حلويات</h3>
-             <input name="discription4" type='text' placeholder='كيك, دونات,...الخ'><br><br>
-          <label> الكمية: </label>
-            <input name="quantity4" type="number" placeholder="0"><br>
-            <form action="/meal4" method="POST">
-            <button href="#services" class="btn"> حفظ التعديلات </button>
+            <form action="/meal/m4" method="POST">
+                <i class="fas fa-utensils"></i>
+                <h3>حلويات</h3>
+                <input name="discription4" type='text' placeholder=<%= res4 %>><br><br>
+                <label> الكمية: </label>
+                <input name="quantity4" type="number" placeholder=<%= res44 %>><br>
+                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
             </form>
-            </div>
+        </div>
         <div class="box x 5">
-            <i class="fas fa-utensils"></i>
-            <h3>شوربات</h3>
-             <input name="discription5" type='text' placeholder='شوربة عدس, شوربة فريكية,...الخ'><br><br>
-          <label> الكمية: </label>
-            <input name="quantity5" type="number" placeholder="0"><br>
-            <form action="/meal5" method="POST">
-            <button href="#services" class="btn"> حفظ التعديلات </button>
+            <form action="/meal/m5" method="POST">
+                <i class="fas fa-utensils"></i>
+                <h3>شوربات</h3>
+                <input name="discription5" type='text' placeholder=<%= res5 %>><br><br>
+                <label> الكمية: </label>
+                <input name="quantity5" type="number" placeholder=<%= res55 %>><br>
+                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
             </form>
-            </div>
+        </div>
         <div class="box x 6">
-            <i class="fas fa-utensils"></i>
-            <h3>وجبات سريعة</h3>
-             <input name="discription6" type='text' placeholder='بطاطا, برجر,....الخ'><br><br>
-          <label> الكمية: </label>
-            <input name="quantity6" type="number" placeholder="0"><br>
-            <form action="/meal6" method="POST">
-            <button href="#services" class="btn"> حفظ التعديلات </button>
+            <form action="/meal/m6" method="POST">
+                <i class="fas fa-utensils"></i>
+                <h3>وجبات سريعة</h3>
+                <input name="discription6" type='text' placeholder=<%= res6 %>><br><br>
+                <label> الكمية: </label>
+                <input name="quantity6" type="number" placeholder=<%= res66 %>><br>
+                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
             </form>
-            </div>
-
-
+        </div>
     </div>
 
 </section>
@@ -130,34 +130,7 @@
 
 
     </h1>
-    <div class="box-container">
-        <% 
-            if(resdata.length > 0 ){
-                resdata.forEach((item) => {
-                    if(item.type === 'resturant'){ %>
-                    <div class="box">
-                        <img src="imags/١١.png" alt="">
-                        <div class="content 1">
-                            <h3> <i class="fas fa-map-marker-alt"></i> مطعم <%= item.name %> </h3>
-                            <br><br>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <br><br><br><br>
-                            <a href="#services" class="btn">  تفقد المطعم </a>
-                        </div>
-                    </div>
-                    <% 
-                }
-                })     
-            }
-        %>
-    
-        </div>
+
 
 
 </section>
