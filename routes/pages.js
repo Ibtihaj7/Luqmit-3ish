@@ -54,7 +54,6 @@ router.get("/edit", (req,res)=>{
 router.get('/restaurant',(req,res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion')
     db.query("SELECT * from menu WHERE account_id = ?",[req.session.userId], (error,result)=>{
-        console.log(result.length);
     res.render("resHomePage",{
         res1:result[0].discription,
         res11:result[0].quantity,
