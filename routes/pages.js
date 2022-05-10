@@ -57,7 +57,6 @@ router.get('/restaurant',(req,res)=>{
         if(error) throw error;
         else{
             db.query("SELECT account.name, orders.quantity, menu.category,orders.date FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE menu.account_id =?",req.session.userId, (error,ress)=>{
-                console.log(ress);
                 return res.render('resHomePage',{
                     res1:result[0].discription,
                     res11:result[0].quantity,
