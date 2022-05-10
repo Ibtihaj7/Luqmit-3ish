@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const app = express();
 const dotenv=require('dotenv');
 const myenv=dotenv.config();
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000
 const session = require('express-session');
 
 app.use(express.json());
@@ -32,7 +32,8 @@ app.use('/profile',require('./routes/profile'));
 app.post('/edit',(req,res)=>{res.render('EditProfilePage');})
 app.use('/auth1',require('./routes/auth1'));
 app.use('/auth2',require('./routes/auth2'));
-app.use('/auth3',require('./routes/changepassword'));
+app.use('/change',require('./routes/changepassword'));
+app.use('/deleteacount',require('./routes/deleteAcount'));
 app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))

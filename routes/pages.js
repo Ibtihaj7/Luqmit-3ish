@@ -36,6 +36,9 @@ router.get("/setNewPass/:email", (req, res)=>{
 router.get("/changePassword",(req,res) => {
     res.render("changePassword");
 })
+router.get("/DeleteAcount",(req,res) => {
+    res.render("DeleteAcount");
+})
 
 router.get("/user",(req,res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion')
