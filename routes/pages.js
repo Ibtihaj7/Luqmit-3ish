@@ -58,7 +58,7 @@ router.get('/restaurant',(req,res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion')
     db.query("SELECT * from menu WHERE account_id = ?",[req.session.userId], (error,result)=>{
         if(error) throw error;
-        else{
+        else{ 
             db.query("SELECT orders.id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE menu.account_id =?",req.session.userId, (error,ress)=>{
                 return res.render('resHomePage',{
                     res1:result[0].discription,
@@ -76,6 +76,7 @@ router.get('/restaurant',(req,res)=>{
                     resdata:ress
                 })
             })
+            
     }
 });
 })
