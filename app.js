@@ -12,7 +12,7 @@ app.use(session({
     secret: '123456catr',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 100000 }
 }))
  
 const publicDirectory = path.join(__dirname,'public');
