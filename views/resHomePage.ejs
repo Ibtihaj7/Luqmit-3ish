@@ -17,11 +17,10 @@
     <div id="menu-bar" class="fas fa-bars"></div>
     
 
-    <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
+    <a style="text-decoration: none;" href="/restaurant" class="logo"><span>لـ</span>قمة عيش</a>
         <nav class="navbar">
-        <a style="text-decoration: none;" href="#services">العروضات</a>
+        <a style="text-decoration: none;" href="#services">قائمة الطعام</a>
         <a style="text-decoration: none;" href="#book">الحجوزات</a>
-        <a style="text-decoration: none;" href="#contact">التواصل معنا</a>
         <a style="text-decoration: none;" href="/changePassword">تغيير كلمة المرور</a>
     </nav>
      <div class="dropdown">
@@ -61,7 +60,7 @@
         </div>
 
         <div class="box x 3">
-            <form action="/meal/m3" method="POST"></form>
+            <form action="/meal/m3" method="POST">
                 <i class="fas fa-utensils"></i>
                 <h3>عصائر</h3>
                 <input name="discription3" type='text' placeholder=<%= res3 %>  >  <br><br>
@@ -103,38 +102,39 @@
         </div>
     </div>
 
-</section>
-
-
-
-<!-- book section starts  -->
-
-<section class="book" id="book">
 
     <h1 class="heading">
-        <span>حـ</span>
-        <span>جـ</span>
-        <span>و</span>
-        <span>ز</span>
-        <span>ا</span>
-        <span>ت</span>
-        <span class="space"></span>
-        <span>ا</span>
-        <span>لـ</span>
-        <span>مـ</span>
-        <span>طـ</span>
-        <span>عـ</span>
-        <span>م</span>
-
-
+        <span>حجوزات المطعم</span>
     </h1>
+    <section id="book">
 
 
+    <div class="box-container box-container">
+        <% 
+            if(resdata.length > 0 ){
+                resdata.forEach((item) => { %>
+                    <div  class="box x 6">
+                            <form action="/meal/delete_order?_method=DELETE" method="POST">
+                                <i class="fas fa-utensils"></i><br>
+                                <label> اسم الجمعية :  <%= item.name %>  </label><br>
+                                <label > نوع الوجبة: <%= item.category %></label><br>
+                                <label> التاريخ: <%= item.date %></label><br>
+                                <label>الكمية: <%= item.quantity %></label><br>
 
+                                <button href="#services" class="btn" type="submit">حذف الطلب</button>
+    
+                            </form>
+                    </div>
+                    <% 
+                })     
+            }
+        %>
+    
+        </div>
+    </section>
 </section>
 
 <!-- book section ends -->
 
-<script type="module" src="/res.js"></script>
 </body>
 </html>
