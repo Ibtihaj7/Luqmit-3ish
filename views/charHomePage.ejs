@@ -66,7 +66,9 @@
                             <i class="far fa-star"></i>
                         </div>
                         <br><br><br><br>
-                        <a href="#services" class="btn">  تفقد المطعم </a>
+                        <form action="/viewRes/page/<%= item.id %>?" method ="POST">
+                        <button href="#services" class="btn" type="submit">  تفقد المطعم </button>
+                    </form>
                     </div>
                 </div>
                 <% 
@@ -80,123 +82,6 @@
 </section>
 
 <!-- packages section ends -->
-
-<!-- services section starts  -->
-
-<section class="services" id="services">
-
-    <h1 class="heading">
-        <span id='resturant'>مطعم كان يا ما كان</span>
-        
-    </h1>
-
-    <div class="box-container">
-
-        <div class="box x 1">
-            <i class="fas fa-utensils"></i>
-            <h3>وجبات رئيسية</h3>
-           <input type='text' placeholder="بيتزا,جاج,....الخ">
-          <p> : الكمية</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حجز </a>
-
-        </div>
-        <div class="box x 2">
-            <i class="fas fa-utensils"></i>
-            <h3>ساندويشات</h3>
-            <input type='text' placeholder='شاورما,كباب,بطاطا ,.....الخ'>
-            <p> : الكمية</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        <div class="box x 3">
-            <i class="fas fa-utensils"></i>
-            <h3>عصائر</h3>
-             <input type='text' placeholder="عصير برتقال, عصير مانجا,... الخ">
-            <p> : الكمية</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        <div class="box x 4">
-            <i class="fas fa-utensils"></i>
-            <h3>حلويات</h3>
-             <input type='text' placeholder='كيك, دونات,...الخ'>
-            <p> : الكمية</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        <div class="box x 5">
-            <i class="fas fa-utensils"></i>
-            <h3>شوربات</h3>
-             <input type='text' placeholder='شوربة عدس, شوربة فريكية,...الخ'>
-            <p> : الكمية</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        <div class="box x 6">
-            <i class="fas fa-utensils"></i>
-            <h3>وجبات سريعة</h3>
-             <input type='text' placeholder='بطاطا, برجر,....الخ'>
-            <p> : الكمية</p>
-            <input type="number" placeholder="0">
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        
-
-    </div>
-
-</section>
-
-<!-- services section ends -->
-
-<!-- book section starts  -->
-
-<section class="book" id="book">
-
-    <h1 class="heading">
-        <span>حـ</span>
-        <span>جـ</span>
-        <span>ز</span>
-        <span class="space"></span>
-        <span>ا</span>
-        <span>لـ</span>
-        <span>آ</span>
-        <span>ن</span>
-
-    </h1>
-
-    <div class="row">
-
-        <div class="image">
-            <img src="imags/img1.jpeg" alt="">
-        </div>
-
-        <form action="">
-            <div class="inputBox">
-                <h3>اسم الجمعية</h3>
-                <input type="text" placeholder="ادخل هنا">
-            </div>
-            <div class="inputBox">
-                <h3>كم العدد</h3>
-                <input type="number" placeholder="عدد افراد الجمعية">
-            </div>
-            <div class="inputBox">
-                <h3>رقم الهاتف</h3>
-                <input type="number" placeholder="رقم الهاتف او الجوال">
-                <h3>الحجوزات</h3>
-                <textarea id='text' type="text"></textarea>
-            </div>
-            <div class="inputBox">
-               
-            </div>
-            <input type="submit" class="btn" value="احجز الان">
-        </form>
-
-    </div>
-
-</section>
-
-<!-- book section ends -->
 
 </body>
 </html>

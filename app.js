@@ -33,6 +33,7 @@ app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))
 app.use('/res',require('./routes/meals'))
+app.use('/viewRes',require('./routes/viewRes'));
 app.post('/endSession',(req,res) => { res.redirect('/Login')})
 
 app.use(express.static(publicDirectory));
