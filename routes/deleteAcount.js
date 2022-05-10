@@ -8,18 +8,19 @@ router.use(methodOverride("_method"))
 router.delete('/delete', (req,res) => {
     
     id = req.session.userId
- 
+ console.log(id)
     if(!id) return res.redirect('/endSeccion')
-    db.query("DELETE FROM account WHERE id=? ",[id],(error,results) => {
-    
-       console.log(results)
+    db.query("DELETE FROM account WHERE id=? ",[id],(error) => {
+        console.log(id)
+
         if(error){
-            console.log('error in delete query');
             return error
+           
         }
         else{
-          
+
          res.redirect("/home")
+
         }
 
 
