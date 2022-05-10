@@ -12,7 +12,7 @@ app.use(session({
     secret: '123456catr',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 100000 }
+    cookie: { maxAge: 10000000 }
 }))
  
 const publicDirectory = path.join(__dirname,'public');
@@ -21,11 +21,6 @@ app.set("view engine", "ejs")
 app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
-}))  
 
 app.use('/',require('./routes/pages'));
 app.use('/profile',require('./routes/profile'));

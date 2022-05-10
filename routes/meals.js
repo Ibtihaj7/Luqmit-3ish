@@ -142,12 +142,12 @@ router.post('/m6',(req,res) => {
 })
 
 
-router.delete('/delete_order',(req,res) => {
-    // db.query('DELETE FROM orders WHERE id =?',(error,results) => {
-    //     if(error){
-    //         throw error;
-    //     }
-    // }) 
+router.delete('/delete_order/:id',(req,res) => {    
+     db.query('DELETE FROM orders WHERE id =?',[req.params.id],(error,results) => {
+         if(error){
+             throw error;
+         }
+     }) 
     res.redirect('/restaurant')
 })
 
