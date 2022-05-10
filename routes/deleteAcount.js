@@ -18,7 +18,7 @@ router.delete('/delete', (req,res) => {
         }
         else{
 
-         res.redirect("/home")
+         res.redirect("/")
 
         }
 
