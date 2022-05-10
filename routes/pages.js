@@ -76,6 +76,7 @@ router.get('/restaurant',(req,res)=>{
                     resdata:ress
                 })
             })
+            
     }
 });
 })
