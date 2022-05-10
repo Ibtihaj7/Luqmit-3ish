@@ -12,7 +12,7 @@ app.use(session({
     secret: '123456catr',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 10000000 }
+    cookie: { maxAge: 3600000 }
 }))
  
 const publicDirectory = path.join(__dirname,'public');
@@ -33,6 +33,7 @@ app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))
 app.use('/res',require('./routes/meals'))
+app.use('/', require("./routes/logout"))
 app.post('/endSession',(req,res) => { res.redirect('/Login')})
 
 app.use(express.static(publicDirectory));
