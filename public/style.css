@@ -56,6 +56,7 @@ h7{
 .col-md-12 label,.col-md-12 input, .col-md-12 label{
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   font-family: 'Vazirmatn', sans-serif;
+  font-size: 17px;
 }
 
 *::selection{

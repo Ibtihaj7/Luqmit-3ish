@@ -28,15 +28,18 @@
     <div style="height: 70vh; margin-top: 20vh;display: flex;" class="container rounded bg-white col-md-6">
         <div class=""style="width:23vw">
             <div class="">
-                <div class="col-md-12"><label style="font-family: 'Vazirmatn', sans-serif;"class="labels">الاسم  :  </label><label style="width:12vw" class="p-4"value="">  <%=  data[0].name %>   </label><br><br></div>
-                <div class="col-md-12"><label class="labels">الايميل  :  </label><label style="width:12vw" class="p-3" > <%=  data[0].email %> </label><br><br></div>
-                <div class="col-md-12"><label class="labels">رقم الهاتف  :  </label><label style="width:12vw" class="p-3" > <%=  data[0].phone %> </label><br><br></div>
-                <div class="col-md-12"><label class="labels">الموقع الالكتروني  :  </label><label class="p-3" > <%=  data[0].website %> </label><br><br></div>
-                <div class="col-md-12"><label class="labels">الموقع  :  </label><label style="width:12vw" class="p-3" > <%=  data[0].location %> </label></div>
+                <div class="col-md-12"><label style="font-family: 'Vazirmatn', sans-serif;"class="labels">الاسم  :  </label><label style="width:12vw" class="p-2"value=""> <%=  data[0].name %>   </label><br><br></div>
+                <div class="col-md-12"><label class="labels">الايميل  :  </label><label style="width:12vw" class="p-2" > <%=  data[0].email %> </label><br><br></div>
+                <div class="col-md-12"><label class="labels">رقم الهاتف  :  </label><label style="width:12vw" class="p-2" > <%=  data[0].phone %> </label><br><br></div>
+                <div class="col-md-12"><label class="labels">الموقع الالكتروني  :  </label><label class="p-2" > <%=  data[0].website %> </label><br><br></div>
+                <div class="col-md-12"><label class="labels">الموقع  :  </label><label style="width:12vw" class="p-2" > <%=  data[0].location %> </label></div><br><br><br><br>
             </div>
-            <form action="/edit" method = "POST">
-                <div class="mt-2"><button style="margin-right:0" class="btn btn-primary profile-button" type="submit">تعديل الملف الشخصي</button></div>
-            </form>
+            <%if(btn){%>
+                <form action="/edit" method = "POST">
+                    <div class="mt-2"><button style="margin-right:0" class="btn btn-primary profile-button" type="submit">تعديل الملف الشخصي</button></div>
+                </form>
+            <%}%>
+
     </div>        
     <div class=""style="margin-top:15vh;width:10vw;margin-left:5vw;">
                 <div class="profile-img">

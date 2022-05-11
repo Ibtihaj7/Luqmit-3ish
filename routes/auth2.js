@@ -16,7 +16,6 @@ router.post('/signIn',(req,res) => {
 
             }else{ 
                     return res.redirect('/charity');
-
         }
         } else {
           const message = 'كلمة المرور أو البريد الإلكتروني غير صحيح'
