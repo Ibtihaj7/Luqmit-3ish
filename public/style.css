@@ -24,15 +24,7 @@ margin-left: 10vw !important;
 .container{
   display: flex;
 }
-/* .div2{
-  background:;
-} */
-.btnn{
-  margin-left: 20vw;
-  width: 22vw;
-  height: 8vh;
-  font-size:30px !important;
-}
+
 h5{
   font-size:50px;
   color:#333;
@@ -64,31 +56,13 @@ h7{
 .col-md-12 label,.col-md-12 input, .col-md-12 label{
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   font-family: 'Vazirmatn', sans-serif;
-
-}
-/* .col-md-12 input{  padding: 10px; } */
-.btnnn{
-  position: absolute;
-  bottom: 0;
-}
-.carousel ,.carousel-item{ 
- width: 60vw !important;
- border-radius: 10% !important;
-}
-.carousel-item{
-  overflow: hidden;
-  height: 70vh;
-  position: relative;
 }
 
 *::selection{
   background:var(--orange);
   color:#fff;
 }
-.carousel{
-  width:100%;
-  height: 100%;
-}
+
 html{
   font-size: 70%;
   overflow-x: hidden;
@@ -563,54 +537,6 @@ header .navbar a:hover{
   box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
 }
 
-.gallery .box-container{
-  display: flex;
-  flex-wrap: wrap;
-  gap:1.5rem;
-}
-
-.gallery .box-container .box{
-  overflow: hidden;
-  box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
-  border:1rem solid #fff;
-  border-radius: .5rem;
-  flex:1 1 30rem;
-  height: 25rem;
-  position: relative;
-}
-
-.gallery .box-container .box img{
-  height: 100%;
-  width:100%;
-  object-fit: cover;
-}
-
-.gallery .box-container .box .content{
-  position: absolute;
-  top:-100%; left:0;
-  height: 100%;
-  width:100%;
-  text-align: center;
-  background:rgba(0,0,0,.7);
-  padding:2rem;
-  padding-top: 5rem;
-}
-
-.gallery .box-container .box:hover .content{
-  top:0;
-}
-
-.gallery .box-container .box .content h3{
-  font-size: 2.5rem;
-  color:var(--orange);
-}
-
-.gallery .box-container .box .content p{
-  font-size: 1.5rem;
-  color:#eee;
-  padding:.5rem 0;
-}
-
 .review .review-slider{
   padding-bottom: 2rem;
 }
@@ -703,18 +629,6 @@ form label{
 .x{
 align-items: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* media queries  */
 

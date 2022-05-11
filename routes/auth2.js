@@ -19,9 +19,8 @@ router.post('/signIn',(req,res) => {
 
         }
         } else {
-            return res.render("logIn", {
-            message: "password or email is incorrect"
-        });
+          const message = 'كلمة المرور أو البريد الإلكتروني غير صحيح'
+            return res.render("logIn", { message });
       }
     }
   );

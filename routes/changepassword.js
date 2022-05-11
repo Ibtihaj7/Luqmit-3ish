@@ -60,9 +60,7 @@ db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
                                 resdata:results
                             })
                         }
-                    })
-                    
-                    
+                    })    
                 }
             }
         })    

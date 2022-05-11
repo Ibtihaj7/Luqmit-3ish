@@ -8,7 +8,6 @@ router.use(methodOverride("_method"))
 router.delete('/delete', (req,res) => {
     
     id = req.session.userId
- console.log(id)
     if(!id) return res.redirect('/endSeccion')
     const deleted="DELETE FROM account WHERE id=? "
     db.query(deleted,[id],(error,results) => {
@@ -17,14 +16,10 @@ router.delete('/delete', (req,res) => {
             return error 
         }
         else{
-
          res.redirect("/")
-
         }
 
-
     })
-
 
 })
 module.exports=router;

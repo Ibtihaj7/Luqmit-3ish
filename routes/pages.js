@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const cookieParser = require('cookie-parser');
 const db = require("../config/db") ;
+const flash = require('connect-flash')
 
 const app = express();
 app.set('views', __dirname + '/views');
@@ -21,16 +22,23 @@ router.get('/resmenu',(req,res) => {
     res.render('resmenu')
 })
 router.get("/newPassword", (req, res)=>{
-    res.render("newPassword");
+    const validMessage = req.flash('user')
+    const invalidMessage = req.flash('user')
+    res.render("newPassword",{validMessage,invalidMessage});
 })
+
 router.get("/Login",(req,res)=>{
-    res.render("logIn");
+    const message = req.flash('user')
+    res.render("logIn",{message});
 })
+
 router.get("/setNewPass/:email", (req, res)=>{
+    const failMessage = req.flash('user')
     if(req.session.autherized){
-        res.render("setNewPass");
+        res.render("setNewPass",{failMessage});
     }else{
-        res.render("newPassword", {failMessage: "You must recieve an email to be able to reset your password "})
+        const failMessage = 'يجب أن تتلقى بريدًا إلكترونيًا لتتمكن من إعادة تعيين كلمة المرور الخاصة بك'
+        res.render("newPassword", { failMessage })
     }
 })
 router.get("/changePassword",(req,res) => {

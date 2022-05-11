@@ -6,6 +6,7 @@ const dotenv=require('dotenv');
 const myenv=dotenv.config();
 const PORT = process.env.PORT ||3000
 const session = require('express-session');
+const flash = require('connect-flash')
 
 app.use(express.json());
 app.use(session({ 
@@ -14,13 +15,13 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 3600000 }
 }))
- 
+
+app.use(flash());
 const publicDirectory = path.join(__dirname,'public');
 app.set('views', __dirname + '/views');
 app.set("view engine", "ejs")
 app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
-
 
 app.use('/',require('./routes/pages'));
 app.use('/profile',require('./routes/profile'));

@@ -20,9 +20,8 @@ router.get("/user/verify/:email/:emailUUID", async(req ,res)=>{
                             if(error){
                                 console.log(error + "Error while verifying the user")
                             }else{   
-                                res.render('logIn',{
-                                    message:'Email veriefied Succesfully'
-                                })   
+                                const message = 'تم التحقق من البريد الإلكتروني بنجاح'
+                                res.render('logIn',{ message })   
                             }
                         })   
                     }else{    
@@ -50,11 +49,15 @@ router.post("/newPasswordReq", (req, res)=>{
             console.log("Error while chicking if the user exists in the DB")  
             res.render("newPassword", {message: "Something went wrong please try again"})
         }else{
-            if(result.length > 0){      
+            if(result.length > 0){   
+                const validMessage ="تم ارسال رابط الى بريدك الالكتروني، يرجى فتح الرابط من بريدك الإلكتروني لتتمكن من إعادة تعيين كلمة المرور الخاصة بك"
+                const invalidMessage = req.flash('user');
                 passEmail.sendVerEmail(email)
-                res.render("newPassword", {message: "Please check your email to be able to reset your password"})
+                res.render("newPassword", {validMessage ,invalidMessage})
             }else{
-                res.render("newPassword", {message: "Please enter a valid email"})   
+                const validMessage =req.flash('user')
+                const invalidMessage =  "يرجى إدخال البريد الإلكتروني بشكل صحيح"
+                res.render("newPassword", {validMessage , invalidMessage})   
                 console.log(result)         
             }
         }
@@ -64,6 +67,8 @@ router.post("/newPasswordReq", (req, res)=>{
 router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
     let {email, passwordUUID} = req.params 
     db.query("SELECT passwordUUID FROM account WHERE email= ?", [email], async (error, result)=>{
+        const validMessage =req.flash('user');
+        const invalidMessage =  'هذا الرابط غير صالح ، يرجى طلب رابط آخر'
         if(result[0].passwordUUID){
             let compResult    
             compResult = await bcrypt.compare(passwordUUID, result[0].passwordUUID)
@@ -81,20 +86,20 @@ router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
                         }  
                     }) 
                 }else{ 
-                    res.render("newPassword", {message: "This link is invalid, please request another link"})     
+                    res.render("newPassword", {validMessage,invalidMessage})     
                 }
             })
-            .catch((e)=>{    
+            .catch((e)=>{   
                 console.log("Error while comparing the unique strings  " + e)
-                res.render("newPassword", {message: "This link is invalid, please request another link"})     
+                res.render("newPassword", { validMessage, invalidMessage})     
             })
             
         }else{
-            res.render("newPassword", {message: "This link is invalid, please request another link"})
+            res.render("newPassword", { validMessage, invalidMessage} )
         }
         if(error){
             console.log("Error while searching for the unique string")
-            res.render("newPassword", {message: "This link is invalid, please request another link"})
+            res.render("newPassword", { validMessage, invalidMessage})
         }
     })
 }) 
@@ -104,14 +109,12 @@ router.put("/newPassword", (req, res)=>{
     let email = req.session.email
     let {password, conPassword} = req.body   
     if(password !== conPassword){ 
-        res.render('setNewPass',{         
-        failMessage:"Password and confirm password must be the same, please try again"
-        });   
+        const failMessage = 'يجب أن تكون كلمة المرور وتأكيد كلمة المرور متطابقتين ، يرجى المحاولة مرة أخرى'
+        res.render('setNewPass',{ failMessage });   
     }else{
         if(!(regePassword.test(password))){  
-            res.render('setNewPass',{
-                failMessage:"Your password must include both lower and upper case charachter, at least one number or symbol and at least 8 characters"
-            });                              
+            const failMessage = 'يجب أن تتضمن كلمة المرور الخاصة بك أحرفًا صغيرة وكبيرة ، ورقمًا أو رمزًا واحدًا على الأقل و 8 أحرف على الأقل'
+            res.render('setNewPass',{ failMessage });                              
         }else{
             let hashedPass = bcrypt.hash(password, 8)
             .then((hashedPass)=>{        
@@ -119,7 +122,8 @@ router.put("/newPassword", (req, res)=>{
                     if(error){     
                         console.log("Error while setting the new password ", e)     
                     }else{
-                        res.render("logIn", {message: "Password changed successfully"})
+                        const message = 'تم تغيير كلمة المرور بنجاح'
+                        res.render("logIn", { message })
                     }
                 })
             })
