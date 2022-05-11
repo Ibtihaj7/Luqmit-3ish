@@ -23,7 +23,6 @@
         <a style="text-decoration: none;" href="#book">حجز</a>
         <a style="text-decoration: none;" href="/changePassword">تغيير كلمة المرور</a>
         <a style="text-decoration: none;" href="/DeleteAcount">الغاء العضوية</a>
-        <a style="text-decoration: none;" href="/logout">تسجيل الخروج</a>
     </nav>
      <div class="dropdown">
      <div class="icons">
@@ -67,9 +66,9 @@
                             <i class="far fa-star"></i>
                         </div>
                         <br><br><br><br>
-                        <form action="/viewRes/page/<%= item.id %>?" method ="POST">
-                        <button href="#services" class="btn" type="submit">  تفقد المطعم </button>
-                    </form>
+                        <form action="/search" method="POST">
+                            <button href="#services" class="btn">  تفقد المطعم </button>
+                        </form>
                     </div>
                 </div>
                 <% 
@@ -83,6 +82,55 @@
 </section>
 
 <!-- packages section ends -->
+
+<!-- book section starts  -->
+
+<section class="book" id="book">
+
+    <h1 class="heading">
+        <span>حـ</span>
+        <span>جـ</span>
+        <span>ز</span>
+        <span class="space"></span>
+        <span>ا</span>
+        <span>لـ</span>
+        <span>آ</span>
+        <span>ن</span>
+
+    </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="imags/img1.jpeg" alt="">
+        </div>
+
+        <form action="">
+            <div class="inputBox">
+                <h3>اسم الجمعية</h3>
+                <input type="text" placeholder="ادخل هنا">
+            </div>
+            <div class="inputBox">
+                <h3>كم العدد</h3>
+                <input type="number" placeholder="عدد افراد الجمعية">
+            </div>
+            <div class="inputBox">
+                <h3>رقم الهاتف</h3>
+                <input type="number" placeholder="رقم الهاتف او الجوال">
+                <h3>الحجوزات</h3>
+                <textarea id='text' type="text"></textarea>
+            </div>
+            <div class="inputBox">
+               
+            </div>
+            <input type="submit" class="btn" value="احجز الان">
+        </form>
+
+    </div>
+
+</section>
+
+<!-- book section ends -->
 
 </body>
 </html>
