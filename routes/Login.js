@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const db = require("../config/db") 
-router.post('/signIn',(req,res) => {
+router.post('/Login',(req,res) => {
     const email = req.body.email;
     const password = req.body.password;
     db.query("SELECT * FROM account WHERE email = ? ", [email], (error, results) => {

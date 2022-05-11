@@ -31,7 +31,7 @@ router.post('/signUp',(req,res) => {
                 throw err;
             }
             else{
-                db.query('SELECT * FROM account WHERE email= ?',[email],(err,res) => {
+                db.query('SELECT * FROM account WHERE email= ? and type = ?',[email,"resturant"],(err,res) => {
                     db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
                         if(err)throw err     
                 })

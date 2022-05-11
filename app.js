@@ -26,8 +26,8 @@ app.use(express.urlencoded({extended:false }));
 app.use('/',require('./routes/pages'));
 app.use('/profile',require('./routes/profile'));
 app.post('/edit',(req,res)=>{res.render('EditProfilePage');})
-app.use('/auth1',require('./routes/auth1'));
-app.use('/auth2',require('./routes/auth2'));
+app.use('/auth1',require('./routes/signUp'));
+app.use('/auth2',require('./routes/Login'));
 app.use('/change',require('./routes/changepassword'));
 app.use('/deleteacount',require('./routes/deleteAcount'));
 app.use("/",require("./routes/contactUs"))
