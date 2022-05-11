@@ -18,9 +18,7 @@ router.get('/endSeccion',(req,res) => {
 router.get('/register',(req,res) => {
     res.render('signUp'); 
 });
-router.get('/resmenu',(req,res) => {
-    res.render('resmenu')
-})
+
 router.get("/newPassword", (req, res)=>{
     const validMessage = req.flash('user')
     const invalidMessage = req.flash('user')

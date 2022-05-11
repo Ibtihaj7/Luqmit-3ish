@@ -15,20 +15,18 @@
 <link rel="stylesheet" href="/style.css">
 </head>
 <body style="background-color: #ffc153;">
-<header>
-    <div id="menu-bar" class="fas fa-bars"></div>
+    <header>
+        <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
+        <div class="dropdown">
+            <div class="icons">
+                <a href = "/user" class="fas fa-user" id="login-btn"></a>
+                <a style="text-decoration: none;" href="/logout" class="fas fa-sign-out-alt"></a>
+            </div> 
+        </div>
+    </header>
 
-    <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
-     <div class="dropdown">
-     <div class="icons">
-    <i class="fas fa-search" id="search-btn"></i>
-    <a href = "/user" class="fas fa-user" id="login-btn"></a>
-     </div> 
-    </div>
-</header>
-
-<div style="height: 70vh; margin-top: 20vh;display: flex;" class="container rounded bg-white col-md-6">
-    <div class=""style="width:23vw">
+    <div style="height: 70vh; margin-top: 20vh;display: flex;" class="container rounded bg-white col-md-6">
+        <div class=""style="width:23vw">
             <div class="">
                 <div class="col-md-12"><label style="font-family: 'Vazirmatn', sans-serif;"class="labels">الاسم  :  </label><label style="width:12vw" class="p-4"value="">  <%=  data[0].name %>   </label><br><br></div>
                 <div class="col-md-12"><label class="labels">الايميل  :  </label><label style="width:12vw" class="p-3" > <%=  data[0].email %> </label><br><br></div>

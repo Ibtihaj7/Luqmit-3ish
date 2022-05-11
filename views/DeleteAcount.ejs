@@ -21,30 +21,20 @@
 </head>
 
 <body>
-<header>
-    <div id="menu-bar" class="fas fa-bars"></div>
-
-    <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
-     <div class="dropdown">
-     <div class="icons">
-    <i class="fas fa-search" id="search-btn"></i>
-    <i class="fas fa-user" id="login-btn"></i>
-     </div> 
-    </div>
+    <header>
+        <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
+        <div class="dropdown">
+            <div class="icons">
+                <i class="fas fa-user" id="login-btn"></i>
+            </div> 
+        </div>
     </header>
    
     <div class="login-form-container">
-
-        <!-- <i class="fas fa-times" id="form-close"></i> -->
-    
         <form  action="/deleteacount/delete?_method=DELETE" method="POST">
             <p style="color: black; font-family:'Times New Roman', Times, serif;font-size:xx-large"> حذف حسابك</p><br>
             <h1  style="font-family: Simplified Arabic ,'Vazirmatn', sans-serif; text-align:center; size:14px";class="labels">هل انت متأكد من حذف الحساب؟</h1><br>
             <input type="submit" value="تأكيد" class="btn">
         </form>
-    
     </div>
-
-
-
 </body>

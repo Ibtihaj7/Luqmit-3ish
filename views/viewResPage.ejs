@@ -13,97 +13,82 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<header>
-    <div id="menu-bar" class="fas fa-bars"></div>
+    <header>
+        <a style="text-decoration: none;" href="/charity" class="logo"><span>لـ</span>قمة عيش</a>
+        <div class="dropdown">
+            <div class="icons">
+                <a href = "/user" class="fas fa-user" id="login-btn"></a>
+                <a style="text-decoration: none;" href="/logout" class="fas fa-sign-out-alt"></a>
+            </div> 
+        </div>
 
-    <a style="text-decoration: none;" href="/charity" class="logo"><span>لـ</span>قمة عيش</a>
-        <nav class="navbar">
-    </nav>
-     <div class="dropdown">
-     <div class="icons">
-    <i class="fas fa-search" id="search-btn"></i>
-    <a href = "/user" class="fas fa-user" id="login-btn"></a>
-     </div> 
+    </header>
+
+    <section class="services" id="services">
+
+        <h1 class="heading"> <span id='resturant'>مطعم <%= resName %></span> </h1>
+
+        <div class="box-container">
+
+            <div class="box x 1">
+                <i class="fas fa-utensils"></i>
+                <h3>وجبات رئيسية</h3>
+                <label type='text' > <%= resdata[0].discription %> </label>
+                <p> الكمية : <%= resdata[0].quantity %></p>
+                <a href="#services" class="btn"> حجز </a>
+
+            </div>
+            <div class="box x 2">
+                <i class="fas fa-utensils"></i>
+                <h3>ساندويشات</h3>
+                <label type='text' > <%= resdata[1].discription %> </label>
+                <p>  الكمية :<%= resdata[1].quantity %>  </p>
+                <a href="#services" class="btn"> حجز </a>
+            </div>
+            <div class="box x 3">
+                <i class="fas fa-utensils"></i>
+                <h3>عصائر</h3>
+                <label type='text' > <%= resdata[2].discription %> </label>
+                <p> الكمية : <%= resdata[2].quantity %></p>
+                <a href="#services" class="btn"> حجز </a>
+            </div>
+            <div class="box x 4">
+                <i class="fas fa-utensils"></i>
+                <h3>حلويات</h3>
+                <label type='text' > <%= resdata[3].discription %> </label>
+                <p> الكمية : <%= resdata[3].quantity %></p>
+                <a href="#services" class="btn"> حجز </a>
+            </div>
+            <div class="box x 5">
+                <i class="fas fa-utensils"></i>
+                <h3>شوربات</h3>
+                <label type='text' > <%= resdata[4].discription %> </label>
+                <p> الكمية : <%= resdata[4].quantity %></p>
+                <a href="#services" class="btn"> حجز </a>
+            </div>
+            <div class="box x 6">
+                <i class="fas fa-utensils"></i>
+                <h3>وجبات سريعة</h3>
+                <label type='text' > <%= resdata[5].discription %> </label>
+                <p> الكمية : <%= resdata[5].quantity %></p>
+                <a href="#services" class="btn"> حجز </a>
+            </div>
     </div>
+    </section>
+    <section class="book" id="book">
 
-</header>
-
-<section class="services" id="services">
-
-    <h1 class="heading">
-        <span id='resturant'>مطعم <%= resName %>
-        </span>
-        
-    </h1>
-
-    <div class="box-container">
-
-        <div class="box x 1">
-            <i class="fas fa-utensils"></i>
-            <h3>وجبات رئيسية</h3>
-           <label type='text' > <%= resdata[0].discription %> </label>
-          <p> الكمية : <%= resdata[0].quantity %></p>
-            <a href="#services" class="btn"> حجز </a>
-
-        </div>
-        <div class="box x 2">
-            <i class="fas fa-utensils"></i>
-            <h3>ساندويشات</h3>
-            <label type='text' > <%= resdata[1].discription %> </label>
-            <p>  الكمية :<%= resdata[1].quantity %>  </p>
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        <div class="box x 3">
-            <i class="fas fa-utensils"></i>
-            <h3>عصائر</h3>
-             <label type='text' > <%= resdata[2].discription %> </label>
-            <p> الكمية : <%= resdata[2].quantity %></p>
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        <div class="box x 4">
-            <i class="fas fa-utensils"></i>
-            <h3>حلويات</h3>
-             <label type='text' > <%= resdata[3].discription %> </label>
-            <p> الكمية : <%= resdata[3].quantity %></p>
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        <div class="box x 5">
-            <i class="fas fa-utensils"></i>
-            <h3>شوربات</h3>
-             <label type='text' > <%= resdata[4].discription %> </label>
-            <p> الكمية : <%= resdata[4].quantity %></p>
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        <div class="box x 6">
-            <i class="fas fa-utensils"></i>
-            <h3>وجبات سريعة</h3>
-             <label type='text' > <%= resdata[5].discription %> </label>
-            <p> الكمية : <%= resdata[5].quantity %></p>
-            <a href="#services" class="btn"> حجز </a>
-        </div>
-        
-
-    </div>
-
-</section>
-<section class="book" id="book">
-
-    <h1 class="heading">
-        <span>حـ</span>
-        <span>جـ</span>
-        <span>ز</span>
-        <span class="space"></span>
-        <span>ا</span>
-        <span>لـ</span>
-        <span>آ</span>
-        <span>ن</span>
-
-    </h1>
+        <h1 class="heading">
+            <span>حـ</span>
+            <span>جـ</span>
+            <span>ز</span>
+            <span class="space"></span>
+            <span>ا</span>
+            <span>لـ</span>
+            <span>آ</span>
+            <span>ن</span>
+        </h1>
 
     <div class="row">
-
-
-
         <form action="">
             <div class="inputBox">
                 <h3>اسم الجمعية</h3>
