@@ -48,9 +48,10 @@ router.get("/DeleteAcount",(req,res) => {
 
 router.get("/user",(req,res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion')
+    const btn = true
     db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
             res.render("profilePage",{
-                data:result
+                data:result, btn
             });
     })
 })
@@ -106,4 +107,5 @@ router.get('/charity',(req,res)=>{
             }
     })
 })
+
 module.exports = router;

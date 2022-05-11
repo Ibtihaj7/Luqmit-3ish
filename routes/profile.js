@@ -47,5 +47,16 @@ router.put('/edit', (req,res)=>{
     });
     
 })
+router.post('/display/:restaurantid',(req,res)=>{
+    if(!req.session.userId) return res.redirect('/endSeccion');
+    let id = req.params.restaurantid;
+    const btn = false;
+    db.query("SELECT * from account where id = ?",[id],(err,result)=>{
+        if(err) throw err;
+        else{
+           res.render("ProfilePage",{data:result,btn});
+        }
+    })
 
+})
 module.exports = router;
