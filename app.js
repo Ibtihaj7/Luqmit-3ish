@@ -12,7 +12,7 @@ app.use(session({
     secret: '123456catr',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 10000000 }
+    cookie: { maxAge: 3600000 }
 }))
  
 const publicDirectory = path.join(__dirname,'public');
@@ -25,15 +25,16 @@ app.use(express.urlencoded({extended:false }));
 app.use('/',require('./routes/pages'));
 app.use('/profile',require('./routes/profile'));
 app.post('/edit',(req,res)=>{res.render('EditProfilePage');})
-app.use('/auth1',require('./routes/signUp'));
-app.use('/auth2',require('./routes/logIn'));
+app.use('/auth1',require('./routes/auth1'));
+app.use('/auth2',require('./routes/auth2'));
 app.use('/change',require('./routes/changepassword'));
 app.use('/deleteacount',require('./routes/deleteAcount'));
-app.use("/",require("./routes/contactUs"));
+app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
-app.use('/meal',require('./routes/meals'));
-app.use('/res',require('./routes/meals'));
-app.use('/search',require('./routes/search'));
+app.use('/meal',require('./routes/meals'))
+app.use('/res',require('./routes/meals'))
+app.use('/viewRes',require('./routes/viewRes'));
+app.use('/', require("./routes/logout"))
 app.post('/endSession',(req,res) => { res.redirect('/Login')})
 
 app.use(express.static(publicDirectory));

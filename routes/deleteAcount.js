@@ -10,16 +10,15 @@ router.delete('/delete', (req,res) => {
     id = req.session.userId
  console.log(id)
     if(!id) return res.redirect('/endSeccion')
-    db.query("DELETE FROM account WHERE id=? ",[id],(error) => {
-        console.log(id)
-
+    const deleted="DELETE FROM account WHERE id=? "
+    db.query(deleted,[id],(error,results) => {
         if(error){
-            return error
-           
+            console.log("error in delete account")
+            return error 
         }
         else{
 
-         res.redirect("/home")
+         res.redirect("/")
 
         }
 
