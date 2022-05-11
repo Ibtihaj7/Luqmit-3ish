@@ -13,95 +13,91 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body><br><br><br><br>
-<header>
-    <div id="menu-bar" class="fas fa-bars"></div>
-    
+    <header>
 
-    <a style="text-decoration: none;" href="/restaurant" class="logo"><span>لـ</span>قمة عيش</a>
+        <a style="text-decoration: none;" href="/restaurant" class="logo"><span>لـ</span>قمة عيش</a>
         <nav class="navbar">
-        <a style="text-decoration: none;" href="#services">قائمة الطعام</a>
-        <a style="text-decoration: none;" href="#book">الحجوزات</a>
-        <a style="text-decoration: none;" href="/changePassword">تغيير كلمة المرور</a>
-        <a style="text-decoration: none;" href="/DeleteAcount">الغاء العضوية</a>
-        <a style="text-decoration: none;" href="/logout">تسجيل الخروج</a>
+            <a style="text-decoration: none;" href="#services">قائمة الطعام</a>
+            <a style="text-decoration: none;" href="#book">الحجوزات</a>
+            <a style="text-decoration: none;" href="/changePassword">تغيير كلمة المرور</a>
+            <a style="text-decoration: none;" href="/DeleteAcount">الغاء العضوية</a>
+        </nav>
+        <div class="dropdown">
+            <div class="icons">
+                <a href = "/user" class="fas fa-user" id="login-btn"></a>
+                <a style="text-decoration: none;" href="/logout" class="fas fa-sign-out-alt"></a>
+            </div> 
+        </div>
 
-    </nav>
-     <div class="dropdown">
-     <div class="icons">
-    <i class="fas fa-search" id="search-btn"></i>
-    <a href = "/user" class="fas fa-user" id="login-btn"></a>
-     </div> 
-    </div>
-
-</header>
+    </header>
 
 <!-- services section starts  -->
 
-<section class="services" id="services">
-    <div class="box-container">
-        <div class="box x 1">
-            <form action="/meal/m1" method="POST">
-            <i class="fas fa-utensils"></i>
-            <h3>وجبات رئيسية</h3>
-           <input name="discription1" type='text' placeholder=<%= res1 %>><br><br>
-          <label> الكمية: </label>
-            <input name="quantity1" type="number" placeholder=<%= res11 %>><br>
-            <button href="#services" class="btn"> حفظ التعديلات </button>
-            </form>
-        </div>
-        <div class="box x 2">
-            <form action="/meal/m2" method="POST">
-                <i class="fas fa-utensils"></i>
-                <h3>ساندويشات</h3>
-                <input name="discription2" type='text' placeholder=<%= res2 %>><br><br>
-                <label> الكمية: </label>
-                <input name="quantity2" type="number" placeholder=<%= res22 %>><br>
-                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
-            </form>
-        </div>
+    <section class="services" id="services">
+        <div class="box-container">
+            <div class="box x 1">
+                <form action="/meal/m1" method="POST">
+                    <i class="fas fa-utensils"></i>
+                    <h3>وجبات رئيسية</h3>
+                    <input name="discription1" type='text' placeholder=<%= res1 %>><br><br>
+                    <label> الكمية: </label>
+                    <input name="quantity1" type="number" placeholder=<%= res11 %>><br>
+                    <button href="#services" class="btn"> حفظ التعديلات </button>
+                </form>
+            </div>
+            <div class="box x 2">
+                <form action="/meal/m2" method="POST">
+                    <i class="fas fa-utensils"></i>
+                    <h3>ساندويشات</h3>
+                    <input name="discription2" type='text' placeholder=<%= res2 %>><br><br>
+                    <label> الكمية: </label>
+                    <input name="quantity2" type="number" placeholder=<%= res22 %>><br>
+                    <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
+                </form>
+            </div>
 
-        <div class="box x 3">
-            <form action="/meal/m3" method="POST">
-                <i class="fas fa-utensils"></i>
-                <h3>عصائر</h3>
-                <input name="discription3" type='text' placeholder=<%= res3 %>  >  <br><br>
-                <label> الكمية: </label>
-                <input name="quantity3" type="number" placeholder=<%= res33 %>><br>
-                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
-            </form>
-        </div>
+            <div class="box x 3">
+                <form action="/meal/m3" method="POST">
+                    <i class="fas fa-utensils"></i>
+                    <h3>عصائر</h3>
+                    <input name="discription3" type='text' placeholder=<%= res3 %>  >  <br><br>
+                    <label> الكمية: </label>
+                    <input name="quantity3" type="number" placeholder=<%= res33 %>><br>
+                    <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
+                </form>
+            </div>
 
-        <div class="box x 4">
-            <form action="/meal/m4" method="POST">
-                <i class="fas fa-utensils"></i>
-                <h3>حلويات</h3>
-                <input name="discription4" type='text' placeholder=<%= res4 %>><br><br>
-                <label> الكمية: </label>
-                <input name="quantity4" type="number" placeholder=<%= res44 %>><br>
-                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
-            </form>
+            <div class="box x 4">
+                <form action="/meal/m4" method="POST">
+                    <i class="fas fa-utensils"></i>
+                    <h3>حلويات</h3>
+                    <input name="discription4" type='text' placeholder=<%= res4 %>><br><br>
+                    <label> الكمية: </label>
+                    <input name="quantity4" type="number" placeholder=<%= res44 %>><br>
+                    <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
+                </form>
+            </div>
+            <div class="box x 5">
+                <form action="/meal/m5" method="POST">
+                    <i class="fas fa-utensils"></i>
+                    <h3>شوربات</h3>
+                    <input name="discription5" type='text' placeholder=<%= res5 %>><br><br>
+                    <label> الكمية: </label>
+                    <input name="quantity5" type="number" placeholder=<%= res55 %>><br>
+                    <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
+                </form>
+            </div>
+            <div class="box x 6">
+                <form action="/meal/m6" method="POST">
+                    <i class="fas fa-utensils"></i>
+                    <h3>وجبات سريعة</h3>
+                    <input name="discription6" type='text' placeholder=<%= res6 %>><br><br>
+                    <label> الكمية: </label>
+                    <input name="quantity6" type="number" placeholder=<%= res66 %>><br>
+                    <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
+                </form>
+            </div>
         </div>
-        <div class="box x 5">
-            <form action="/meal/m5" method="POST">
-                <i class="fas fa-utensils"></i>
-                <h3>شوربات</h3>
-                <input name="discription5" type='text' placeholder=<%= res5 %>><br><br>
-                <label> الكمية: </label>
-                <input name="quantity5" type="number" placeholder=<%= res55 %>><br>
-                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
-            </form>
-        </div>
-        <div class="box x 6">
-            <form action="/meal/m6" method="POST">
-                <i class="fas fa-utensils"></i>
-                <h3>وجبات سريعة</h3>
-                <input name="discription6" type='text' placeholder=<%= res6 %>><br><br>
-                <label> الكمية: </label>
-                <input name="quantity6" type="number" placeholder=<%= res66 %>><br>
-                <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
-            </form>
-        </div>
-    </div>
 
 
     <h1 class="heading">

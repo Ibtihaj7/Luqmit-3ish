@@ -16,21 +16,18 @@
 <link rel="stylesheet" href="/style.css">
 </head>
 <body style="  background-color: #ffc153;">
-<header>
-    <div id="menu-bar" class="fas fa-bars"></div>
+    <header>
+        <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
+        <div class="dropdown">
+            <div class="icons">
+                <a href = "/user" class="fas fa-user" id="login-btn"></a>
+                <a style="text-decoration: none;" href="/logout" class="fas fa-sign-out-alt"></a>
+            </div> 
+        </div>
+    </header>
 
-    <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
-     <div class="dropdown">
-     <div class="icons">
-    <i class="fas fa-search" id="search-btn"></i>
-    <a href = "/user" class="fas fa-user" id="login-btn"></a>
-     </div> 
-    </div>
-
-</header>
-
-<div style="height: 70vh; margin-top: 20vh;display: flex;" class="container rounded bg-white col-md-6">
-    <div class=""style="width:23vw">
+    <div style="height: 70vh; margin-top: 20vh;display: flex;" class="container rounded bg-white col-md-6">
+        <div class=""style="width:23vw">
             <div class="">
                 <form action = "/profile/edit/?_method=PUT" method = "POST">
                     <div class="col-md-12"><label style="font-family: 'Vazirmatn', sans-serif;"class="labels">الاسم  :  </label><input style="width:12vw" class="p-4" name = "name" type="text"placeholder="  أدخل اسمك" value=""><br><br></div>
@@ -42,20 +39,19 @@
                     <div class="mt-2 "><button style="margin-right:0" class="btn btn-primary profile-button" type="submit">حفظ التعديلات</button></div>
                 </form>
             </div>
+        </div>   
 
-
-    </div>        
-    <div class=""style="margin-top:15vh;width:10vw;margin-left:5vw;">
-                <div class="profile-img">
-                    <img src="imags/download.png" alt=""/>
-                    <div class="file btn btn-lg btn-primary">
+        <div class=""style="margin-top:15vh;width:10vw;margin-left:5vw;">
+            <div class="profile-img">
+                <img src="imags/download.png" alt=""/>
+                <div class="file btn btn-lg btn-primary">
                                  تعديل الصورة
-                        <input type="file" name="file"/>
-                    </div>
+                    <input type="file" name="file"/>
+                </div>
             </div>
         </div>
         
-</div>
+    </div>
 
 </body>
 </html>
