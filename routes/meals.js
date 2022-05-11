@@ -13,14 +13,14 @@ router.post('/m1',(req,res) => {
     const discription = req.body.discription1;
     if(quantity || discription){  
         if(quantity){    
-            db.query('UPDATE menu SET quantity =? WHERE category=?',[quantity,'وجبات رئيسية'],(error,results) => {
+            db.query('UPDATE menu SET quantity =? WHERE category=? AND account_id=?',[quantity,'وجبات رئيسية',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
             })  
         }
         if(discription){
-            db.query('UPDATE menu SET discription=? WHERE category=?',[discription,'وجبات رئيسية'],(error,results) => {
+            db.query('UPDATE menu SET discription=? WHERE category=? AND account_id=?',[discription,'وجبات رئيسية',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
@@ -35,14 +35,14 @@ router.post('/m2',(req,res) => {
     const discription = req.body.discription2;
     if(quantity || discription){  
         if(quantity){    
-            db.query('UPDATE menu SET quantity =? WHERE category=?',[quantity,'ساندويشات'],(error,results) => {
+            db.query('UPDATE menu SET quantity =? WHERE category=? AND account_id=?',[quantity,'ساندويشات',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
             })  
         }
         if(discription){
-            db.query('UPDATE menu SET discription=? WHERE category=?',[discription,'ساندويشات'],(error,results) => {
+            db.query('UPDATE menu SET discription=? WHERE category=? AND account_id=?',[discription,'ساندويشات',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
@@ -52,20 +52,19 @@ router.post('/m2',(req,res) => {
     return res.redirect('/restaurant');
 })
 router.post('/m3',(req,res) => {
-    console.log('nnn');
     if(!req.session.userId) return res.redirect('/endSeccion')
     const quantity = req.body.quantity3;
     const discription = req.body.discription3;
     if(quantity || discription){  
         if(quantity){    
-            db.query('UPDATE menu SET quantity =? WHERE category=?',[quantity,'عصائر'],(error,results) => {
+            db.query('UPDATE menu SET quantity =? WHERE category=? AND account_id=?',[quantity,'عصائر',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
             })  
         }
         if(discription){
-            db.query('UPDATE menu SET discription=? WHERE category=?',[discription,'عصائر'],(error,results) => {
+            db.query('UPDATE menu SET discription=? WHERE category=? AND account_id=?',[discription,'عصائر',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
@@ -80,14 +79,14 @@ router.post('/m4',(req,res) => {
     const discription = req.body.discription4;
     if(quantity || discription){  
         if(quantity){    
-            db.query('UPDATE menu SET quantity =? WHERE category=?',[quantity,'حلويات'],(error,results) => {
+            db.query('UPDATE menu SET quantity =? WHERE category=? AND account_id=?',[quantity,'حلويات',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
             })  
         }
         if(discription){
-            db.query('UPDATE menu SET discription=? WHERE category=?',[discription,'حلويات'],(error,results) => {
+            db.query('UPDATE menu SET discription=? WHERE category=? AND account_id=?',[discription,'حلويات',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
@@ -102,14 +101,14 @@ router.post('/m5',(req,res) => {
     const discription = req.body.discription5;
     if(quantity || discription){  
         if(quantity){    
-            db.query('UPDATE menu SET quantity =? WHERE category=?',[quantity,'شوربات'],(error,results) => {
+            db.query('UPDATE menu SET quantity =? WHERE category=? AND account_id=?',[quantity,'شوربات',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
             })  
         }
         if(discription){
-            db.query('UPDATE menu SET discription=? WHERE category=?',[discription,'شوربات'],(error,results) => {
+            db.query('UPDATE menu SET discription=? WHERE category=? AND account_id=?',[discription,'شوربات',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
@@ -124,14 +123,14 @@ router.post('/m6',(req,res) => {
     const discription = req.body.discription6;
     if(quantity || discription){  
         if(quantity){    
-            db.query('UPDATE menu SET quantity =? WHERE category=?',[quantity,'وجبات سريعة'],(error,results) => {
+            db.query('UPDATE menu SET quantity =? WHERE category=? AND account_id=?',[quantity,'وجبات سريعة',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
             })  
         }
         if(discription){
-            db.query('UPDATE menu SET discription=? WHERE category=?',[discription,'وجبات سريعة'],(error,results) => {
+            db.query('UPDATE menu SET discription=? WHERE category=? AND account_id=?',[discription,'وجبات سريعة',req.session.userId],(error,results) => {
                 if(error){
                     throw error;
                 }
