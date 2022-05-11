@@ -4,39 +4,39 @@ const mysql = require('mysql');
 const app = express();
 const dotenv=require('dotenv');
 const myenv=dotenv.config();
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT ||3000
 const session = require('express-session');
+const flash = require('connect-flash')
 
 app.use(express.json());
 app.use(session({ 
     secret: '123456catr',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 3600000 }
 }))
- 
+
+app.use(flash());
 const publicDirectory = path.join(__dirname,'public');
 app.set('views', __dirname + '/views');
 app.set("view engine", "ejs")
 app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
-}))  
-
 app.use('/',require('./routes/pages'));
 app.use('/profile',require('./routes/profile'));
 app.post('/edit',(req,res)=>{res.render('EditProfilePage');})
 app.use('/auth1',require('./routes/auth1'));
 app.use('/auth2',require('./routes/auth2'));
-app.use('/auth3',require('./routes/changepassword'));
+app.use('/change',require('./routes/changepassword'));
+app.use('/deleteacount',require('./routes/deleteAcount'));
 app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))
 app.use('/res',require('./routes/meals'))
+app.use('/viewRes',require('./routes/viewRes'));
+app.use('/', require("./routes/logout"))
+app.post('/endSession',(req,res) => { res.redirect('/Login')})
 
 app.use(express.static(publicDirectory));
 

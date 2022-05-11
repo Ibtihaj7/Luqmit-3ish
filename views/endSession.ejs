@@ -23,6 +23,7 @@
 <body>
 <header>
     <div id="menu-bar" class="fas fa-bars"></div>
+
     <a style="text-decoration: none;" href="/" class="logo"><span>لـ</span>قمة عيش</a>
      <div class="dropdown">
      <div class="icons">
@@ -31,14 +32,15 @@
      </div> 
     </div>
     </header>
-    <div class="login-form-container">
-        <form  action="/change/changePassword?_method=PUT" method="POST">
-            <h3> تغيير كلمة المرور</h3>
-            <input name="curentPassword" type="password" class="box" placeholder=" ادخل كلمة المرور الحالية">
-            <input name="newPassword" type="password" class="box" placeholder="ادخل كلمة المرور الجديدة">
-            <input name="confirmPassword" type="password" class="box" placeholder="تأكيد كلمة المرور">
-            <input type="submit" value="تأكيد" class="btn">
+    <div class="login-form-container">    
+        <form  action="/endSession" method="POST">
+            <h3>انتهاء مدة الطلب</h3><br>
+            <h1 style="text-align:center ;"> انتهت مدة الطلب، الرجاء تسجيل الدخول مجددا للمتابعة</h1><br>
+            <input type="submit" value="تسجيل الدخول" class="btn">
         </form>
+    
     </div>
+
+
 
 </body>

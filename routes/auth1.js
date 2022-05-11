@@ -32,7 +32,6 @@ router.post('/signUp',(req,res) => {
             }
             else{
                 db.query('SELECT * FROM account WHERE email= ?',[email],(err,res) => {
-                    console.log(res);
                     db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
                         if(err)throw err     
                 })
@@ -57,7 +56,6 @@ router.post('/signUp',(req,res) => {
         } 
         })
         verificationEmail.sendVerEmail(email);
-        res.render('logIn');
-
+        res.redirect('/Login');
 });
 module.exports = router;
