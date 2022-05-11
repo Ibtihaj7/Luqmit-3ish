@@ -48,39 +48,37 @@
     </h1>
    
     <div class="box-container">
-    <% 
-        if(resdata.length > 0 ){
-            resdata.forEach((item) => {
-                if(item.type === 'resturant'){ %>
-                <div class="box">
-                    <img src="imags/١١.png" alt="">
-                    <div class="content 1">
-                        <h3> <i class="fas fa-map-marker-alt"></i> مطعم <%= item.name %> </h3>
-                        <br><br>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+        <% 
+            if(resdata.length > 0 ){
+                resdata.forEach((item) => { %>
+                    <div class="box">
+                        <img src="imags/١١.png" alt="">
+                        <div class="content 1">
+                            <h3> <i class="fas fa-map-marker-alt"></i> مطعم <%= item.name %> </h3>
+                            <br><br>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <br><br><br><br>
+                            <form action="/viewRes/page/<%= item.id %>?" method ="POST">
+                            <button href="#services" class="btn" type="submit">  تفقد المطعم </button>
+                        </form>
                         </div>
-                        <br><br><br><br>
-                        <form action="/viewRes/page/<%= item.id %>?" method ="POST">
-                        <button href="#services" class="btn" type="submit">  تفقد المطعم </button>
-                    </form>
                     </div>
-                </div>
-                <% 
+                    <% 
+                })     
             }
-            })     
-        }
-    %>
-
-    </div>
-
-</section>
-
-<!-- packages section ends -->
-
-</body>
-</html>
+        %>
+    
+        </div>
+    
+    </section>
+    
+    <!-- packages section ends -->
+    
+    </body>
+    </html>
