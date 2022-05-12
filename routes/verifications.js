@@ -23,22 +23,22 @@ router.get("/user/verify/:hashed", async(req ,res)=>{
         }
         else{
             db.query('SELECT * FROM account WHERE email= ? and type = ?',[Information.email,"resturant"],(err,res) => {
-                db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'غير متوفر',quantity:0,account_id:res[0].id},(err,res) => {
                     if(err)throw err     
             })
-            db.query('INSERT INTO menu SET ?',{category:'ساندويشات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+            db.query('INSERT INTO menu SET ?',{category:'ساندويشات',discription:'غير متوفر',quantity:0,account_id:res[0].id},(err,res) => {
                 if(err)throw err     
             })
-            db.query('INSERT INTO menu SET ?',{category:'عصائر',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+            db.query('INSERT INTO menu SET ?',{category:'عصائر',discription:'غير متوفر',quantity:0,account_id:res[0].id},(err,res) => {
                 if(err)throw err     
             })
-            db.query('INSERT INTO menu SET ?',{category:'حلويات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+            db.query('INSERT INTO menu SET ?',{category:'حلويات',discription:'غير متوفر',quantity:0,account_id:res[0].id},(err,res) => {
                if(err)throw err     
             })
-            db.query('INSERT INTO menu SET ?',{category:'شوربات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+            db.query('INSERT INTO menu SET ?',{category:'شوربات',discription:'غير متوفر',quantity:0,account_id:res[0].id},(err,res) => {
                 if(err)throw err     
             })
-            db.query('INSERT INTO menu SET ?',{category:'وجبات سريعة',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+            db.query('INSERT INTO menu SET ?',{category:'وجبات سريعة',discription:'غير متوفر',quantity:0,account_id:res[0].id},(err,res) => {
                 if(err)throw err     
             })
             })
