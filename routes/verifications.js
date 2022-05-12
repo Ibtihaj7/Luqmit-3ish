@@ -1,46 +1,55 @@
 const express = require("express")
 const router = express.Router()
-const bcrypt = require("bcrypt")  
+const bcrypt = require("bcrypt") 
 const db = require("../config/db") 
+const cryptr = require('../config/cryptr');
 const methodOverride = require("method-override")  
 router.use(methodOverride("_method"))   
 
-router.get("/user/verify/:email/:emailUUID", async(req ,res)=>{
-    let {email, emailUUID} = req.params; 
-    await db.query("SELECT emailUUID FROM account WHERE email= ?", [email], async (err, result)=>{
+router.get("/user/verify/:hashed", async(req ,res)=>{
+    let {hashed} = req.params; 
+    const Info = cryptr.decrypt(hashed).split("|");
+    const Information = {
+        name : Info[0],
+        email : Info[1],
+        phone : Info[2],
+        password : Info[3],
+        type : Info[4]
+    }
+    hashedPassword = await bcrypt.hash(Information.password, 8);
+    db.query('INSERT INTO account SET ?',{name:Information.name,email:Information.email,phone:Information.phone,password:hashedPassword,type:Information.type},(err,result) => {
         if(err){
-            console.log(err +"error while verefication")
-        }else{    
-            if(result[0].emailUUID){
-                let compResult   
-                compResult = await bcrypt.compare(emailUUID, result[0].emailUUID)
-                .then((compResult)=>{
-                    if(compResult){    
-                        db.query("UPDATE account SET verified = 1, emailUUID = NULL WHERE email = ?", [email], (error)=>{
-                            if(error){
-                                console.log(error + "Error while verifying the user")
-                            }else{   
-                                const message = 'تم التحقق من البريد الإلكتروني بنجاح'
-                                res.render('logIn',{ message })   
-                            }
-                        })   
-                    }else{    
-                        res.render("signUp", {message: "Please request another verification link by contacting us"})  
-                    }
-                })
-                .catch((e)=>{
-                    console.log("Error while comparing the unique string with the hashed one") 
-                    res.render("signUp", {message: "Please try to verify your account later"})  
-                })
-            }else{ 
-                res.send("This link is not valid anymore!")
-            }
+            throw err;
         }
-    })
+        else{
+            db.query('SELECT * FROM account WHERE email= ? and type = ?',[Information.email,"resturant"],(err,res) => {
+                db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                    if(err)throw err     
+            })
+            db.query('INSERT INTO menu SET ?',{category:'ساندويشات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                if(err)throw err     
+            })
+            db.query('INSERT INTO menu SET ?',{category:'عصائر',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                if(err)throw err     
+            })
+            db.query('INSERT INTO menu SET ?',{category:'حلويات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+               if(err)throw err     
+            })
+            db.query('INSERT INTO menu SET ?',{category:'شوربات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                if(err)throw err     
+            })
+            db.query('INSERT INTO menu SET ?',{category:'وجبات سريعة',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
+                if(err)throw err     
+            })
+            })
+            res.redirect('/Login');
+        }
+    });
+
 })
 
 //Reset Password 
-passEmail = require('../config/passwordRequest')  
+passEmail = require('../config/passwordRequest')  // Forget password
 
 router.post("/newPasswordReq", (req, res)=>{
     let {email} = req.body   
