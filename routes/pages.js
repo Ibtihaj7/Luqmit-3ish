@@ -110,8 +110,6 @@ router.get('/charity',(req,res)=>{
 router.post('/error',(req,res) => {
     res.render('home')
 })
-router.use((req, res) => {
-    res.status(404).render('error');
-  });
+
 
 module.exports = router;
