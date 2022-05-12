@@ -37,7 +37,7 @@ app.use('/res',require('./routes/meals'))
 app.use('/viewRes',require('./routes/viewRes'));
 app.use('/', require("./routes/logout"))
 app.post('/endSession',(req,res) => { res.redirect('/Login')})
-router.use((req, res) => {
+app.use((req, res) => {
     res.status(404).render('error');
   });
 app.use(express.static(publicDirectory));
