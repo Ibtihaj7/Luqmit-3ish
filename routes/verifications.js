@@ -1,4 +1,3 @@
-
 const express = require("express")
 const router = express.Router()
 const bcrypt = require("bcrypt") 
@@ -87,7 +86,7 @@ router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
                     console.log(compResult)
                     req.session.autherized = true        
                     req.session.email = email           
-                    res.redirect(/setNewPass/${email})       
+                    res.redirect(`/setNewPass/${email}`)       
                     db.query("UPDATE account SET passwordUUID = NULL WHERE email = ?",[email], (error)=>{      
                         if(error){       
                             console.log("Error occured while deleting the reset password string ", error);    
