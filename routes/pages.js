@@ -12,7 +12,7 @@ app.use(cookieParser());
 router.get('/',(req,res) => {
     res.render('home'); 
 });
-router.get('/endSeccion',(req,res) => {
+router.get('/endSession',(req,res) => {
     res.render("endSession");
 })
 router.get('/register',(req,res) => {
@@ -47,7 +47,7 @@ router.get("/DeleteAcount",(req,res) => {
 })
 
 router.get("/user",(req,res)=>{
-    if(!req.session.userId) return res.redirect('/endSeccion')
+    if(!req.session.userId) return res.redirect('/endSession')
     const btn = true
     db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
             res.render("profilePage",{
@@ -62,7 +62,7 @@ router.get("/edit", (req,res)=>{
     res.render('EditProfilePage');
 })
 router.get('/restaurant',(req,res)=>{
-    if(!req.session.userId) return res.redirect('/endSeccion')
+    if(!req.session.userId) return res.redirect('/endSession')
     db.query('SELECT * FROM account WHERE id=?',[req.session.userId],(err,data) => {
         if(err)throw err
         if(data[0].type==='resturant'){
@@ -95,7 +95,7 @@ router.get('/restaurant',(req,res)=>{
 
 })
 router.get('/charity',(req,res)=>{
-    if(!req.session.userId) return res.redirect('/endSeccion')
+    if(!req.session.userId) return res.redirect('/endSession')
     db.query('SELECT * FROM account WHERE id=?',[req.session.userId],(err,data) => {
         if(err)throw err
             if(data[0].type==='charity'){
