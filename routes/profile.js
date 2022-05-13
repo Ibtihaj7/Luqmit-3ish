@@ -8,13 +8,14 @@ const e = require('connect-flash');
  router.use(methodOverride("_method"))  
  router.use(upload());
 router.put('/edit', (req,res)=>{
+    if(!req.session.userId) return res.redirect('/endSeccion')
     const name = req.body.name;
     const email = req.body.email;
     const phone = req.body.phone;
     const website = req.body.website;
     const location = req.body.location;
-    const file = req.files.image;
-    const filename = file.name;
+    const file = req.files ? req.files.image: false;
+    const filename = file.name?file.name:false;
     id = req.session.userId;
     db.query("SELECT * from account WHERE id = ?",[id], (error,result)=>{
         if(error){
@@ -26,27 +27,27 @@ router.put('/edit', (req,res)=>{
                    if(error){throw error;}
                });
            }
-           if(email && email != result[0].email){
+           if(email && email != result[0].email){console.log('2222');
                db.query("UPDATE account SET email = ? WHERE id = ?",[email,id],(error)=>{
                    if(error){throw error;}
                });
            }
-           if(phone && phone != result[0].phone){
+           if(phone && phone != result[0].phone){console.log('33333');
             db.query("UPDATE account SET phone = ? WHERE id = ?",[phone,id],(error)=>{
                 if(error){throw error;}
             });
         }
-        if(website && website != result[0].website){
+        if(website && website != result[0].website){console.log('44444');
             db.query("UPDATE account SET website = ? WHERE id = ?",[website,id],(error)=>{
                 if(error){throw error;}
             });
         }
-        if(location && location != result[0].location){
+        if(location && location != result[0].location){console.log('55555');
             db.query("UPDATE account SET location = ? WHERE id = ?",[location,id],(error)=>{
                 if(error){throw error;}
             });
         }
-        if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
+        if(filename && file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){console.log('6666');
             file.mv("./public/uploads" + "/" + filename, (err,)=>{
                 if(err){
                     console.log("error while uploading the photo" + err);
@@ -62,14 +63,12 @@ router.put('/edit', (req,res)=>{
                     })
                 }
             })
+        }else if(file && filename){
+            const message = "هذا التنسيق غير مسموح به ، يرجى تحميل ملف بـ '.png'أو '. gif'أو '. jpg'";
+            return res.render('EditProfilePage',{message});
         }
-        // else{
-        //     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-        //             res.render('EditProfilePage.ejs',{message: message});
-        // }
     }
         res.redirect("/user");
-        
     });
     
 })
