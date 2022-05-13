@@ -31,9 +31,9 @@ router.get("/Login",(req,res)=>{
 })
 
 router.get("/setNewPass/:email", (req, res)=>{
-    const failMessage = req.flash('user')
+    const failMessage = req.flash('user') 
     if(req.session.autherized){
-        res.render("setNewPass",{failMessage});
+        res.render("setNewPass",{validMessage:''});
     }else{
         const failMessage = 'يجب أن تتلقى بريدًا إلكترونيًا لتتمكن من إعادة تعيين كلمة المرور الخاصة بك'
         res.render("newPassword", { failMessage })
@@ -75,7 +75,7 @@ router.get('/restaurant',(req,res)=>{
                             res11:result[0].quantity,
                             res2:result[1].discription,
                             res22:result[1].quantity,
-                            res3:result[2].discription,
+                            res3:result[2].discription,      
                             res33:result[2].quantity,
                             res4:result[3].discription,
                             res44:result[3].quantity,
@@ -110,8 +110,5 @@ router.get('/charity',(req,res)=>{
 router.post('/error',(req,res) => {
     res.render('home')
 })
-router.use((req, res) => {
-    res.status(404).render('error');
-  });
 
 module.exports = router;
