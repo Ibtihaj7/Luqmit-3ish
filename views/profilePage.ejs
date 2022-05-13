@@ -26,7 +26,7 @@
     </header>
 
     <div style="height: 70vh; margin-top: 20vh;display: flex;" class="container rounded bg-white col-md-6">
-        <div class=""style="width:23vw">
+        <div>
             <div class="">
                 <div class="col-md-12"><label style="font-family: 'Vazirmatn', sans-serif;"class="labels">الاسم  :  </label><label style="width:12vw" class="p-2"value=""> <%=  data[0].name %>   </label><br><br></div>
                 <div class="col-md-12"><label class="labels">الايميل  :  </label><label style="width:12vw" class="p-2" > <%=  data[0].email %> </label><br><br></div>
@@ -39,19 +39,10 @@
                     <div class="mt-2"><button style="margin-right:0" class="btn btn-primary profile-button" type="submit">تعديل الملف الشخصي</button></div>
                 </form>
             <%}%>
-
-    </div>        
-    <div class=""style="margin-top:15vh;width:10vw;margin-left:5vw;">
-                <div class="profile-img">
-                    <img src= "./uploads/<%= data[0].img %>" alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                               
-                        <input type="file" name="file"/>
-                    </div>
-            </div>
+        </div>        
+        <div style="width:15vw; border:double 7px ">
+            <img style="width:100%" src= "/uploads/<%= data[0].img %>" alt=""/>
+        </div>
     </div>
-        
-</div>
-
 </body>
 </html>

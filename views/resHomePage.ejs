@@ -115,10 +115,14 @@
                                 <i class="fas fa-utensils"></i><br>
                                 <label> اسم الجمعية :  <%= item.name %>  </label><br>
                                 <label > نوع الوجبة: <%= item.category %></label><br>
+                                <label > اسم الوجبة:  <%= item.discription %></label><br>
                                 <label> التاريخ: <%= item.date %></label><br>
                                 <label>الكمية: <%= item.quantity %></label><br>
 
-                                <button href="#services" class="btn" type="submit">حذف الطلب</button>
+                                <button href="#services" class="btn" type="submit">حذف الطلب</button><br>
+                            </form>
+                            <form action = "/profile/display/<%= item.account_id %>?" method = "POST">
+                                <button class="btn" type="submit">  عرض معلومات الجمعية </button>
                             </form>
                     </div>
                     <% 

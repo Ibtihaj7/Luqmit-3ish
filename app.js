@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended:false }));
 
 app.use('/',require('./routes/pages'));
 app.use('/profile',require('./routes/profile'));
-app.post('/edit',(req,res)=>{res.render('EditProfilePage');})
+app.post('/edit',(req,res)=>{res.render('EditProfilePage',{message:false});})
 app.use('/auth1',require('./routes/signUp'));
 app.use('/auth2',require('./routes/Login'));
 app.use('/change',require('./routes/changepassword'));
