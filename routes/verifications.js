@@ -1,3 +1,4 @@
+
 const express = require("express")
 const router = express.Router()
 const bcrypt = require("bcrypt") 
@@ -42,6 +43,7 @@ router.get("/user/verify/:hashed", async(req ,res)=>{
                 if(err)throw err     
             })
             })
+            
             res.redirect('/Login');
         }
     });
@@ -60,14 +62,13 @@ router.post("/newPasswordReq", (req, res)=>{
         }else{
             if(result.length > 0){   
                 const validMessage ="تم ارسال رابط الى بريدك الالكتروني، يرجى فتح الرابط من بريدك الإلكتروني لتتمكن من إعادة تعيين كلمة المرور الخاصة بك"
-                const invalidMessage = req.flash('user');
+                const invalidMessage = false;
                 passEmail.sendVerEmail(email)
                 res.render("newPassword", {validMessage ,invalidMessage})
             }else{
-                const validMessage =req.flash('user')
+                const validMessage =false
                 const invalidMessage =  "يرجى إدخال البريد الإلكتروني بشكل صحيح"
-                res.render("newPassword", {validMessage , invalidMessage})   
-                console.log(result)         
+                res.render("newPassword", {validMessage , invalidMessage})          
             }
         }
     }) 
@@ -76,7 +77,7 @@ router.post("/newPasswordReq", (req, res)=>{
 router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
     let {email, passwordUUID} = req.params 
     db.query("SELECT passwordUUID FROM account WHERE email= ?", [email], async (error, result)=>{
-        const validMessage =req.flash('user');
+        const validMessage =false;
         const invalidMessage =  'هذا الرابط غير صالح ، يرجى طلب رابط آخر'
         if(result[0].passwordUUID){
             let compResult    
@@ -86,7 +87,7 @@ router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
                     console.log(compResult)
                     req.session.autherized = true        
                     req.session.email = email           
-                    res.redirect(`/setNewPass/${email}`)       
+                    res.redirect(/setNewPass/${email})       
                     db.query("UPDATE account SET passwordUUID = NULL WHERE email = ?",[email], (error)=>{      
                         if(error){       
                             console.log("Error occured while deleting the reset password string ", error);    

@@ -20,12 +20,14 @@ router.post('/signUp',(req,res) => {
             throw error;
         }
         if(results.length  > 0 ){
-            return res.render('signUp',{
-                message:"the email is already used"
-            });
+            const invalidmessage = 'الايميل مستخدم من قبل الرجاء ادخال ايميل اخر'
+            const validmessage = false
+            return res.render('signUp',{ validmessage,invalidmessage });
         }else{
          verificationEmail.sendVerEmail(req.body.email,hashedInfo);
-        res.redirect('/Login');
+         const validmessage = "تم ارسال رابط الى بريدك الالكتروني، يرجى فتح الرابط من بريدك الإلكتروني لتتمكن من تسجيل الدخول"
+         const invalidmessage = false;
+         res.render('signUp',{validmessage,invalidmessage})
         } 
     })  
 });

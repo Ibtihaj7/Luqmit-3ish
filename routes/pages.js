@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const cookieParser = require('cookie-parser');
 const db = require("../config/db") ;
-const flash = require('connect-flash')
 
 const app = express();
 app.set('views', __dirname + '/views');
@@ -12,26 +11,29 @@ app.use(cookieParser());
 router.get('/',(req,res) => {
     res.render('home'); 
 });
-router.get('/endSession',(req,res) => {
+router.get('/endSeccion',(req,res) => {
     res.render("endSession");
 })
 router.get('/register',(req,res) => {
-    res.render('signUp'); 
+    const validmessage = false;
+    const invalidmessage = false;
+    res.render('signUp',{validmessage,invalidmessage}); 
 });
 
 router.get("/newPassword", (req, res)=>{
-    const validMessage = req.flash('user')
-    const invalidMessage = req.flash('user')
+    const validMessage = false
+    const invalidMessage = false
     res.render("newPassword",{validMessage,invalidMessage});
 })
 
 router.get("/Login",(req,res)=>{
-    const message = req.flash('user')
-    res.render("logIn",{message});
+    const invalidmessage = false;
+    const validmessage = false;
+    res.render("logIn",{validmessage,invalidmessage});
 })
 
 router.get("/setNewPass/:email", (req, res)=>{
-    const failMessage = req.flash('user')
+    const failMessage = false
     if(req.session.autherized){
         res.render("setNewPass",{failMessage});
     }else{
@@ -47,7 +49,7 @@ router.get("/DeleteAcount",(req,res) => {
 })
 
 router.get("/user",(req,res)=>{
-    if(!req.session.userId) return res.redirect('/endSession')
+    if(!req.session.userId) return res.redirect('/endSeccion')
     const btn = true
     db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,result)=>{
             res.render("profilePage",{
@@ -62,7 +64,7 @@ router.get("/edit", (req,res)=>{
     res.render('EditProfilePage');
 })
 router.get('/restaurant',(req,res)=>{
-    if(!req.session.userId) return res.redirect('/endSession')
+    if(!req.session.userId) return res.redirect('/endSeccion')
     db.query('SELECT * FROM account WHERE id=?',[req.session.userId],(err,data) => {
         if(err)throw err
         if(data[0].type==='resturant'){
@@ -95,7 +97,7 @@ router.get('/restaurant',(req,res)=>{
 
 })
 router.get('/charity',(req,res)=>{
-    if(!req.session.userId) return res.redirect('/endSession')
+    if(!req.session.userId) return res.redirect('/endSeccion')
     db.query('SELECT * FROM account WHERE id=?',[req.session.userId],(err,data) => {
         if(err)throw err
             if(data[0].type==='charity'){
@@ -110,6 +112,5 @@ router.get('/charity',(req,res)=>{
 router.post('/error',(req,res) => {
     res.render('home')
 })
-
 
 module.exports = router;
