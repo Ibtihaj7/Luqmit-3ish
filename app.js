@@ -1,9 +1,7 @@
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql');
 const app = express();
-const dotenv=require('dotenv');
-const myenv=dotenv.config();
+require('dotenv').config();
 const PORT = process.env.PORT ||3000
 const session = require('express-session');
 const flash = require('connect-flash')
@@ -15,7 +13,6 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 3600000 }
 }))
-
 app.use(flash());
 const publicDirectory = path.join(__dirname,'public');
 app.set('views', __dirname + '/views');
@@ -40,8 +37,6 @@ app.post('/endSession',(req,res) => { res.redirect('/Login')})
 app.use((req, res) => {
     res.status(404).render('error');
   });
-app.use(express.static(publicDirectory));
-
 app.listen(PORT, ()=>{
     console.log(`Connected in ${PORT} port`);
 })

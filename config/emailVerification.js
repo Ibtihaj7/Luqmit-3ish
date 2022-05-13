@@ -12,8 +12,8 @@ function sendVerEmail(email,hashedInfo){
         service: 'gmail',
         secure: true,
         auth:{
-            user: 'unstoppableteam826@gmail.com', 
-            pass: '123123unstoppableteam826', 
+            user: process.env.email, 
+            pass: process.env.emailPassword, 
         }
     })  
     transporter.verify((error, success) =>{
