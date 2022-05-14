@@ -14,19 +14,19 @@ const classes = ['mainDishes', 'sandwich', 'juice', 'sweets', 'soup', 'fastFood'
         if(document.querySelector("#text").innerHTML.length == 0){  
             document.querySelector("#text").innerHTML = document.querySelectorAll("."+classes[classLocations])[0].innerHTML         
             document.querySelector("#ids").innerHTML = document.getElementById(classes[classLocations]).value     
-            Toastify({
-                text: "يرجى تأكيد الحجز في الاسفل عند الانتهاء",
-                duration: 4500, 
-                newWindow: false,
-                gravity: "bottom",
-                position: 'center',
-                style: {
-                    background: '#ffa500',
-                    fontSize: '15px',
-                },
-            }).showToast() 
         }else{
             document.querySelector("#text").innerHTML += "،" + document.querySelectorAll("."+classes[classLocations])[0].innerHTML  
             document.querySelector("#ids").innerHTML += "،"+document.getElementById(classes[classLocations]).value 
         }
+        Toastify({
+            text: "يرجى تأكيد الحجز في الاسفل عند الانتهاء",
+            duration: 4000, 
+            newWindow: false,
+            gravity: "bottom",
+            position: 'center',
+            style: {
+                background: '#ffa500',
+                fontSize: '15px',
+            },
+        }).showToast() 
     } 
