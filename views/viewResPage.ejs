@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لقمة عيش</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -100,7 +101,7 @@
                 <% if(resdata[5].quantity == 0){ %>
                     <button  class="btn" disabled> حجز </button>
                 <%}else{%> 
-                    <button class="btn fastFood"> حجز </button>
+                    <button class="btn fastFood" onclick="M.toast({html: 'I am a toast'})"> حجز </button>
                     <input style = "display: none;" value = "<%= resdata[5].id %>" class = "resturantId" id="fastFood">
                 <%}%>  
             </div>
@@ -120,19 +121,19 @@
         </h1>
 
     <div class="row">
-        <form action="/submitOrders" method="POST">       
+        <form action="/submitOrders" method="POST" style="margin-top: -105px;">       
             <input style = "display: none;" value = "<%= resturantId %>" name = "resturantId">
             <div class="inputBox">
                 <h3>اسم الجمعية</h3>
-                <input type="text" placeholder="ادخل هنا" value = "<%=charityInfo.name%>">
+                <input type="text" placeholder="ادخل هنا" value = "<%=charityInfo.name%>" readonly>
             </div>
             <div class="inputBox">
                 <h3>البريد الالكتروني</h3>
-                <input type="text" placeholder="بريد الجمعية الالكتروني" value = "<%=charityInfo.email%>">
+                <input type="text" placeholder="بريد الجمعية الالكتروني" value = "<%=charityInfo.email%>" readonly>
             </div>
             <div class="inputBox">
                 <h3>رقم الهاتف</h3>
-                <input type="text" placeholder="رقم الهاتف او الجوال" value = "<%=charityInfo.phone%>">
+                <input type="text" placeholder="رقم الهاتف او الجوال" value = "<%=charityInfo.phone%>" readonly>
                 <h3>الحجوزات</h3>
                 <textarea id='text' type="text" name = 'orders' required></textarea>
                 <textarea style = "display: none;"id='ids' type="text" name = 'menuId'></textarea>
@@ -146,5 +147,5 @@
     </div>
 
 </section>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>

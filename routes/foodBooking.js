@@ -65,92 +65,9 @@ router.post("/submitOrders", async(req, res)=>{
         }
     })
     
-    res.redirect(`/viewRes/page/${resturantId}`)
-    
-    /*
-    db.query("SELECT * from menu WHERE account_id = ?",[resturantId], (error,newResult)=>{
-            if(error){
-                console.log("Error while updating the quantity     "+error)
-                res.redirect(`/viewRes/page/${resturantId}`)  
-            }else{ 
-            db.query("SELECT * from account WHERE id = ?",[resturantId], (error,ress)=>{
-                if(error){
-                    console.log("Error while updating the quantity     "+error)
-                    res.redirect(`/viewRes/page/${resturantId}`)  
-                }else{
-                    db.query("SELECT * from account WHERE id = ?",[chrityId], (error,charityInfo)=>{
-                        if(error){
-                            console.log("Error while updating the quantity     "+error)
-                            res.redirect(`/viewRes/page/${resturantId}`)  
-                        }else{
-                            res.render('viewResPage',{
-                                resdata:newResult,
-                                resName:ress[0].name,
-                                resturantId: resturantId,
-                                charityInfo: charityInfo[0]
-                            })
-                        }   
-                    })
-                }
-            })
-        }
-    })
-    /*
-    for(let i = 0; i < orders.length; i++){ 
-
-                            
-    await db.query("select * from luqmataish.orders where account_id =? and menu_id =?", [chrityId, menuId[i]], async(error, result)=>{
-            if(error){
-                console.log("Error while checking if the charity has ordered from the same category     "+error)
-                res.redirect(`/viewRes/page/${resturantId}`)  
-            }else{
-                console.log(result.length == 0, "menu id = ",menuId[i])
-                if(result.length == 0){
-                    await db.query("INSERT INTO `luqmataish`.`orders` (`date`, `time`, `quantity`, `account_id`, `menu_id`) VALUES (?, ?, ?, ?, ?)", [currentTime.toLocaleDateString(), currentTime.toLocaleTimeString(), 1, chrityId, menuId[i]], async(error, result)=>{
-
-                    })
-               }else{
-                    await db.query("UPDATE `luqmataish`.`orders` SET quantity = ? WHERE id =?",[result[0].quantity + 1, result[0].id], (error, result)=>{
-                        if(error){
-                            console.log("Error while updating the quantity     "+error)
-                            res.redirect(`/viewRes/page/${resturantId}`)  
-                        }else{
-                            
-                        }
-                    })
-                }
-            } 
-        })
-    }
-    */
-    //res.redirect(`/viewRes/page/${resturantId}`) 
-
+    res.redirect(`/charity`)
+     
 })
-
-
+  
 module.exports = router
-
-
-/*
-await db.query("INSERT INTO `luqmataish`.`orders` (`date`, `time`, `quantity`, `account_id`, `menu_id`) VALUES (?, ?, ?, ?, ?)", [currentTime.toLocaleDateString(), currentTime.toLocaleTimeString(), 1, chrityId, menuId[i]], async(error, result)=>{
-    if(error){
-        console.log("Error while inserting the order    " + error)
-    }else{
-        await db.query("SELECT * from `luqmataish`.`menu` WHERE id =?", [menuId[i]], async(error, result)=>{
-            if(error){
-                console.log("Error while      "+error)
-                res.redirect(`/viewRes/page/${resturantId}`) 
-            }else{
-                await db.query("UPDATE `luqmataish`.`menu` SET quantity = ? WHERE id =?", [result[0].quantity - 1, menuId[i]], (error, result)=>{
-                    if(error){
-                        console.log("Error while checking if the charity has ordered from the same category     "+error)
-                        res.redirect(`/viewRes/page/${resturantId}`)  
-                    }else{
-                        console.log('updated')
-                    }
-                })
-            }
-        })
-    }
-})
-*/
+     
