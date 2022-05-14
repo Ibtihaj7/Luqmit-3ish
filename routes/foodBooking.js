@@ -65,6 +65,9 @@ router.post("/submitOrders", async(req, res)=>{
         }
     })
     
+    res.redirect(`/viewRes/page/${resturantId}`)
+    
+    /*
     db.query("SELECT * from menu WHERE account_id = ?",[resturantId], (error,newResult)=>{
             if(error){
                 console.log("Error while updating the quantity     "+error)
