@@ -10,7 +10,7 @@ router.post("/submitOrders", async(req, res)=>{
     const currentTime = new Date()  
     let frequency = [] 
 
-    db.query("SELECT * FROM luqmataish.menu where account_id =? ", [resturantId], async(error, _result)=>{
+    db.query("SELECT * FROM luqmataish.menu where account_id =? ", [resturantId], (error, _result)=>{
         if(error){
             console.log("Error while retreiving menu ids     "+error)
             res.redirect(`/viewRes/page/${resturantId}`)
@@ -43,7 +43,7 @@ router.post("/submitOrders", async(req, res)=>{
                             }
                         }else{
                             if(frequency[i] != 0){
-                                await db.query("UPDATE `luqmataish`.`orders` SET quantity = ? WHERE id =?",[ordersResult[0].quantity + frequency[i], ordersResult[0].id], (error, result)=>{
+                                 db.query("UPDATE `luqmataish`.`orders` SET quantity = ? WHERE id =?",[ordersResult[0].quantity + frequency[i], ordersResult[0].id], (error, result)=>{
                                     if(error){
                                         console.log("Error while updating the quantity     "+error)
                                         res.redirect(`/viewRes/page/${resturantId}`)  
