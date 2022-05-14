@@ -16,6 +16,6 @@ function addItem(){
         document.querySelector("#ids").innerHTML = document.getElementById(classes[classLocations]).value      
     }else{
         document.querySelector("#text").innerHTML += "،" + document.querySelectorAll("."+classes[classLocations])[0].innerHTML  
-        document.querySelector("#ids").innerHTML += "،"+document.getElementById(classes[classLocations]).value    
+        document.querySelector("#ids").innerHTML += "،"+document.getElementById(classes[classLocations]).value 
     }
 }
