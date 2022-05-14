@@ -1,21 +1,19 @@
 const nodemailer = require('nodemailer')
-const {v4: uuidv4} = require("uuid")
 const bcrypt = require("bcrypt")
 const db = require('./db')
 const dotenv = require('dotenv').config()
 
-function sendVerEmail(email){
+function sendVerEmail(email,hashedInfo){
     //url to be used in the email 
     currentURL = "http://localhost:3000/"
-    const uniqueString = uuidv4();
 
     //nodemailer staff 
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         secure: true,
         auth:{
-            user: 'unstoppableteam826@gmail.com', 
-            pass: '123123unstoppableteam826', 
+            user: process.env.email, 
+            pass: process.env.emailPassword, 
         }
     })  
     transporter.verify((error, success) =>{
@@ -26,38 +24,21 @@ function sendVerEmail(email){
         }
     })
 
-//Step 2
     let mailOption = {
         from: 'Admin',   
         to: email, 
         subject: 'Verify your email', 
         html: `<p>Complete your sign up into your account using the link below. </p>
-         <a href = ${currentURL + "user/verify/"+ email + "/" + uniqueString}> Click here to complete the process</a>`
+         <a href = ${currentURL + "user/verify/"+ hashedInfo}> Click here to complete the process</a>`
     };
-    //hash the unique string
-    hasheduniqueString = bcrypt.hash(uniqueString, 10)
-    .then((hasheduniqueString) => {
-        // seet values in
-                //INSERT INTO `users_db`.`emailver` (`email`, `uniqueString`) VALUES (?, ?)
-        db.query("UPDATE account SET emailUUID = ? WHERE email = ?  ", [hasheduniqueString, email], (err)=>{
+ 
+        transporter.sendMail(mailOption, function(err, data){
             if(err){
-                console.log("Error while inserting the uniqueString to the DB");
-                res.render("logIn", {message: "Please request another verification email"})
-            }else{//step 3 
-                transporter.sendMail(mailOption, function(err, data){
-                    if(err){
-                        console.log("Error While sending the verefication email! " + err)
-                    }else{
+                console.log("Error While sending the verefication email! " + err)
+                 }else{
                         console.log("Done !!!!!")
                     }
                 })//senMail
-            }//else 
-        })
-    })
-    .catch((e)=>{
-        console.log("Error while hasihng the unique string  ", e)
-        res.render("logIn", {message: "Please request another verification email"})
-    })
 }
 
 module.exports = {sendVerEmail}

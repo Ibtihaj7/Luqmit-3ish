@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path')
 const router = express.Router();
+const cryptr = require('../config/cryptr');
 const bcrypt = require('bcryptjs');
 const db = require("../config/db") ;
 const app = express();
@@ -11,51 +12,23 @@ app.set('view engine','ejs');
 app.use(express.static('public'));
 
 router.post('/signUp',(req,res) => {
-    const name=req.body.name;
-    const email=req.body.email;
-    const phone=req.body.phone;
-    const password=req.body.password;
-    const type = req.body.type;
-    db.query('SELECT email FROM account WHERE email = ?',[email],async(error,results) => {
+   
+    const Info = `${req.body.name}|${req.body.email}|${req.body.phone}|${req.body.password}|${req.body.type}`
+    const hashedInfo = cryptr.encrypt(Info);
+    db.query('SELECT email FROM account WHERE email = ?',[req.body.email],async(error,results) => {
         if(error){
             throw error;
         }
         if(results.length  > 0 ){
-            return res.render('signUp',{
-                message:"the email is already used"
-            });
+            const invalidmessage = 'الايميل مستخدم من قبل الرجاء ادخال ايميل اخر'
+            const validmessage = false
+            return res.render('signUp',{ validmessage,invalidmessage });
         }else{
-        let hashedPassword = await bcrypt.hash(password , 8);
-        db.query('INSERT INTO account SET ?',{name:name,email:email,phone:phone,password:hashedPassword,type:type},(err,result) => {
-            if(err){
-                throw err;
-            }
-            else{
-                db.query('SELECT * FROM account WHERE email= ? and type = ?',[email,"resturant"],(err,res) => {
-                    db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
-                        if(err)throw err     
-                })
-                db.query('INSERT INTO menu SET ?',{category:'ساندويشات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
-                    if(err)throw err     
-                })
-                db.query('INSERT INTO menu SET ?',{category:'عصائر',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
-                    if(err)throw err     
-                })
-                db.query('INSERT INTO menu SET ?',{category:'حلويات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
-                   if(err)throw err     
-                })
-                db.query('INSERT INTO menu SET ?',{category:'شوربات',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
-                    if(err)throw err     
-                })
-                db.query('INSERT INTO menu SET ?',{category:'وجبات سريعة',discription:'  ',quantity:0,account_id:res[0].id},(err,res) => {
-                    if(err)throw err     
-                })
-                })
-            }
-        });
+         verificationEmail.sendVerEmail(req.body.email,hashedInfo);
+         const validmessage = "تم ارسال رابط الى بريدك الالكتروني، يرجى فتح الرابط من بريدك الإلكتروني لتتمكن من تسجيل الدخول"
+         const invalidmessage = false;
+         res.render('signUp',{validmessage,invalidmessage})
         } 
-        })
-        verificationEmail.sendVerEmail(email);
-        res.redirect('/Login');
+    })  
 });
 module.exports = router;

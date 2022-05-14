@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const cookieParser = require('cookie-parser');
 const db = require("../config/db") ;
-const flash = require('connect-flash')
 
 const app = express();
 app.set('views', __dirname + '/views');
@@ -16,22 +15,25 @@ router.get('/endSeccion',(req,res) => {
     res.render("endSession");
 })
 router.get('/register',(req,res) => {
-    res.render('signUp'); 
+    const validmessage = false;
+    const invalidmessage = false;
+    res.render('signUp',{validmessage,invalidmessage}); 
 });
 
 router.get("/newPassword", (req, res)=>{
-    const validMessage = req.flash('user')
-    const invalidMessage = req.flash('user')
+    const validMessage = false
+    const invalidMessage = false
     res.render("newPassword",{validMessage,invalidMessage});
 })
 
 router.get("/Login",(req,res)=>{
-    const message = req.flash('user')
-    res.render("logIn",{message});
+    const invalidmessage = false;
+    const validmessage = false;
+    res.render("logIn",{validmessage,invalidmessage});
 })
 
-router.get("/setNewPass/:email", (req, res)=>{
-    const failMessage = req.flash('user') 
+router.get("/setNewPass/:email", (req, res)=>{ 
+    const failMessage = false 
     if(req.session.autherized){
         res.render("setNewPass",{validMessage:''});
     }else{
@@ -59,7 +61,8 @@ router.get("/contactUs", (req, res)=>{
     res.render("contactUs", {message: false})
 })
 router.get("/edit", (req,res)=>{
-    res.render('EditProfilePage');
+    if(!req.session.userId) return res.redirect('/endSeccion')
+    res.render('EditProfilePage',{message:false});
 })
 router.get('/restaurant',(req,res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion')
@@ -69,7 +72,7 @@ router.get('/restaurant',(req,res)=>{
             db.query("SELECT * from menu WHERE account_id = ?",[req.session.userId], (error,result)=>{
                 if(error) throw error;
                 else{ 
-                    db.query("SELECT orders.id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE menu.account_id =?",req.session.userId, (error,ress)=>{
+                    db.query("SELECT orders.account_id,menu.discription, orders.id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE menu.account_id =?",req.session.userId, (error,ress)=>{
                         return res.render('resHomePage',{
                             res1:result[0].discription,
                             res11:result[0].quantity,

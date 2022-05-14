@@ -26,24 +26,17 @@ db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
         return res.render('changePassword',{
            message:"Enter your account password correctly"
         });
-    }
-
-    else if(newPassword!==confirmPassword){
+    } else if(newPassword!==confirmPassword){
         
         return res.render('changePassword',{
             message:"Password does not match with confirm Password"
         })
-    }
-
-    else if(!(regePassword.test(newPassword))){
+    }else if(!(regePassword.test(newPassword))){
      
         return res.render('changePassword',{
             message:"Please enter a valid password, must include both lower and upper case charachter, at least one number or symbol,and at least 8 characters long"
         });
-    }
-
-    else {
-      
+    }else {
         let hashedPassword = await bcrypt.hash(newPassword , 8);
         db.query("UPDATE account SET password = ? WHERE id = ?", [hashedPassword,id],(error)=>{
             if(error){     
@@ -65,7 +58,6 @@ db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
             }
         })    
     }
-
 });
 })
 
