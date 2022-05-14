@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const db = require('../config/db')
 
-router.post("/submitOrders", async(req, res)=>{
+router.post("/submitOrders", (req, res)=>{
     const chrityId = req.session.userId
     const resturantId = req.body.resturantId  
     const orders = req.body.orders.split("،")
@@ -20,14 +20,14 @@ router.post("/submitOrders", async(req, res)=>{
             }
 
             for(let i = 0; i < _result.length; i++){
-                db.query("select * from luqmataish.orders where account_id =? and menu_id =?", [chrityId, _result[i].id], async(error, ordersResult)=>{
+                db.query("select * from luqmataish.orders where account_id =? and menu_id =?", [chrityId, _result[i].id], (error, ordersResult)=>{
                     if(error){
                         console.log("Error while retreiving from orders     "+error)
                         res.redirect(`/viewRes/page/${resturantId}`)
                     }else{ 
                         if(ordersResult.length == 0){
                             if(frequency[i] != 0){
-                                db.query("INSERT INTO `luqmataish`.`orders` (`date`, `time`, `quantity`, `account_id`, `menu_id`) VALUES (?, ?, ?, ?, ?)", [currentTime.toLocaleDateString(), currentTime.toLocaleTimeString(), frequency[i], chrityId, _result[i].id], async(error, result)=>{
+                                db.query("INSERT INTO `luqmataish`.`orders` (`date`, `time`, `quantity`, `account_id`, `menu_id`) VALUES (?, ?, ?, ?, ?)", [currentTime.toLocaleDateString(), currentTime.toLocaleTimeString(), frequency[i], chrityId, _result[i].id], (error, result)=>{
                                     if(error){
                                         console.log("Error while retreiving from orders     "+error)
                                         res.redirect(`/viewRes/page/${resturantId}`)
