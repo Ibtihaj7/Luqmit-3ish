@@ -9,7 +9,7 @@ app.use(session({
     secret: '123456catr',
     resave: false,
     saveUninitialized: false,
-    //cookie: { maxAge: 100000000000000000 } 
+    cookie: { maxAge: 10000000 } 
 }))
 
 const publicDirectory = path.join(__dirname,'public');
@@ -28,8 +28,7 @@ app.use('/deleteacount',require('./routes/deleteAcount'));
 app.use("/",require("./routes/contactUs"))
 app.use('/',require('./routes/verifications'));
 app.use('/meal',require('./routes/meals'))
-app.use('/res',require('./routes/meals'))
-app.use('/viewRes',require('./routes/viewRes'));
+app.use('/res',require('./routes/meals')) 
 app.use('/', require("./routes/logout"))
 app.use('/', require('./routes/foodBooking'))
 app.post('/endSession',(req,res) => { res.redirect('/Login')})
