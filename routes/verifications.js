@@ -23,24 +23,27 @@ router.get("/user/verify/:hashed", async(req ,res)=>{
         }
         else{
             db.query('SELECT * FROM account WHERE email= ? and type = ?',[Information.email,"resturant"],(err,res) => {
-                db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
-                    if(err)throw err     
-            })
-            db.query('INSERT INTO menu SET ?',{category:'ساندويشات',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
-                if(err)throw err     
-            })
-            db.query('INSERT INTO menu SET ?',{category:'عصائر',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
-                if(err)throw err     
-            })
-            db.query('INSERT INTO menu SET ?',{category:'حلويات',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
-               if(err)throw err     
-            })
-            db.query('INSERT INTO menu SET ?',{category:'شوربات',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
-                if(err)throw err     
-            })
-            db.query('INSERT INTO menu SET ?',{category:'وجبات سريعة',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
-                if(err)throw err     
-            })
+                if(err)throw err;
+                if(res.length>0){
+                    db.query('INSERT INTO menu SET ?',{category:'وجبات رئيسية',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
+                        if(err)throw err    
+                    })
+                    db.query('INSERT INTO menu SET ?',{category:'ساندويشات',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
+                        if(err)throw err     
+                    })
+                    db.query('INSERT INTO menu SET ?',{category:'عصائر',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
+                        if(err)throw err     
+                    })
+                    db.query('INSERT INTO menu SET ?',{category:'حلويات',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
+                       if(err)throw err     
+                    })
+                    db.query('INSERT INTO menu SET ?',{category:'شوربات',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
+                        if(err)throw err     
+                    })
+                    db.query('INSERT INTO menu SET ?',{category:'وجبات سريعة',discription:'اسم الوجبة',quantity:0,account_id:res[0].id},(err,res) => {
+                        if(err)throw err     
+                    })
+                }
             })
             
             res.redirect('/Login');
