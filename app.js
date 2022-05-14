@@ -8,8 +8,8 @@ app.use(express.json());
 app.use(session({ 
     secret: '123456catr',
     resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 3600000 }
+    saveUninitialized: false,
+    //cookie: { maxAge: 100000000000000000 } 
 }))
 
 const publicDirectory = path.join(__dirname,'public');
@@ -31,10 +31,16 @@ app.use('/meal',require('./routes/meals'))
 app.use('/res',require('./routes/meals'))
 app.use('/viewRes',require('./routes/viewRes'));
 app.use('/', require("./routes/logout"))
+app.use('/', require('./routes/foodBooking'))
 app.post('/endSession',(req,res) => { res.redirect('/Login')})
 app.use((req, res) => {
     res.status(404).render('error');
   });
+
+
 app.listen(PORT, ()=>{
     console.log(`Connected in ${PORT} port`);
 })
+
+
+

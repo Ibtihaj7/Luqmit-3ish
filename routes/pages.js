@@ -32,10 +32,10 @@ router.get("/Login",(req,res)=>{
     res.render("logIn",{validmessage,invalidmessage});
 })
 
-router.get("/setNewPass/:email", (req, res)=>{
-    const failMessage = false
+router.get("/setNewPass/:email", (req, res)=>{ 
+    const failMessage = false 
     if(req.session.autherized){
-        res.render("setNewPass",{failMessage});
+        res.render("setNewPass",{validMessage:''});
     }else{
         const failMessage = 'يجب أن تتلقى بريدًا إلكترونيًا لتتمكن من إعادة تعيين كلمة المرور الخاصة بك'
         res.render("newPassword", { failMessage })
@@ -78,7 +78,7 @@ router.get('/restaurant',(req,res)=>{
                             res11:result[0].quantity,
                             res2:result[1].discription,
                             res22:result[1].quantity,
-                            res3:result[2].discription,
+                            res3:result[2].discription,      
                             res33:result[2].quantity,
                             res4:result[3].discription,
                             res44:result[3].quantity,
