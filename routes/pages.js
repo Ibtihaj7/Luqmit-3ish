@@ -115,7 +115,8 @@ router.post('/error',(req,res) => {
     res.render('home')
 })
 
-router.get('/viewRes/page/:id', (req,res)=>{  
+router.get('/viewRes/page/:id', (req,res)=>{ 
+    if(!req.session.userId) return res.redirect('/endSeccion')
     db.query("SELECT * from menu WHERE account_id = ?",[req.params.id], (error,newResult)=>{
         if(error){
             console.log("Error while updating the quantity     "+error)
