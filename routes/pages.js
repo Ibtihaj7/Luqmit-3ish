@@ -33,17 +33,20 @@ router.get("/Login",(req,res)=>{
 })
 
 router.get("/setNewPass/:email", (req, res)=>{ 
-    const failMessage = false 
+    const invalidMessage = false 
     if(req.session.autherized){
-        res.render("setNewPass",{validMessage:''});
+        res.render("setNewPass",{validMessage:true, invalidMessage:invalidMessage });
     }else{
-        const failMessage = 'يجب أن تتلقى بريدًا إلكترونيًا لتتمكن من إعادة تعيين كلمة المرور الخاصة بك'
-        res.render("newPassword", { failMessage })
+        const invalidMessage = 'يجب أن تتلقى بريدًا إلكترونيًا لتتمكن من إعادة تعيين كلمة المرور الخاصة بك'
+        res.render("newPassword", { invalidMessage:invalidMessage, validMessage:false })
     }
 })
+
 router.get("/changePassword",(req,res) => {
-    res.render("changePassword");
+    if(!req.session.userId) return res.redirect('/endSeccion')
+    res.render("changePassword",{message:false});
 })
+
 router.get("/DeleteAcount",(req,res) => {
     res.render("DeleteAcount");
 })

@@ -24,17 +24,17 @@ db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
     if (!(results.length  && bcrypt.compareSync(curentPassword,results[0].password))){
     
         return res.render('changePassword',{
-           message:"Enter your account password correctly"
+           message:"أدخل كلمة مرور حسابك بشكل صحيح"
         });
     } else if(newPassword!==confirmPassword){
         
         return res.render('changePassword',{
-            message:"Password does not match with confirm Password"
+            message:"كلمة المرور لا تتطابق مع تأكيد كلمة المرور"
         })
     }else if(!(regePassword.test(newPassword))){
      
         return res.render('changePassword',{
-            message:"Please enter a valid password, must include both lower and upper case charachter, at least one number or symbol,and at least 8 characters long"
+            message:"الرجاء إدخال كلمة مرور صالحة ، ويجب أن تشتمل على أحرف صغيرة وكبيرة ، ورقم أو رمز واحد على الأقل ، وطول 8 أحرف على الأقل"
         });
     }else {
         let hashedPassword = await bcrypt.hash(newPassword , 8);
@@ -46,14 +46,7 @@ db.query("SELECT* FROM account WHERE id=? ",[id],async(error,results) => {
                 if(results[0].type=="resturent")
                 res.render("resHomePage",{ message: "Password changed successfully"})
                 else{
-                    db.query("SELECT * FROM account ", (error, results) => {
-                        if(error)throw err;
-                        else{
-                            return res.render('charHomePage',{
-                                resdata:results
-                            })
-                        }
-                    })    
+                    res.redirect('/charity')  
                 }
             }
         })    
