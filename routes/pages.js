@@ -112,9 +112,9 @@ router.get('/charity',(req,res)=>{
                 res.redirect('/restaurant')
             }
     })
-})
+}) 
 
-router.post('/error',(req,res) => {
+router.get('/error',(req,res) => {
     res.render('home')
 })
 
@@ -147,6 +147,17 @@ router.get('/viewRes/page/:id', (req,res)=>{
             })
         }
     })
+})
+
+router.get('/charityHome', (req, res)=>{
+    if(!req.session.userId) return res.redirect('/endSeccion') 
+    db.query("SELECT * from account where type=?",['resturant'],(err,results)=>{
+        if(err){
+            console.log("Error while retrieving accounts info       " + err)
+            res.render('error') 
+        }
+        res.render("successOrders",{ resdata:results });
+    }) 
 })
 
 module.exports = router;

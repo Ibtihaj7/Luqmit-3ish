@@ -65,7 +65,7 @@ router.post("/submitOrders", (req, res)=>{
         }
     })
     
-    res.redirect(`/charity`)
+    res.redirect(`/charityHome`)
      
 })
   
