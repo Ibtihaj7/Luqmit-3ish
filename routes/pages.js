@@ -160,4 +160,12 @@ router.get('/charityHome', (req, res)=>{
     }) 
 })
 
+router.get('/charityReservations',(req, res)=>{
+    db.query('SELECT orders.account_id,menu.discription, orders.id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE account.id =?',req.session.userId, (error,ress)=>{
+        return res.render('charityReservations',{
+            resdata:ress
+        })
+    })
+})
+
 module.exports = router;
