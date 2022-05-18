@@ -142,12 +142,27 @@ router.post('/m6',(req,res) => {
 
 
 router.delete('/delete_order/:id',(req,res) => {    
-     db.query('DELETE FROM orders WHERE id =?',[req.params.id],(error,results) => {
-         if(error){
-             throw error;
-         }
-     }) 
-    res.redirect('/restaurant')
+    db.query('SELECT account.type FROM account JOIN orders ON  account.id = orders.account_id WHERE orders.id=?', [req.params.id], (error, result)=>{
+        if(error){
+            console.log("Error while deleting the error     ", error);
+            res.render('error')
+        }else{
+            db.query('DELETE FROM orders WHERE id =?',[req.params.id],(error,results) => {
+                if(error){
+                    console.log("Error while deleting the error     ", error);
+                    res.render('error')
+                }else{
+                    if(result[0].type == 'charity'){
+                        res.redirect('/charityReservations')
+                    }else{
+                        res.redirect('/restaurant')
+                    }
+                }
+            })            
+        }
+
+    })
+
 })
 
 module.exports = router;
