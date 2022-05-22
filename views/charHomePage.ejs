@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
 <header>
     <div id="menu-bar" class="fas fa-bars"></div>
@@ -32,55 +33,7 @@
 
 </header>
 
-<!-- packages section starts  -->
-
-<section class="packages" id="packages">
-
-    <h1 class="heading">
-        <span>ا</span>
-        <span>لـ</span>
-        <span>ـمـ</span>
-        <span>طـ</span>
-        <span>ا</span>
-        <span>عـ</span>
-        <span>ـم</span>
-    </h1>
-   
-    <div class="box-container">
-        <% 
-            if(resdata.length > 0 ){
-                resdata.forEach((item) => { %>
-                    <div class="box">
-                        <img src="./uploads/<%= item.img %>" alt="">
-                        <div class="content 1">
-                            <h3> <i class="fas fa-map-marker-alt"></i> مطعم <%= item.name %> </h3>
-                            <br><br>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <br><br><br><br>
-                            <form action="/viewRes/page/<%= item.id %>" method ="GET">
-                            <button href="#services" class="btn" type="submit">  تفقد المطعم </button>
-                        </form>
-                        <form action = "/profile/display/<%= item.id %>?" method = "POST">
-                            <button class="btn" type="submit">  عرض معلومات المطعم </button>
-                        </form>
-                        </div>
-                    </div>
-                    <% 
-                })     
-            }
-        %>
-    
-        </div>
-    
-    </section>
-    
-    <!-- packages section ends -->
+    <%- include("charHomeContent") %>  
     
     </body>
     </html>
