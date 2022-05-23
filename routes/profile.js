@@ -10,7 +10,6 @@ const e = require('connect-flash');
 router.put('/edit', (req,res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion')
     const name = req.body.name;
-    const email = req.body.email;
     const phone = req.body.phone;
     const website = req.body.website;
     const location = req.body.location;
@@ -27,22 +26,17 @@ router.put('/edit', (req,res)=>{
                    if(error){throw error;}
                });
            }
-           if(email && email != result[0].email){console.log('2222');
-               db.query("UPDATE account SET email = ? WHERE id = ?",[email,id],(error)=>{
-                   if(error){throw error;}
-               });
-           }
-           if(phone && phone != result[0].phone){console.log('33333');
+           if(phone && phone != result[0].phone){
             db.query("UPDATE account SET phone = ? WHERE id = ?",[phone,id],(error)=>{
                 if(error){throw error;}
             });
         }
-        if(website && website != result[0].website){console.log('44444');
+        if(website && website != result[0].website){
             db.query("UPDATE account SET website = ? WHERE id = ?",[website,id],(error)=>{
                 if(error){throw error;}
             });
         }
-        if(location && location != result[0].location){console.log('55555');
+        if(location && location != result[0].location){
             db.query("UPDATE account SET location = ? WHERE id = ?",[location,id],(error)=>{
                 if(error){throw error;}
             });
