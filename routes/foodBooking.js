@@ -3,6 +3,7 @@ const router = express.Router()
 const db = require('../config/db')
 
 router.post("/submitOrders", (req, res)=>{
+    if(!req.session.userId) return res.redirect('/endSeccion')
     const chrityId = req.session.userId
     const resturantId = req.body.resturantId  
     const orders = req.body.orders.split("،")
