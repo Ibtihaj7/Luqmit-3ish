@@ -134,8 +134,9 @@ router.put("/newPassword", (req, res)=>{
                     if(error){     
                         console.log("Error while setting the new password ", e)     
                     }else{
-                        const message = 'تم تغيير كلمة المرور بنجاح'
-                        res.render("logIn", { message })
+                        const validmessage = 'تم تغيير كلمة المرور بنجاح';
+                        const invalidmessage = false;
+                        res.render("logIn", { validmessage,invalidmessage })
                     }
                 })
             })
