@@ -17,12 +17,13 @@ router.post('/Login',(req,res) => {
             }else{ 
                     return res.redirect('/charity');
         }
-        } else {
-          const message = 'كلمة المرور أو البريد الإلكتروني غير صحيح'
-            return res.render("logIn", { message });
-      }
+      } else {
+        const invalidmessage = 'كلمة المرور أو البريد الإلكتروني غير صحيح';
+        const validmessage = false;
+          return res.render("logIn", { validmessage,invalidmessage });
     }
-  );
+  }
+);
 });
 
 module.exports = router;
