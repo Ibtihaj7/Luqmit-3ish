@@ -673,6 +673,7 @@ align-items: center;
   }
 
   header .navbar a{
+    width: 100%;
     display: block;
     border-radius: .5rem;
     padding:1.5rem;
