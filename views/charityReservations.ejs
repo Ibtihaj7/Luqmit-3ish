@@ -13,35 +13,18 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <header>
-        <div id="menu-bar" class="fas fa-bars"></div>
-    
-        <a style="text-decoration: none;" href="/charity" class="logo"><span>لـ</span>قمة عيش</a>
-        <nav class="navbar">
-            <a style="text-decoration: none;" href="/charity">المطاعم</a>
-            <a style="text-decoration: none;" href="/changePassword">تغيير كلمة المرور</a>
-            <a style="text-decoration: none;" href="/DeleteAcount">الغاء العضوية</a>
-            
-        </nav>
-        <div class="dropdown">
-            <div class="icons">
-                <a style="text-decoration: none;" href="/logout" class="fas fa-sign-out-alt"></a>
-                <a href = "/user" class="fas fa-user" id="login-btn"></a>
-            </div> 
-        </div>
-    
-    </header>
+    <%- include("./partials/header2") %>
     <h1 class="heading"> 
         <span>حجوزات الجمعية</span>
     </h1>
     <section class="services" id="services">
-    <section id="book"> 
+        <section id="book"> 
 
-    <div class="box-container box-container">
-        <% 
-            if(resdata.length > 0 ){
-                resdata.forEach((item) => { %>
-                    <div  class="box x 6">   
+            <div class="box-container box-container">
+            <% 
+                if(resdata.length > 0 ){
+                    resdata.forEach((item) => { %>
+                        <div  class="box x 6">   
                             <form action="/meal/delete_order/<%= item.id %>?_method=DELETE" method="POST">
                                 <i class="fas fa-utensils"></i><br>
                                 <label> اسم المطعم :  <%= item.name %>  </label><br>
@@ -51,14 +34,13 @@
 
                                <button class="btn" type="submit">الغاء الحجز</button><br>
                             </form> 
-                    </div>
+                        </div>
                     <% 
                 })     
             }
         %>
-    </div>
-</section>
-</section>
-        <!--charityReservations-->
+            </div>
+        </section>
+    </section>
 </body>
 </html>

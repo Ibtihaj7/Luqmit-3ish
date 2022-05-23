@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
     <%- include("./partials/head") %>
-<body>
-<header>
-    <div id="menu-bar" class="fas fa-bars"> </div>
-    <a style="text-decoration: none;" href="/charity" class="logo"><span>لـ</span>قمة عيش</a>
-    <nav class="navbar">
-        <a style="text-decoration: none;" href="#packages">المطاعم</a>
-        <a style="text-decoration: none;" href="/changePassword">تغيير كلمة المرور</a>
-        <a style="text-decoration: none;" href="/DeleteAcount">الغاء العضوية</a>
-    </nav>
-    <div class="dropdown">
-        <div class="icons">
-            <a style="text-decoration: none;" href="/logout" class="fas fa-sign-out-alt"></a>
-            <a href = "/user" class="fas fa-user" id="login-btn"></a>
-        </div> 
-    </div>
+    <body>
+        <%- include("./partials/header2") %>
 
-</header>
-
-    <%- include("charHomeContent") %>  
+        <%- include("./partials/charHomeContent") %>  
     
     </body>
-    </html>
+</html>
