@@ -31,7 +31,6 @@ app.use('/meal',require('./routes/meals'))
 app.use('/res',require('./routes/meals')) 
 app.use('/', require("./routes/logout"))
 app.use('/', require('./routes/foodBooking'))
-//app.post('/endSession',(req,res) => { res.redirect('/Login')})
 app.use((req, res) => {
     res.status(404).render('error');
   });
