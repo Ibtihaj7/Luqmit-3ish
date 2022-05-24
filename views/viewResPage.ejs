@@ -21,6 +21,10 @@
 
         <h1 class="heading"> <span id='resturant'>مطعم <%= resName %></span> </h1>
 
+        <% if(failMessage){ %>
+            <h4 style="text-align: center; font-size:medium;"class = 'alert alert-danger' > يرجى الحجز من احد الاصناف التالية </h4>
+        <%}%> 
+
         <div class="box-container">
 
             <div class="box x 1">

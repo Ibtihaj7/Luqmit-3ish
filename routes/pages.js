@@ -139,7 +139,8 @@ router.get('/viewRes/page/:id', (req,res)=>{
                                 resdata:newResult,
                                 resName:ress[0].name,
                                 resturantId: req.params.id,
-                                charityInfo: charityInfo[0]
+                                charityInfo: charityInfo[0],
+                                failMessage: false
                             })
                         }   
                     })
