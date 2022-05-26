@@ -80,7 +80,7 @@ router.post("/newPasswordReq", (req, res)=>{
 router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
     let {email, passwordUUID} = req.params 
     db.query("SELECT passwordUUID FROM account WHERE email= ?", [email], async (error, result)=>{
-        const validMessage =false;
+        const validMessage = false;
         const invalidMessage =  'هذا الرابط غير صالح ، يرجى طلب رابط آخر'
         if(result[0].passwordUUID){
             let compResult    
@@ -94,9 +94,7 @@ router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
                     db.query("UPDATE account SET passwordUUID = NULL WHERE email = ?",[email], (error)=>{      
                         if(error){       
                             console.log("Error occured while deleting the reset password string ", error);    
-                        }else{
-                            console.log("passwordUUID Deleted successfully!")
-                        }  
+                        } 
                     }) 
                 }else{ 
                     res.render("newPassword", {validMessage,invalidMessage})     
@@ -111,8 +109,8 @@ router.get("/resetRequest/:email/:passwordUUID", (req, res)=>{
             res.render("newPassword", { validMessage, invalidMessage} )
         }
         if(error){
-            console.log("Error while searching for the unique string")
-            res.render("newPassword", { validMessage, invalidMessage})
+            console.log("Error while searching for the unique string")      
+            res.redirect('/errorPage')
         }
     })
 }) 
@@ -132,16 +130,16 @@ router.put("/newPassword", (req, res)=>{
             let hashedPass = bcrypt.hash(password, 8)
             .then((hashedPass)=>{        
                 db.query("UPDATE account SET password = ? WHERE email = ?", [hashedPass,email],(error)=>{
-                    if(error){     
-                        console.log("Error while setting the new password ", e)     
-                    }else{
-                        const validmessage = 'تم تغيير كلمة المرور بنجاح';
-                        const invalidmessage = false;
-                        res.render("logIn", { validmessage,invalidmessage })
-                    }
+                    console.log("Error while setting the new password ", e)      
+                    const validmessage = 'تم تغيير كلمة المرور بنجاح';
+                    const invalidmessage = false;
+                    res.render("logIn", { validmessage,invalidmessage }) 
                 })
             })
-            .catch((e)=>{console.log("Error while hashing the password")})
+            .catch((e)=>{
+                console.log("Error while hashing the password")
+                res.redirect('/errorPage')    
+            })
         }
     }
 })          

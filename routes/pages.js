@@ -169,4 +169,8 @@ router.get('/charityReservations',(req, res)=>{
     })
 })
 
+router.get('/errorPage',(req, res)=>{
+    res.render('error')
+})
+
 module.exports = router;
