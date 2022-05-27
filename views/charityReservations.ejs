@@ -2,34 +2,64 @@
 <html lang="ar" dir="rtl">
     <%- include("./partials/head") %>
 <body>
-    <%- include("./partials/header2") %>
-    <h1 class="heading"> 
-        <span>حجوزات الجمعية</span>
-    </h1>
-    <section class="services" id="services">
-        <section id="book"> 
+    <%- include("./partials/header1") %>
 
+    <% if(charityRes){ %>
+        <h1 class="heading top"> 
+            <span>حجوزات الجمعية</span>
+        </h1>
+        <section class="services" >
+                <div class="box-container box-container">
+                <% if(resdata.length > 0 ){
+                        resdata.forEach((item) => { %>
+                            <div  class="box x 6">   
+                                <form action="/meal/delete_order/<%= item.id %>?_method=DELETE" method="POST">
+                                    <i class="fas fa-utensils"></i><br>
+                                    <label> اسم المطعم :  <%= item.name %>  </label><br>
+                                    <label > نوع الوجبة: <%= item.category %></label><br> 
+                                    <label> تاريخ الحجز: <%= item.date %></label><br>
+                                    <label>الكمية: <%= item.quantity %></label><br>
+    
+                                   <button class="btn" type="submit">الغاء الحجز</button><br>
+                                </form> 
+                            </div>
+                        <% 
+                    })     
+                }
+            %>
+                </div>
+        </section>
+    <% } %>
+    
+    <% if(resturantRes){ %>
+        <section class="services top">
+            <h1 class="heading">
+                <span>حجوزات المطعم</span>
+            </h1>
+            <section id="book">
             <div class="box-container box-container">
-            <% 
-                if(resdata.length > 0 ){
+                <% if(resdata.length > 0 ){
                     resdata.forEach((item) => { %>
                         <div  class="box x 6">   
-                            <form action="/meal/delete_order/<%= item.id %>?_method=DELETE" method="POST">
-                                <i class="fas fa-utensils"></i><br>
-                                <label> اسم المطعم :  <%= item.name %>  </label><br>
-                                <label > نوع الوجبة: <%= item.category %></label><br> 
-                                <label> تاريخ الحجز: <%= item.date %></label><br>
-                                <label>الكمية: <%= item.quantity %></label><br>
-
-                               <button class="btn" type="submit">الغاء الحجز</button><br>
-                            </form> 
-                        </div>
-                    <% 
-                })     
-            }
-        %>
+                                <form action="/meal/delete_order/<%= item.id %>?_method=DELETE" method="POST">
+                                    <i class="fas fa-utensils"></i><br>
+                                    <label> اسم الجمعية :  <%= item.name %>  </label><br>
+                                    <label > نوع الوجبة: <%= item.category %></label><br>
+                                    <label > اسم الوجبة:  <%= item.discription %></label><br>
+                                    <label> التاريخ: <%= item.date %></label><br>
+                                    <label>الكمية: <%= item.quantity %></label><br>
+    
+                                    <button href="#services" class="btn" type="submit">حذف الطلب</button><br>
+                                </form>
+                                <form action = "/profile/display/<%= item.account_id %>?" method = "POST">
+                                    <button class="btn" type="submit">  عرض معلومات الجمعية </button>
+                                </form>
+                        </div> 
+                <% })     
+                } %>
             </div>
         </section>
     </section>
+    <% } %>
 </body>
 </html>

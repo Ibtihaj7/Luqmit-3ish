@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
     <%- include("./partials/head") %>
-<body><br><br><br><br>
+<body>
     <%- include("./partials/header1") %>
 
-<!-- services section starts  -->
-
-    <section class="services" id="services">
+    <section class="services top" id="services">
         <div class="box-container">
             <div class="box x 1">
                 <form action="/meal/m1" method="POST">
                     <i class="fas fa-utensils"></i>
                     <h3>وجبات رئيسية</h3>
-                    <input name="discription1" type='text' placeholder=<%= res1 %>><br><br>
+                    <input name="discription1" type='text' value=<%= res1 %>><br><br>
                     <label> الكمية: </label>
-                    <input name="quantity1" type="number" min="0" placeholder=<%= res11 %>><br>
+                    <input name="quantity1" type="number" min="0" value=<%= res11 %>><br>
                     <button href="#services" class="btn"> حفظ التعديلات </button>
                 </form>
             </div>
@@ -22,9 +20,9 @@
                 <form action="/meal/m2" method="POST">
                     <i class="fas fa-utensils"></i>
                     <h3>ساندويشات</h3>
-                    <input name="discription2" type='text' placeholder=<%= res2 %>><br><br>
+                    <input name="discription2" type='text' value=<%= res2 %>><br><br>
                     <label> الكمية: </label>
-                    <input name="quantity2" type="number" min="0" placeholder=<%= res22 %>><br>
+                    <input name="quantity2" type="number" min="0" value=<%= res22 %>><br>
                     <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
                 </form>
             </div>
@@ -33,9 +31,9 @@
                 <form action="/meal/m3" method="POST">
                     <i class="fas fa-utensils"></i>
                     <h3>عصائر</h3>
-                    <input name="discription3" type='text' placeholder=<%= res3 %>  >  <br><br>
+                    <input name="discription3" type='text' value=<%= res3 %>  >  <br><br>
                     <label> الكمية: </label>
-                    <input name="quantity3" type="number" min="0" placeholder=<%= res33 %>><br>
+                    <input name="quantity3" type="number" min="0" value=<%= res33 %>><br>
                     <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
                 </form>
             </div>
@@ -44,9 +42,9 @@
                 <form action="/meal/m4" method="POST">
                     <i class="fas fa-utensils"></i>
                     <h3>حلويات</h3>
-                    <input name="discription4" type='text' placeholder=<%= res4 %>><br><br>
+                    <input name="discription4" type='text' value=<%= res4 %>><br><br>
                     <label> الكمية: </label>
-                    <input name="quantity4" type="number" min="0" placeholder=<%= res44 %>><br>
+                    <input name="quantity4" type="number" min="0" value=<%= res44 %>><br>
                     <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
                 </form>
             </div>
@@ -54,9 +52,9 @@
                 <form action="/meal/m5" method="POST">
                     <i class="fas fa-utensils"></i>
                     <h3>شوربات</h3>
-                    <input name="discription5" type='text' placeholder=<%= res5 %>><br><br>
+                    <input name="discription5" type='text' value=<%= res5 %>><br><br>
                     <label> الكمية: </label>
-                    <input name="quantity5" type="number" min="0" placeholder=<%= res55 %>><br>
+                    <input name="quantity5" type="number" min="0" value=<%= res55 %>><br>
                     <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
                 </form>
             </div>
@@ -64,50 +62,14 @@
                 <form action="/meal/m6" method="POST">
                     <i class="fas fa-utensils"></i>
                     <h3>وجبات سريعة</h3>
-                    <input name="discription6" type='text' placeholder=<%= res6 %>><br><br>
+                    <input name="discription6" type='text' value=<%= res6 %>><br><br>
                     <label> الكمية: </label>
-                    <input name="quantity6" type="number" min="0" placeholder=<%= res66 %>><br>
+                    <input name="quantity6" type="number" min="0" value=<%= res66 %>><br>
                     <button href="#services" class="btn" type="submit"> حفظ التعديلات </button>
                 </form>
             </div>
         </div>
-
-
-    <h1 class="heading">
-        <span>حجوزات المطعم</span>
-    </h1>
-    <section id="book">
-
-
-    <div class="box-container box-container">
-        <% 
-            if(resdata.length > 0 ){
-                resdata.forEach((item) => { %>
-                    <div  class="box x 6">   
-                            <form action="/meal/delete_order/<%= item.id %>?_method=DELETE" method="POST">
-                                <i class="fas fa-utensils"></i><br>
-                                <label> اسم الجمعية :  <%= item.name %>  </label><br>
-                                <label > نوع الوجبة: <%= item.category %></label><br>
-                                <label > اسم الوجبة:  <%= item.discription %></label><br>
-                                <label> التاريخ: <%= item.date %></label><br>
-                                <label>الكمية: <%= item.quantity %></label><br>
-
-                                <button href="#services" class="btn" type="submit">حذف الطلب</button><br>
-                            </form>
-                            <form action = "/profile/display/<%= item.account_id %>?" method = "POST">
-                                <button class="btn" type="submit">  عرض معلومات الجمعية </button>
-                            </form>
-                    </div>
-                    <% 
-                })     
-            }
-        %>
-    
-        </div>
     </section>
-</section>
-
-<!-- book section ends -->
 
 </body>
 </html>
