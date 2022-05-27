@@ -3,7 +3,7 @@
     <%- include("./partials/head") %>
 <body>
 
-    <div class="contact" id="contact">
+    <div class="contact top" id="contact">
     
         <h1 class="heading" style="margin-top: 2vh;">  
             <span>تـ</span>
@@ -17,32 +17,31 @@
             <span>ـنـ</span>
             <span>ا</span>
         </h1>
-    <% if(message){ %>
-        <h3 class = "alert alert-success" style="margin: 0 10%;  width: 80%; text-align: center; "> <%= message %> </h3>
-    <% } %>     
-    <div class="row" style="margin-top: 50px;">
+        <% if(message){ %>
+            <h3 class = "alert alert-success" style="margin: 0 10%;  width: 80%; text-align: center; "> <%= message %> </h3>
+        <% } %>     
+        <div class="row" style="margin-top: 50px;">
 
-        <div class="image">
-            <img src="contact.png" alt="للتواصل">
-        </div>
-
-        <form action="/contact" method="POST">
-            <div class="inputBox">
-                <input type="text" placeholder="الاسم" name = "name" required>
-                <input type="email" placeholder="الايميل" name = "email" required>  
+            <div class="image">
+                <img src="contact.png" alt="للتواصل">
             </div>
-            <div class="inputBox">
-                <input type="text" placeholder=" (اختياري)الهاتف" name = "phone">
-                <input type="text" placeholder="الموضوع" name = "subject" required>                  
-            </div>   
-            <textarea placeholder="الرسالة" name="letter" id="" cols="30" rows="10" required></textarea>
-            <input type="submit" class="btn" value="ارسال">    
-        </form>
 
-    </div> 
+            <form action="/contact" method="POST">
+                <div class="inputBox">
+                    <input type="text" placeholder="الاسم" name = "name" required>
+                    <input type="email" placeholder="الايميل" name = "email" required>  
+                </div>
+                <div class="inputBox">
+                    <input type="text" placeholder=" (اختياري)الهاتف" name = "phone">
+                    <input type="text" placeholder="الموضوع" name = "subject" required>                  
+                </div>   
+                <textarea placeholder="الرسالة" name="letter" id="" cols="30" rows="10" required></textarea>
+                <input type="submit" class="btn" value="ارسال">    
+            </form>
 
-</div>    
+        </div> 
 
+    </div>    
 
 </body>
 </html>
