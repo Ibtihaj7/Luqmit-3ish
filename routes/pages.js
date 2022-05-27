@@ -162,10 +162,24 @@ router.get('/charityHome', (req, res)=>{
 })
 
 router.get('/charityReservations',(req, res)=>{
-    db.query('SELECT orders.account_id,menu.discription, orders.id, menu.account_id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN menu ON account.id = menu.account_id JOIN orders ON orders.menu_id = menu.id WHERE menu.account_id IN ( SELECT menu.account_id FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE account.id = ? )', [req.session.userId], (error,result)=>{
-        return res.render('charityReservations',{
-            resdata:result
-        })
+    if(!req.session.userId) return res.redirect('/endSeccion') 
+    db.query('SELECT type from account where id =?',[req.session.userId],(err,ress) => {
+        if(err)throw err
+        if(ress[0].type === 'charity'){
+            const resturantRes = false;
+            const charityRes = true;
+
+            db.query('SELECT orders.account_id,menu.discription, orders.id, menu.account_id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN menu ON account.id = menu.account_id JOIN orders ON orders.menu_id = menu.id WHERE menu.account_id IN ( SELECT menu.account_id FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE account.id = ? )', [req.session.userId], (error,result)=>{
+                return res.render('charityReservations',{ resturantRes, charityRes, resdata:result })
+            })
+        }else if(ress[0].type === 'resturant'){
+            const resturantRes = true;
+            const charityRes = false;
+            db.query("SELECT orders.account_id,menu.discription, orders.id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE menu.account_id =?",req.session.userId, (error,resss)=>{
+                if(error)throw error
+                return res.render('charityReservations',{ resturantRes, charityRes , resdata:resss })
+            })
+        }   
     })
 })
 
