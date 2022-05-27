@@ -2,9 +2,9 @@
 <html lang="ar" dir="rtl">
     <%- include("./partials/head") %>
 <body>
-    <%- include("./partials/header3") %>
+    <%- include("./partials/header2") %>
 
-    <section class="services" id="services">
+    <section class="services top" id="services">
 
         <h1 class="heading"> <span id='resturant'>مطعم <%= resName %></span> </h1>
 
@@ -90,7 +90,6 @@
     </div>
     </section>
     <section class="book" id="book">
-
         <h1 class="heading">
             <span>حـ</span>
             <span>جـ</span>
@@ -102,32 +101,31 @@
             <span>ن</span>
         </h1>
 
-    <div class="row">
-        <form action="/submitOrders" method="POST" style="margin-top: -105px;">       
-            <input style = "display: none;" value = "<%= resturantId %>" name = "resturantId">
-            <div class="inputBox">
-                <h3>اسم الجمعية</h3>
-                <input type="text" placeholder="ادخل هنا" value = "<%=charityInfo.name%>" readonly>
-            </div>
-            <div class="inputBox">
-                <h3>البريد الالكتروني</h3>
-                <input type="text" placeholder="بريد الجمعية الالكتروني" value = "<%=charityInfo.email%>" readonly>
-            </div>
-            <div class="inputBox">
-                <h3>رقم الهاتف</h3>
-                <input type="text" placeholder="رقم الهاتف او الجوال" value = "<%=charityInfo.phone%>" readonly>
-                <h3>الحجوزات</h3>
-                <textarea id='text' type="text" name = 'orders' readonly required></textarea>
-                <textarea style = "display: none;"id='ids' type="text" name = 'menuId'></textarea>
-            </div>
-            <div class="inputBox">
-            </div>
-            <input type="submit" class="btn" value="احجز الان">
-        </form>
+        <div class="row">
+            <form action="/submitOrders" method="POST" style="margin-top: -105px;">       
+                <input style = "display: none;" value = "<%= resturantId %>" name = "resturantId">
+                <div class="inputBox">
+                    <h3>اسم الجمعية</h3>
+                    <input type="text" placeholder="ادخل هنا" value = "<%=charityInfo.name%>" readonly>
+                </div>
+                <div class="inputBox">
+                    <h3>البريد الالكتروني</h3>
+                    <input type="text" placeholder="بريد الجمعية الالكتروني" value = "<%=charityInfo.email%>" readonly>
+                </div>
+                <div class="inputBox">
+                    <h3>رقم الهاتف</h3>
+                    <input type="text" placeholder="رقم الهاتف او الجوال" value = "<%=charityInfo.phone%>" readonly>
+                    <h3>الحجوزات</h3>
+                    <textarea id='text' type="text" name = 'orders' readonly required></textarea>
+                    <textarea style = "display: none;"id='ids' type="text" name = 'menuId'></textarea>
+                </div>
+                <div class="inputBox">
+                </div>
+                <input type="submit" class="btn" value="احجز الان">
+            </form>
+        </div>
+    </section>
 
-    </div>
-
-</section>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script src = "/menu.js"></script>
+
 </body>
