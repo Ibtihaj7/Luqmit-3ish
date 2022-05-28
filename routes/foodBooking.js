@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const db = require('../config/db')
+const {resturantPage} = require('./pages') 
 
 router.post("/submitOrders", (req, res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion')
@@ -9,11 +10,13 @@ router.post("/submitOrders", (req, res)=>{
     const menuId = req.body.menuId.split("،")
     const currentTime = new Date()  
     let frequency = [] 
+    //Check if the user made a real reservation(select at least one to reseve)
+    //if not, display an error message 
         if(req.body.menuId.length){
         db.query("SELECT * FROM luqmataish.menu where account_id =? ", [resturantId], (error, _result)=>{
             if(error){
                 console.log("Error while retreiving menu ids     "+error)
-                res.redirect(`/viewRes/page/${resturantId}`)
+                res.redirect(`/errorPage`)
             }else{
                 for(let i = 0; i<_result.length; i++){
                     frequency.push(menuId.filter(x => x == _result[i].id).length) 
@@ -67,35 +70,9 @@ router.post("/submitOrders", (req, res)=>{
         
         res.redirect(`/charityHome`)
     }else{
-    if(!req.session.userId) return res.redirect('/endSeccion')
-        db.query("SELECT * from menu WHERE account_id = ?",[resturantId], (error,newResult)=>{
-            if(error){
-                console.log("Error while updating the quantity     "+error) 
-                res.redirect('/errorPage')  
-            }else{ 
-                db.query("SELECT * from account WHERE id = ?",[resturantId], (error,ress)=>{
-                    if(error){
-                        console.log("Error while updating the quantity     "+error)
-                        res.redirect('/errorPage')
-                    }else{
-                        db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,charityInfo)=>{
-                            if(error){
-                                console.log("Error while updating the quantity     "+error)
-                                res.redirect('/errorPage')
-                            }else{
-                                res.render('viewResPage',{
-                                    resdata:newResult,
-                                    resName:ress[0].name,
-                                    resturantId: resturantId,
-                                    charityInfo: charityInfo[0],
-                                    failMessage: true
-                                })
-                            }   
-                        })
-                    }
-                })    
-            }
-        })
+        if(!req.session.userId) 
+            return res.redirect('/endSeccion') 
+        resturantPage(true, resturantId, req.session.userId, res) 
     }
      
 })

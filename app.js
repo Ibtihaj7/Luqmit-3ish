@@ -18,7 +18,7 @@ app.set("view engine", "ejs")
 app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended:false }));
 
-app.use('/',require('./routes/pages'));
+app.use('/',require('./routes/pages').router);
 app.use('/profile',require('./routes/profile'));
 app.post('/edit',(req,res)=>{res.render('EditProfilePage',{message:false});})
 app.use('/auth1',require('./routes/signUp'));
@@ -31,6 +31,7 @@ app.use('/meal',require('./routes/meals'))
 app.use('/res',require('./routes/meals')) 
 app.use('/', require("./routes/logout"))
 app.use('/', require('./routes/foodBooking'))
+app.use('/', require('./routes/forgetPassword'))
 app.use((req, res) => {
     res.status(404).render('error');
   });

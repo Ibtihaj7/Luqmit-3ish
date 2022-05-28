@@ -32,7 +32,7 @@ router.get("/Login",(req,res)=>{
     res.render("logIn",{validmessage,invalidmessage});
 })
 
-router.get("/setNewPass/:email", (req, res)=>{ 
+router.get("/setNewPass", (req, res)=>{ 
     const invalidMessage = false 
     if(req.session.autherized){
         res.render("setNewPass",{validMessage:true, invalidMessage:invalidMessage });
@@ -114,38 +114,6 @@ router.get('/error',(req,res) => {
     res.render('home')
 })
 
-router.get('/viewRes/page/:id', (req,res)=>{ 
-    if(!req.session.userId) return res.redirect('/endSeccion')
-    db.query("SELECT * from menu WHERE account_id = ?",[req.params.id], (error,newResult)=>{
-        if(error){
-            console.log("Error while updating the quantity     "+error)
-            res.redirect(`/viewRes/page/${req.params.id}`)  
-        }else{ 
-            db.query("SELECT * from account WHERE id = ?",[req.params.id], (error,ress)=>{
-                if(error){
-                    console.log("Error while updating the quantity     "+error)
-                    res.redirect(`/viewRes/page/${req.params.id}`)  
-                }else{
-                    db.query("SELECT * from account WHERE id = ?",[req.session.userId], (error,charityInfo)=>{
-                        if(error){
-                            console.log("Error while updating the quantity     "+error)
-                            res.redirect(`/viewRes/page/${req.params.id}`)  
-                        }else{
-                            res.render('viewResPage',{
-                                resdata:newResult,
-                                resName:ress[0].name,
-                                resturantId: req.params.id,
-                                charityInfo: charityInfo[0],
-                                failMessage: false
-                            })
-                        }   
-                    })
-                }
-            })
-        }
-    })
-})
-
 router.get('/charityHome', (req, res)=>{
     if(!req.session.userId) return res.redirect('/endSeccion') 
     db.query("SELECT * from account where type=?",['resturant'],(err,results)=>{
@@ -166,21 +134,52 @@ router.get('/charityReservations',(req, res)=>{
             const charityRes = true;
 
             db.query('SELECT orders.account_id,menu.discription, orders.id, menu.account_id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN menu ON account.id = menu.account_id JOIN orders ON orders.menu_id = menu.id WHERE menu.account_id IN ( SELECT menu.account_id FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE account.id = ? )', [req.session.userId], (error,result)=>{
-                return res.render('charityReservations',{ resturantRes, charityRes, resdata:result })
+                return res.render('reservations',{ resturantRes, charityRes, resdata:result })
             })
         }else if(ress[0].type === 'resturant'){
             const resturantRes = true;
             const charityRes = false;
             db.query("SELECT orders.account_id,menu.discription, orders.id, account.name, orders.quantity, menu.category,orders.date FROM account JOIN orders ON account.id = orders.account_id JOIN menu ON orders.menu_id = menu.id WHERE menu.account_id =?",req.session.userId, (error,resss)=>{
                 if(error)throw error
-                return res.render('charityReservations',{ resturantRes, charityRes , resdata:resss })
+                return res.render('reservations',{ resturantRes, charityRes , resdata:resss })
             })
         }   
     })
+})
+
+router.get('/viewRes/page/:id', (req, res)=>{ 
+    if(!req.session.userId) 
+        return res.redirect('/endSeccion')
+    resturantPage(false, req.params.id, req.session.userId, res);
+
 })
 
 router.get('/errorPage',(req, res)=>{
     res.render('error')
 })
 
-module.exports = router;
+function resturantPage(messageStatus, resturantId, charityId, res){
+    db.query("SELECT * FROM account, menu WHERE account.id = ? AND menu.account_id = ?", [resturantId, resturantId], (error,resturantInfo)=>{
+        if(error){
+            console.log("Error selecting resturant info the quantity     "+error)
+            res.redirect(`/errorPage`)  
+        }else{  
+            db.query("SELECT * from account WHERE id = ?",[charityId], (error,charityInfo)=>{
+                if(error){
+                    console.log("Error while updating the quantity     "+error)
+                    res.redirect(`/errorPage`)  
+                }else{
+                    res.render('viewResPage',{
+                        resdata: resturantInfo,
+                        resName: resturantInfo[0].name,
+                        resturantId: resturantId,
+                        charityInfo: charityInfo[0],
+                        failMessage: messageStatus
+                    })
+                }
+            }) 
+        }
+    })
+}
+
+module.exports = {router: router, resturantPage: resturantPage};
