@@ -2,6 +2,8 @@
 In this project, we created a way of networking between restaurants and charities to manage daily food surplus from restaurants in beneficial ways
 rather than throwing it away.
 
+<br>
+<br>
 <ul>problem statement:</ul>
 <li>The inability of associations to provide sufficient quantities of food to distribute to those in need.
 </li>
@@ -9,8 +11,9 @@ rather than throwing it away.
 </li>
 <li>Difficulty communicating associations with restaurants and knowledge of the daily surplus food in restaurants.
 </li>
-
-<ul>solutions </ul>
+<br>
+<br>
+<ul>solutions: </ul>
 <li>We will create a website that facilitates the communication of the charities with restaurants and facilitates the process of reserve a donation.
   </li>
   
