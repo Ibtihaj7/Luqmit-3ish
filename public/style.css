@@ -23,6 +23,7 @@ margin-left: 10vw !important;
 }
 .container{
   display: flex;
+  border:5px inset;
 }
 
 h5{
@@ -658,7 +659,17 @@ align-items: center;
 }
 
 @media (max-width:768px){
-
+  .home .container , body .container {
+    display:flex;
+    flex-direction: column;
+    height: 100vh !important;
+  }
+  body .container .divv{
+    margin-top: 5vh;
+    width:40vw !important;
+  }
+  .container form div , .container form div div div input { width: 100% !important;  }
+  .container form div div div {  width: 70vw !important; }
   #menu-bar{
     display: initial;
   }
