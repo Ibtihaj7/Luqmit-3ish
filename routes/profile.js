@@ -41,7 +41,7 @@ router.put('/edit', (req,res)=>{
                 if(error){throw error;}
             });
         }
-        if(filename && file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){console.log('6666');
+        if(filename && file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
             file.mv("./public/uploads" + "/" + filename, (err,)=>{
                 if(err){
                     console.log("error while uploading the photo" + err);
