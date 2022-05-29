@@ -5,7 +5,7 @@
     <%- include("./partials/header1") %>
 
     <% if(charityRes){ %>
-        <h1 class="heading top" style="margin-top: 75px;"> 
+        <h1 class="heading top"> 
             <span>حجوزات الجمعية</span>
         </h1>
         <section class="services" >
@@ -20,7 +20,7 @@
                                     <label> تاريخ الحجز: <%= item.date %></label><br>
                                     <label>الكمية: <%= item.quantity %></label><br>
     
-                                   <button class="btn" type="submit">الغاء الحجز</button><br>
+                                    <button class='fas' style='font-size:35px;color:#ffa200;' type="submit">&#xf2bb;</button><br>
                                 </form> 
                             </div>
                         <% 
@@ -33,14 +33,14 @@
     
     <% if(resturantRes){ %>
         <section class="services top">
-            <h1 class="heading" style="margin-top: 75px;">
+            <h1 class="heading">
                 <span>حجوزات المطعم</span>
             </h1>
             <section id="book">
             <div class="box-container box-container">
                 <% if(resdata.length > 0 ){
                     resdata.forEach((item) => { %>
-                        <div  class="box x 6">   
+                        <div  class="box x 6" ">   
                                 <form action="/meal/delete_order/<%= item.id %>?_method=DELETE" method="POST">
                                     <i class="fas fa-utensils"></i><br>
                                     <label> اسم الجمعية :  <%= item.name %>  </label><br>
@@ -48,12 +48,13 @@
                                     <label > اسم الوجبة:  <%= item.discription %></label><br>
                                     <label> التاريخ: <%= item.date %></label><br>
                                     <label>الكمية: <%= item.quantity %></label><br>
-    
-                                    <button href="#services" class="btn" type="submit">حذف الطلب</button><br>
+                                    <div style="display: flex;">
+                                       <div> <button class='fa-solid fa-trash-can' style='font-size:35px;color:#ffa200;' type="submit"></button><br></div>
                                 </form>
                                 <form action = "/profile/display/<%= item.account_id %>?" method = "POST">
-                                    <button class="btn" type="submit">  عرض معلومات الجمعية </button>
+                                    <div><button class='fas' style='font-size:35px;color:#ffa200;' type="submit">&#xf2bb;</button></div>
                                 </form>
+                                    </div>
                         </div> 
                 <% })     
                 } %>
