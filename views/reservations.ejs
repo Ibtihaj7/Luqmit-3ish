@@ -20,7 +20,7 @@
                                     <label> تاريخ الحجز: <%= item.date %></label><br>
                                     <label>الكمية: <%= item.quantity %></label><br>
     
-                                    <button class='fa-solid fa-trash-can' style='font-size:35px;color:#ffa200;' type="submit"></button><br>
+                                    <button class='fa-solid fa-trash-can' style='font-size:35px;color:#ffa200;' type="submit" title="الغاء الحجز"></button><br>
                                 </form> 
                             </div>
                         <% 
@@ -44,15 +44,14 @@
                                 <form action="/meal/delete_order/<%= item.id %>?_method=DELETE" method="POST">
                                     <i class="fas fa-utensils"></i><br>
                                     <label> اسم الجمعية :  <%= item.name %>  </label><br>
-                                    <label > نوع الوجبة: <%= item.category %></label><br>
-                                    <label > اسم الوجبة:  <%= item.discription %></label><br>
+                                    <label > نوع الوجبة: <%= item.category %></label><br> 
                                     <label> التاريخ: <%= item.date %></label><br>
                                     <label>الكمية: <%= item.quantity %></label><br>
                                     <div style="display: flex;">
-                                       <div> <button class='fa-solid fa-trash-can' style='font-size:35px;color:#ffa200;' type="submit"></button><br></div>
+                                       <div> <button class='fa-solid fa-trash-can' style='font-size:35px;color:#ffa200;' type="submit" title="حذف الطلب"></button><br></div>
                                 </form>
                                 <form action = "/profile/display/<%= item.account_id %>?" method = "POST">
-                                    <div><button class='fas' style='font-size:35px;color:#ffa200;' type="submit">&#xf2bb;</button></div>
+                                    <div><button class='fas' style='font-size:35px;color:#ffa200;' type="submit" title="عرض ملف الجمعية">&#xf2bb;</button></div>
                                 </form>
                                     </div>
                         </div> 
